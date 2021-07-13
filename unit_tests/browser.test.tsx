@@ -8,8 +8,8 @@ const fetch = require("node-fetch");
 global.fetch = fetch;
 require("fake-indexeddb/auto");
 
-const DEFAULT_CICAPI_SRC_URL = "http://localhost:2020/client-api/dist/debug/cicapi.web.js";
-//const DEFAULT_CICAPI_SRC_URL = "https://salmon-tree-07d81fe10.azurestaticapps.net/cicapi.web.js";
+//const DEFAULT_CICAPI_SRC_URL = "http://localhost:2020/client-api/dist/debug/cicapi.web.js";
+const DEFAULT_CICAPI_SRC_URL = "https://clientapi-dev.2020-contentplatform.net/cicapi.web.js";
 
 //=============================================================================
 async function _importCiCAPI(apiCodeUrl) {
@@ -38,8 +38,7 @@ function baseTests() {
 beforeAll(async () => {
     // stubb scrollIntoView
     window.HTMLElement.prototype.scrollIntoView = jest.fn();
-    //globalThis.AbortController = class AbortController { abort() { console.log("Mocked Abort"); } }
-
+    jest.setTimeout(6000);
     await _importCiCAPI(DEFAULT_CICAPI_SRC_URL);
     try {
         // @ts-ignore -- imported with _importCiCAPI
@@ -95,7 +94,6 @@ describe("CatalogBrowser Basic UI Checks", () => {
 
 
     it("Check CiC2 checkbox", async () => {
-        jest.setTimeout(6000);
         let { debug, container } = baseTests(),
         cic2ChkBx,
         catalogToggleBtnLabel;
