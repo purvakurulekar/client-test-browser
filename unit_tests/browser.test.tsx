@@ -27,7 +27,7 @@ async function _importCiCAPI(apiCodeUrl) {
 //=============================================================================
 
 function baseTests() {
-    let { debug, container } = render(<CatalogBrowser includeDataSourceSwitcher ={true}/>);
+    let { debug, container } = render(<CatalogBrowser includeDataSourceSwitcher={true}/>);
     return {
         debug,
         container
@@ -38,7 +38,7 @@ function baseTests() {
 beforeAll(async () => {
     // stubb scrollIntoView
     window.HTMLElement.prototype.scrollIntoView = jest.fn();
-    jest.setTimeout(6000);
+    // jest.setTimeout(6000);
     await _importCiCAPI(DEFAULT_CICAPI_SRC_URL);
     try {
         // @ts-ignore -- imported with _importCiCAPI

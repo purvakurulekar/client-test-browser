@@ -1,0 +1,77 @@
+const Util = require("util"),
+    fs = require("fs"),
+    path = require("path"),
+    promiseReadFile = Util.promisify(fs.readFile);
+
+let cic3USCatalogsMock = require("./mocks/cic3USCatalogs.json"),
+    cic3BRCatalogsMock = require("./mocks/cic3BRCatalogs.json"),
+    cic2CatalogsMock = require("./mocks/cic2Catalogs.json"),
+    cic2CatalogProducts = require("./mocks/cic2CatalogProducts.json"),
+    cic2CommonStructuralWall = require("./mocks/cic2CommonStructuralWall.json");
+
+// adds the 'fetchMock' global variable and rewires 'fetch' global to call 'fetchMock' instead of the real implementation
+require('jest-fetch-mock').enableMocks()
+// changes default behavior of fetchMock to use the real 'fetch' implementation and not mock responses
+fetchMock.dontMock();
+
+//=============================================================================
+function queryToMap(queryString) {
+    let queryMap = {};
+
+    if (queryString) {
+        queryMap = Object.assign({}, ...queryString
+            .split("&")
+            .map(chunk => {
+                let pair = chunk.split("=");
+                return {
+                    [pair[0]]: pair[1]
+                };
+            }));
+    }
+
+    return queryMap;
+}
+
+// https://catalog.mooble.com/api/specifications
+// https://catalog.mooble.com/api/specifications/9a539759-273f-417d-92ca-4520ba1c8463/properties?client=mooble&region=us
+fetchMock.doMockIf(/https?:\/\/catalog\.mooble\.com\/api\//i, req => {
+    let urlString = req.url.toString(),
+        parsedURL = req[Object.getOwnPropertySymbols(req)[1]].parsedURL,
+        queryMap = queryToMap(parsedURL.query),
+        promisedReturn,
+        promise;
+
+    if (/Brand\/GetBrandsPlannerFilter/i.test(urlString)) {
+        if (queryMap.region = "us") {
+            promisedReturn = JSON.stringify(cic3USCatalogsMock);
+        } else if (queryMap.region = "br") {
+            promisedReturn = JSON.stringify(cic3BRCatalogsMock);
+        }
+        promise = Promise.resolve(promisedReturn);
+    } else {
+        console.log("MOCK BAD MATCH => ", urlString);
+    }
+
+    return promise || Promise.resolve([]);
+});
+
+fetchMock.doMockIf(/https?:\/\/localhost:3030/i, req => {
+    let urlString = req.url.toString(),
+        promise;
+
+    // http://localhost:3030/BackOffice_Public/API/CatalogVersions?status=Activated
+
+    // BackOffice_Public/API/Products
+    // BackOffice_ProductOffering/API/Catalogs/1leGycrLzM0/Locales/en-US/Products?code=Common.Structural.Wall
+    if (/BackOffice_Public\/API\/CatalogVersions/i.test(urlString)) {
+        promise = Promise.resolve(JSON.stringify(cic2CatalogsMock));
+    } else if(/BackOffice_Public\/API\/Products/i.test(urlString)) {
+        promise = Promise.resolve(JSON.stringify(cic2CatalogProducts));
+    } else if(/BackOffice_ProductOffering\/API\/Catalog\/1leGycrLzM0\/Locales\/en-US\/Products?code=Common.Structural.Wall/) {
+        promise = Promise.resolve(JSON.stringify(cic2CommonStructuralWall));
+    } else {
+        console.log("MOCK BAD MATCH => ", urlString);
+    }
+
+    return promise || Promise.resolve([]);
+});

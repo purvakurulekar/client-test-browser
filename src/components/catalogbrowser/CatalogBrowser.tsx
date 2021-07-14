@@ -30,7 +30,7 @@ const
     KEYS_TO_CHECK: Array<string> = ["client", "partnership", "region", "contextCode", "catalogsApiUrl", "sources.cic2_enabled", "sources.cic3_enabled"];
 
 interface ICatalogBrowserProps {
-    onProductAdd: Function,
+    onProductAdd?: Function,
     includeDataSourceSwitcher?: boolean,
     includeSettings?: boolean
 }
@@ -139,7 +139,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
             setTotalMoobleResults(0);
         },
         addProduct = (product: IPublicProduct | null) => {
-            if (product !== null) {
+            if (product !== null && props.onProductAdd) {
                 props.onProductAdd(product);
             }
         },

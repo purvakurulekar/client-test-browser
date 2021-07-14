@@ -1,0 +1,36 @@
+[
+	{
+		"Id": "Youmodulados",
+		"LibraryId": "1128",
+		"Value": "You Modulados",
+		"Logo": "brand-Youmodulados.png",
+		"Localizations": [
+			{
+				"Id": "pt-br",
+				"Name": "You Modulados"
+			}
+		],
+		"ValidMeaningIds": [
+			"Marca"
+		],
+		"ParentTagIds": [],
+		"StoreByCollection": false
+	},
+	{
+		"Id": "Decibal",
+		"LibraryId": "2036",
+		"Value": "Decibal",
+		"Logo": "brand-Decibal.png",
+		"Localizations": [
+			{
+				"Id": "pt-br",
+				"Name": "Decibal"
+			}
+		],
+		"ValidMeaningIds": [
+			"Marca"
+		],
+		"ParentTagIds": [],
+		"StoreByCollection": false
+	}
+]

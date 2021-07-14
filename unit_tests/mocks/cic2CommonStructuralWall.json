@@ -1,0 +1,31 @@
+{
+    "LineTypeCode": "ConfiguratorArtifact",
+    "DisplayOrder": 0,
+    "IsConfigurable": false,
+    "Describers": [{
+        "CategoryCode": "Keywords",
+        "Value": "NO_SEARCH"
+    }],
+    "Prices": [],
+    "IsActive": true,
+    "Id": 986313,
+    "Code": "Common.Structural.Wall",
+    "Description": "Interior Wall",
+    "Assets": [{
+        "Uri": "but_is_6/catalogdata/itemimages/common/room/wall_generic_all_s.jpg",
+        "Type": 27
+    }, {
+        "Uri": "but_is_6/catalogdata/itemimages/common/room/wall_generic_all_s.jpg",
+        "Type": 28
+    }],
+    "Attributes": [{
+        "Code": "ItemType",
+        "Value": "Common.Structural.Wall",
+        "Type": "CL"
+    }, {
+        "Code": "3DFull",
+        "Value": "Common.Structural.Wall",
+        "Type": "AC"
+    }],
+    "Tags": {}
+}

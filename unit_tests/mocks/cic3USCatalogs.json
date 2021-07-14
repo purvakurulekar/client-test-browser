@@ -1,0 +1,125 @@
+[
+	{
+		"Id": "TramontinaPro",
+		"LibraryId": "2134",
+		"Value": "Tramontina Pro",
+		"Logo": "https://cdn.mooble.com/logo/brand-TramontinaPro.png",
+		"Localizations": [
+			{
+				"Id": "pt-br",
+				"Name": "Tramontina Pro"
+			},
+			{
+				"Id": "es-es",
+				"Name": "Tramontina Pro"
+			},
+			{
+				"Id": "en-us",
+				"Name": "Tramontina Pro"
+			}
+		],
+		"ValidMeaningIds": [
+			"Marca"
+		],
+		"ParentTagIds": [],
+		"StoreByCollection": false
+	},
+	{
+		"Id": "2020Icovia",
+		"LibraryId": "2372",
+		"Value": "2020 Icovia",
+		"Logo": "brand-2020Icovia.png",
+		"Localizations": [
+			{
+				"Id": "pt-br",
+				"Name": "2020 Icovia"
+			}
+		],
+		"ValidMeaningIds": [
+			"Marca"
+		],
+		"ParentTagIds": [],
+		"StoreByCollection": false
+	},
+	{
+		"Id": "Mooble",
+		"LibraryId": "380",
+		"Value": "Decoração",
+		"Logo": "",
+		"Localizations": [
+			{
+				"Id": "pt-br",
+				"Name": "Decoração"
+			},
+			{
+				"Id": "es-es",
+				"Name": "Decoración"
+			},
+			{
+				"Id": "en-us",
+				"Name": "Decor"
+			},
+			{
+				"Id": "fr-fr",
+				"Name": "Décoration"
+			}
+		],
+		"ValidMeaningIds": [
+			"Marca"
+		],
+		"ParentTagIds": [],
+		"StoreByCollection": false
+	},
+	{
+		"Id": "Itatiaia",
+		"LibraryId": "306",
+		"Value": "Itatiaia",
+		"Logo": "https://cdn.mooble.com/logo/F56A1BDB2F7426648BF6D099F5A0C2E.png",
+		"Localizations": [
+			{
+				"Id": "pt-br",
+				"Name": "Itatiaia"
+			}
+		],
+		"ValidMeaningIds": [
+			"Marca"
+		],
+		"ParentTagIds": [],
+		"StoreByCollection": true
+	},
+	{
+		"Id": "Cayke",
+		"LibraryId": "2633",
+		"Value": "Cayke",
+		"Logo": "https://cdn.mooble.com/logo/brand-Cayke.png",
+		"Localizations": [
+			{
+				"Id": "pt-br",
+				"Name": "Cayke"
+			}
+		],
+		"ValidMeaningIds": [
+			"Marca"
+		],
+		"ParentTagIds": [],
+		"Date": "2020-08-11T19:47:02.669Z",
+		"StoreByCollection": false
+	},
+	{
+		"Id": "DesignPremium",
+		"LibraryId": "800",
+		"Value": "2020 Generic Content",
+		"Localizations": [
+			{
+				"Id": "pt-br",
+				"Name": "2020 Generic Content"
+			}
+		],
+		"ValidMeaningIds": [
+			"Marca"
+		],
+		"ParentTagIds": [],
+		"StoreByCollection": false,
+		"IsPlannedBrand": true
+	}
+]

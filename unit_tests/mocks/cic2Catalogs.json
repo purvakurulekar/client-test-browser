@@ -1,0 +1,126 @@
+[
+	{
+		"Id": "j4bPgoOEhYY",
+		"VersionDescription": "ADK_Version_GenMC_152_PAF_0_56",
+		"UnitOfMeasureSystem": "M",
+		"Locales": [
+			"en-US"
+		],
+		"Currencies": [
+			"USD"
+		],
+		"Company": {
+			"Id": "MFFsIyQlJic",
+			"Code": "2020",
+			"DisplayName": "2020",
+			"CompanyType": "Manufacturer",
+			"WebSite": "2020space2020space2020spaces2020spacesss2020spaces.com",
+			"Email": "rrrawrrrrawrrrrawrrrrawrrrrawrrrrrawr@rawr.rawr",
+			"Address": {
+				"AddressLine1": "2020 INTERIOR DESIGN SOFTWARE PVT LTD",
+				"AddressLine2": "2020",
+				"AddressLine3": "NEAR CHANDANI CHOWK, BAVDHAN-KHURD, Pune",
+				"City": "Pune",
+				"State": "Maharashtra",
+				"Country": "India",
+				"PostalCode": "411021",
+				"Phone": "020 - 6654 2020"
+			},
+			"EntitledMarkets": [
+				{
+					"Id": "XQMScHFyc3Q",
+					"MarketCode": "TT",
+					"Owner": "2020CiC"
+				},
+				{
+					"Id": "y5GA3t_AwcI",
+					"MarketCode": "Everyone",
+					"Owner": "2020CiC"
+				},
+				{
+					"Id": "KHRnOzw9Pj8",
+					"MarketCode": "Everyone",
+					"Owner": "demometric"
+				}
+			],
+			"CanCreateProtectedCatalogs": true,
+			"IsPreApprovedListMandatory": false
+		},
+		"Assets": [],
+		"Code": "Main_Generic_M_DEMO",
+		"DisplayName": "Generic Demo Metric MC_162",
+		"VersionMajor": 1,
+		"VersionMinor": 20200110,
+		"BuildNo": 1578665200,
+		"Status": 8107,
+		"IsProtected": false,
+		"AssetPath": "main_gener20200109214758623118",
+		"CompanyCode": "2020",
+		"ContentAuthoringCompanyCode": "",
+		"CertificationStatus": 1,
+		"ServiceVersion": 1,
+		"PricingCategoriesCount": 0
+	},
+	{
+		"Id": "_Jug7xAREhM",
+		"VersionDescription": "Demo Generic Metric CSV SV2",
+		"UnitOfMeasureSystem": "M",
+		"Locales": [
+			"en-US"
+		],
+		"Currencies": [
+			"USD"
+		],
+		"Company": {
+			"Id": "MFFsIyQlJic",
+			"Code": "2020",
+			"DisplayName": "2020",
+			"CompanyType": "Manufacturer",
+			"WebSite": "2020space2020space2020spaces2020spacesss2020spaces.com",
+			"Email": "rrrawrrrrawrrrrawrrrrawrrrrawrrrrrawr@rawr.rawr",
+			"Address": {
+				"AddressLine1": "2020 INTERIOR DESIGN SOFTWARE PVT LTD",
+				"AddressLine2": "2020",
+				"AddressLine3": "NEAR CHANDANI CHOWK, BAVDHAN-KHURD, Pune",
+				"City": "Pune",
+				"State": "Maharashtra",
+				"Country": "India",
+				"PostalCode": "411021",
+				"Phone": "020 - 6654 2020"
+			},
+			"EntitledMarkets": [
+				{
+					"Id": "XQMScHFyc3Q",
+					"MarketCode": "TT",
+					"Owner": "2020CiC"
+				},
+				{
+					"Id": "y5GA3t_AwcI",
+					"MarketCode": "Everyone",
+					"Owner": "2020CiC"
+				},
+				{
+					"Id": "KHRnOzw9Pj8",
+					"MarketCode": "Everyone",
+					"Owner": "demometric"
+				}
+			],
+			"CanCreateProtectedCatalogs": true,
+			"IsPreApprovedListMandatory": false
+		},
+		"Assets": [],
+		"Code": "Demo_Generic_Metric",
+		"DisplayName": "Demo Generic Metric CSV SV2",
+		"VersionMajor": 1,
+		"VersionMinor": 20210603,
+		"BuildNo": 1622743276,
+		"Status": 8107,
+		"IsProtected": false,
+		"AssetPath": "Gen_M_DEMO_current",
+		"CompanyCode": "2020",
+		"ContentAuthoringCompanyCode": "2020",
+		"CertificationStatus": 2,
+		"ServiceVersion": 2,
+		"PricingCategoriesCount": 0
+	}
+]
