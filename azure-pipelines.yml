@@ -23,19 +23,30 @@ stages:
             versionSpec: "14.x"
           displayName: "Install Node.js"
         - bash: |
-            echo "Listing PreBuild..."
+            echo "Listing PreBuild... $stage_env $cicapi_url"
             ls -la
             echo "Listing PreBuild Complete!"
+          env:
+            stage_env: "dev"
+            cicapi_url: "$(cicapi_url_dev)"
         - script: |
-            npm install -g webpack webpack-cli --save-dev
+            rm -v .npmrc
+            rm -v package-lock.json
+            npm config set registry http://cic-npmregistry-dev-ci.centralus.azurecontainer.io:4873/
+            npm install -D client-ui-toolkit@latest @types/client-api@latest
+            npm config delete registry
             npm install
-            npx webpack --progress --config webpack.dev.config.ts
-            npx webpack --progress --config webpack.prod.config.ts
             npm run test
+            npm run pipeline-setup
+            npm run build-prod
+            npm run build-dev
+          env:
+            stage_env: "dev"
+            cicapi_url: "$(cicapi_url_dev)"
           displayName: "npm install, run webpack"
         - bash: |
             echo "Listing PostBuild..."
-            ls -la
+            ls -la dist/
             echo "Listing PostBuild Complete!"
         - task: AzureStaticWebApp@0
           inputs:
@@ -56,7 +67,7 @@ stages:
          timeoutInMinutes: 1440
          inputs:
           notifyUsers: |
-            chesda@2020spaces.com
+            lantth@2020spaces.com
           instructions: 'Please validate the build configuration and resume'
           onTimeout: 'reject'
     - job: deploy
@@ -70,15 +81,22 @@ stages:
             versionSpec: "14.x"
           displayName: "Install Node.js"
         - bash: |
-            echo "Listing PreBuild..."
+            echo "Listing PreBuild... $stage_env"
             ls -la
             echo "Listing PreBuild Complete!"
+          env:
+            stage_env: "staging"
+            cicapi_url: "$(cicapi_url_staging)"
         - script: |
             npm install -g webpack webpack-cli --save-dev
+            npm config set registry http://cic-npmregistry-dev-ci.centralus.azurecontainer.io:4873/
             npm install
             npx webpack --progress --config webpack.dev.config.ts
             npx webpack --progress --config webpack.prod.config.ts
             npm run test
+          env:
+            stage_env: "staging"
+            cicapi_url: "$(cicapi_url_staging)"
           displayName: "npm install, run webpack"
         - bash: |
             echo "Listing PostBuild..."
@@ -103,7 +121,7 @@ stages:
          timeoutInMinutes: 4320
          inputs:
           notifyUsers: |
-            chesda@2020spaces.com
+            lantth@2020spaces.com
           instructions: 'Please validate the build configuration and resume'
           onTimeout: 'reject'
     - job: deploy
@@ -117,15 +135,22 @@ stages:
             versionSpec: "14.x"
           displayName: "Install Node.js"
         - bash: |
-            echo "Listing PreBuild..."
+            echo "Listing PreBuild... $stage_env"
             ls -la
             echo "Listing PreBuild Complete!"
+          env:
+            stage_env: "prod"
+            cicapi_url: "$(cicapi_url_prod)"
         - script: |
             npm install -g webpack webpack-cli --save-dev
+            npm config set registry http://cic-npmregistry-dev-ci.centralus.azurecontainer.io:4873/
             npm install
             npx webpack --progress --config webpack.dev.config.ts
             npx webpack --progress --config webpack.prod.config.ts
             npm run test
+          env:
+            stage_env: "prod"
+            cicapi_url: "$(cicapi_url_prod)"
           displayName: "npm install, run webpack"
         - bash: |
             echo "Listing PostBuild..."
