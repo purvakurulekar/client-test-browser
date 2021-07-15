@@ -8,14 +8,14 @@ interface IDataSourceControlProps {
 //=============================================================================
 export default function DataSourceControl(props: IDataSourceControlProps) {
     let cic3Source = useDataSourceCheckbox(CiCAPI.content.constants.DATA_SOURCES.cic3, "CiC3", _isSourceEnabled(CiCAPI.content.constants.DATA_SOURCES.cic3)),
-       // moobleSource = useDataSourceCheckbox(CiCAPI.content.constants.DATA_SOURCES.mooble, "Mooble", _isSourceEnabled(CiCAPI.content.constants.DATA_SOURCES.mooble)),
+        moobleSource = useDataSourceCheckbox(CiCAPI.content.constants.DATA_SOURCES.mooble, "Mooble", _isSourceEnabled(CiCAPI.content.constants.DATA_SOURCES.mooble)),
         cic2Source = useDataSourceCheckbox(CiCAPI.content.constants.DATA_SOURCES.cic2, "CiC2", _isSourceEnabled(CiCAPI.content.constants.DATA_SOURCES.cic2));
 
     return (
         <div className="footer-data-source centered-flex">
             <span className="footer-label">Data Source: </span>
             <DataSourceCheckbox {...cic3Source} />
-            {/* <DataSourceCheckbox {...moobleSource} /> */}
+            <DataSourceCheckbox {...moobleSource} />
             <DataSourceCheckbox {...cic2Source} />
         </div>
     );
@@ -26,7 +26,7 @@ function useDataSourceCheckbox(source: string, label: string, defaultState: bool
     let [isSourceChecked, setSourceChecked] = useState(defaultState);
 
     function _toggleSource(e: React.ChangeEvent<HTMLInputElement>) {
-        let isChecked:boolean = e.target.checked;
+        let isChecked: boolean = e.target.checked;
         setSourceChecked(isChecked);
         // data manager.setUseSource(source, e.target.checked);
         CiCAPI.setConfig(`sources.${source.toLowerCase()}_enabled`, isChecked);

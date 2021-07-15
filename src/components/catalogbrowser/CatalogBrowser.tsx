@@ -24,10 +24,10 @@ import { faCog } from "@fortawesome/free-solid-svg-icons";
 
 const
     DEFAULT_NB_PER_PAGE = 50,
-    GLOBAL_CONFIG_RE = /^(sources.)?cic[23](_enabled)?$/i,
+    GLOBAL_CONFIG_RE = /^(sources.)?(cic[23]|mooble)(_enabled)?$/i,
     CATALOG_CONFIG_CHANGED_RE = /region|contextCode|catalogs?ApiUrl/i,
     SOURCES_CONFIG_PREFIX = "sources.",
-    KEYS_TO_CHECK: Array<string> = ["client", "partnership", "region", "contextCode", "catalogsApiUrl", "sources.cic2_enabled", "sources.cic3_enabled"];
+    KEYS_TO_CHECK: Array<string> = ["client", "partnership", "region", "contextCode", "catalogsApiUrl", "sources.cic2_enabled", "sources.cic3_enabled", "sources.mooble_enabled"];
 
 interface ICatalogBrowserProps {
     onProductAdd?: Function,
@@ -117,6 +117,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
         [selectedCatalogs, setSelectedCatalogs] = useState([]),
         [cic2CatalogProducts, setCiC2CatalogProducts] = useState([]),
         [moobleCatalogProducts, setMoobleCatalogProducts] = useState([]),
+        [cic3CatalogProducts, setCiC3CatalogProducts] = useState([]),
         [isLoadingCatalogs, setLoadingCatalogs] = useState(false),
         [selectedProduct, setSelectedProduct] = useState(null),
         [searchQuery, setSearchQuery] = useState(""),
@@ -129,6 +130,9 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
         [totalMoobleResults, setTotalMoobleResults] = useState(0),
         [isMoobleProductsFetching, setMoobleProductsFetching] = useState(false),
 
+        [totalCiC3Results, setTotalCiC3Results] = useState(0),
+        [isCiC3ProductsFetching, setCiC3ProductsFetching] = useState(false),
+
         loader,
         previewProps,
         resetProductsFunc = () => {
@@ -137,6 +141,8 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
             setMoobleCatalogProducts([]);
             setTotalCiC2Results(0);
             setTotalMoobleResults(0);
+            setCiC3CatalogProducts([]);
+            setTotalCiC3Results(0);
         },
         addProduct = (product: IPublicProduct | null) => {
             if (product !== null && props.onProductAdd) {
@@ -144,7 +150,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
             }
         },
         fetchProductsFunc = () => {
-            if (stateCatalogs.length > 0 || (stateCatalogs.length === 0 && (totalCiC2Results + totalMoobleResults) > 0)) {
+            if (stateCatalogs.length > 0 || (stateCatalogs.length === 0 && (totalCiC2Results + totalMoobleResults + totalCiC3Results) > 0)) {
                 resetProductsFunc();
                 updateProductsFunc();
             }
@@ -174,16 +180,29 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
                         });
                 }
 
-                if (_isSourceEnabled(CiCAPI.content.constants.DATA_SOURCES.cic3) && !isMoobleProductsFetching && (pageOffset < totalMoobleResults || pageOffset === 0)) {
+                if (_isSourceEnabled(CiCAPI.content.constants.DATA_SOURCES.mooble) && !isMoobleProductsFetching && (pageOffset < totalMoobleResults || pageOffset === 0)) {
                     setMoobleProductsFetching(true);
                     fetchProductOptions.productList = moobleCatalogProducts;
                     fetchProductOptions.totalResults = totalMoobleResults;
-                    _fetchDataSourceProducts(CiCAPI.content.constants.DATA_SOURCES.cic3, fetchProductOptions)
+                    _fetchDataSourceProducts(CiCAPI.content.constants.DATA_SOURCES.mooble, fetchProductOptions)
                         .then((result: IFetchDataSourceProductResults | undefined) => {
                             setMoobleProductsFetching(false);
                             if (result !== void (0)) {
                                 setMoobleCatalogProducts(result?.productList as []);
                                 setTotalMoobleResults(result?.totalResults);
+                            }
+                        });
+                }
+                if (_isSourceEnabled(CiCAPI.content.constants.DATA_SOURCES.cic3) && !isCiC3ProductsFetching && (pageOffset < totalCiC3Results || pageOffset === 0)) {
+                    setCiC3ProductsFetching(true);
+                    fetchProductOptions.productList = cic3CatalogProducts;
+                    fetchProductOptions.totalResults = totalCiC3Results;
+                    _fetchDataSourceProducts(CiCAPI.content.constants.DATA_SOURCES.cic3, fetchProductOptions)
+                        .then((result: IFetchDataSourceProductResults | undefined) => {
+                            setCiC3ProductsFetching(false);
+                            if (result !== void (0)) {
+                                setCiC3CatalogProducts(result?.productList as []);
+                                setTotalCiC3Results(result?.totalResults);
                             }
                         });
                 }
@@ -197,6 +216,9 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
     if (_isSourceEnabled(CiCAPI.content.constants.DATA_SOURCES.cic3)) {
         nbActiveSources++;
     }
+    if (_isSourceEnabled(CiCAPI.content.constants.DATA_SOURCES.mooble)) {
+        nbActiveSources++;
+    }
     nbPerPage = Math.round(DEFAULT_NB_PER_PAGE / nbActiveSources);
 
     previewProps = {
@@ -204,6 +226,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
         totalResults: 0,
         totalCiC2Results: totalCiC2Results,
         totalMoobleResults: totalMoobleResults,
+        totalCiC3Results: totalCiC3Results,
         nbActiveSources: nbActiveSources
     };
     useEffect(() => {
@@ -222,6 +245,10 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
 
                 if (_isSourceEnabled(CiCAPI.content.constants.DATA_SOURCES.cic3)) {
                     sources.push(CiCAPI.content.constants.DATA_SOURCES.cic3);
+                }
+
+                if (_isSourceEnabled(CiCAPI.content.constants.DATA_SOURCES.mooble)) {
+                    sources.push(CiCAPI.content.constants.DATA_SOURCES.mooble);
                 }
 
                 if (sources.length > 0) {
@@ -275,9 +302,9 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
 
         fetchCatalogFunc(); // initial fetch
         return () => {
-            if ( abortCtrl ) {
+            if (abortCtrl) {
                 abortCtrl.abort();
-            }   
+            }
             // AppState.dataEndpoint.unregisterToChanges(fetchCatalogFunc);
             // AppState.unregisterToConfigChange(onConfigChanged);
             CiCAPI.content.unregisterToChanges(onConfigChanged);
@@ -297,7 +324,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
     // no need to wait here, if catalogs change lets update directly
     useEffect(() => { fetchProductsFunc(); }, [selectedCatalogs, searchQuery]);
 
-    if (isLoadingCatalogs || isCiC2ProductsFetching || isMoobleProductsFetching) {
+    if (isLoadingCatalogs || isCiC2ProductsFetching || isMoobleProductsFetching || isCiC3ProductsFetching) {
         loader = (<Loader />);
     }
 
@@ -310,11 +337,15 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
             previewProps.totalMoobleResults = 0;
         }
 
-        if (isCiC2ProductsFetching || isMoobleProductsFetching) {
+        if (isCiC3ProductsFetching) {
+            previewProps.totalCiC3Results = 0;
+        }
+
+        if (isCiC2ProductsFetching || isMoobleProductsFetching || isCiC3ProductsFetching) {
             previewProps.totalResults = 0;
         }
     }
-    previewProps.totalResults = previewProps.totalCiC2Results + previewProps.totalMoobleResults;
+    previewProps.totalResults = previewProps.totalCiC2Results + previewProps.totalMoobleResults + previewProps.totalCiC3Results;
 
     return (
         <div className="catalog-browser">
@@ -336,8 +367,8 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
                 {loader}
             </CatalogResultsPreview>
 
-            <CombinedCatalogProductList onFetchRequest={fetchMoreProductsRequests} isFetching={isMoobleProductsFetching || isCiC2ProductsFetching}>
-                {_isSourceEnabled(CiCAPI.content.constants.DATA_SOURCES.cic3) &&
+            <CombinedCatalogProductList onFetchRequest={fetchMoreProductsRequests} isFetching={isMoobleProductsFetching || isCiC2ProductsFetching || isCiC3ProductsFetching}>
+                {_isSourceEnabled(CiCAPI.content.constants.DATA_SOURCES.mooble) &&
                     <CatalogProductList
                         isLoading={isMoobleProductsFetching}
                         products={moobleCatalogProducts}
@@ -350,6 +381,15 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
                     <CatalogProductList
                         isLoading={isCiC2ProductsFetching}
                         products={cic2CatalogProducts}
+                        selectedProduct={selectedProduct}
+                        onProductSelected={setSelectedProduct}
+                        onAddProduct={addProduct}
+                    />}
+
+                {_isSourceEnabled(CiCAPI.content.constants.DATA_SOURCES.cic3) &&
+                    <CatalogProductList
+                        isLoading={isCiC3ProductsFetching}
+                        products={cic3CatalogProducts}
                         selectedProduct={selectedProduct}
                         onProductSelected={setSelectedProduct}
                         onAddProduct={addProduct}

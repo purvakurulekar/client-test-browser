@@ -7,6 +7,7 @@ interface ICatalogResultsPreview {
     totalResults: number,
     totalMoobleResults?: number,
     totalCiC2Results?: number,
+    totalCiC3Results?: number,
     nbActiveSources: number,
     children: any
 }
@@ -16,14 +17,14 @@ export default function CatalogResultsPreview(props: ICatalogResultsPreview) {
 
     countSummary = `${props.totalCatalogs} Catalog`;
 
-    if(props.totalCatalogs > 1) {
+    if (props.totalCatalogs > 1) {
         countSummary += "s"
     }
 
     countSummary += ` / ${props.totalResults} results`;
-    
+
     if (props.nbActiveSources > 1) {
-        countSummary += ` / CiC3 (${props.totalMoobleResults}) - CiC2 (${props.totalCiC2Results})`;
+        countSummary += ` / Mooble (${props.totalMoobleResults}) - CiC2 (${props.totalCiC2Results}) - CiC3 (${props.totalCiC3Results})`;
     }
 
     return (

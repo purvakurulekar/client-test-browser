@@ -70,7 +70,7 @@ function SettingsPanelGroup(props: ISettingsPanelGroupProps) {
         forceUpdate({} as any);
     }
 
-    if (props.configPath === "cic3") {
+    if (props.configPath === "mooble") {
         let priorityEntries: Array<configEntry> = [],
             noPriorityEntries: Array<configEntry> = [];
 
@@ -107,7 +107,7 @@ function SettingsEntry(props: ISettingsEntryProps) {
     function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
         props.onChange(props.label, e.target.value);
     }
-    
+
     return (
         <div className="settings-panel-config-entry">
             <div className="settings-panel-config-entry-label">{props.label}</div>
