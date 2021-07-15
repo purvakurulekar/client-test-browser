@@ -8,8 +8,8 @@ const fetch = require("node-fetch");
 global.fetch = fetch;
 require("fake-indexeddb/auto");
 
-const DEFAULT_CICAPI_SRC_URL = "http://localhost:2020/content-platform/client-api/dist/debug/cicapi.web.js";
-// const DEFAULT_CICAPI_SRC_URL = "https://clientapi-dev.2020-contentplatform.net/cicapi.web.js";
+//const DEFAULT_CICAPI_SRC_URL = "http://localhost:2020/content-platform/client-api/dist/debug/cicapi.web.js";
+const DEFAULT_CICAPI_SRC_URL = "https://clientapi-dev.2020-contentplatform.net/cicapi.web.js";
 
 //=============================================================================
 async function _importCiCAPI(apiCodeUrl) {
