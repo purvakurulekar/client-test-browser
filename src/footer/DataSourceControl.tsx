@@ -13,7 +13,7 @@ export default function DataSourceControl(props: IDataSourceControlProps) {
 
     return (
         <div className="footer-data-source centered-flex">
-            <span className="footer-label">Data Source: </span>
+            <span className="footer-label">Sources: </span>
             <DataSourceCheckbox {...cic3Source} />
             <DataSourceCheckbox {...moobleSource} />
             <DataSourceCheckbox {...cic2Source} />
