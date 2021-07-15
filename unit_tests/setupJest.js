@@ -3,8 +3,8 @@ const Util = require("util"),
     path = require("path"),
     promiseReadFile = Util.promisify(fs.readFile);
 
-let cic3USCatalogsMock = require("./mocks/cic3USCatalogs.json"),
-    cic3BRCatalogsMock = require("./mocks/cic3BRCatalogs.json"),
+let moobleUSCatalogsMock = require("./mocks/moobleUSCatalogs.json"),
+    moobleBRCatalogsMock = require("./mocks/moobleBRCatalogs.json"),
     cic2CatalogsMock = require("./mocks/cic2Catalogs.json"),
     cic2CatalogProducts = require("./mocks/cic2CatalogProducts.json"),
     cic2CommonStructuralWall = require("./mocks/cic2CommonStructuralWall.json");
@@ -43,9 +43,9 @@ fetchMock.doMockIf(/https?:\/\/catalog\.mooble\.com\/api\//i, req => {
 
     if (/Brand\/GetBrandsPlannerFilter/i.test(urlString)) {
         if (queryMap.region = "us") {
-            promisedReturn = JSON.stringify(cic3USCatalogsMock);
+            promisedReturn = JSON.stringify(moobleUSCatalogsMock);
         } else if (queryMap.region = "br") {
-            promisedReturn = JSON.stringify(cic3BRCatalogsMock);
+            promisedReturn = JSON.stringify(moobleBRCatalogsMock);
         }
         promise = Promise.resolve(promisedReturn);
     } else {
