@@ -1,7 +1,7 @@
 const B18_SPEC_ID = "9a539759-273f-417d-92ca-4520ba1c8463";
 
-let cic3USCatalogsMock = require("./mocks/cic3USCatalogs.json"),
-    cic3BRCatalogsMock = require("./mocks/cic3BRCatalogs.json"),
+let moobleUSCatalogsMock = require("./mocks/moobleUSCatalogs.json"),
+    moobleBRCatalogsMock = require("./mocks/moobleBRCatalogs.json"),
     cic2CatalogsMock = require("./mocks/cic2Catalogs.json"),
     cic2CatalogProducts = require("./mocks/cic2CatalogProducts.json"),
     cic3B18GetSpecs = require("./mocks/cic3B18GetSpecs.json"),
@@ -63,9 +63,9 @@ function mockCatalogMoobleHost(req) {
     // console.log("*** MOCKING CATALOG.MOOBLE.COM : ", urlString);
     if (/Brand\/GetBrandsPlannerFilter/i.test(urlString)) {
         if (queryMap.region = "us") {
-            promisedReturn = JSON.stringify(cic3USCatalogsMock);
+            promisedReturn = JSON.stringify(moobleUSCatalogsMock);
         } else if (queryMap.region = "br") {
-            promisedReturn = JSON.stringify(cic3BRCatalogsMock);
+            promisedReturn = JSON.stringify(moobleBRCatalogsMock);
         }
         promise = Promise.resolve(promisedReturn);
     } else if (/specifications\/9a539759-273f-417d-92ca-4520ba1c8463\/properties/i.test(urlString)) {
