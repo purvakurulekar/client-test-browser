@@ -131,27 +131,5 @@ describe("CatalogBrowser Basic UI Checks", () => {
         await act(() => waitFor(() => { }));
         expect(cic2ChkBx).not.toBeChecked();
     });
-
-    it("Check Mooble checkbox", async () => {
-        let { debug, container } = baseTests(),
-            moobleChkBx,
-            catalogToggleBtnLabel;
-        moobleChkBx = document.getElementById("Mooble-source")
-        expect(moobleChkBx).not.toBeChecked();
-        catalogToggleBtnLabel = container.getElementsByClassName("catalog-selector-toggle-label")[0];
-        expect(catalogToggleBtnLabel).toBeInTheDocument();
-        expect(catalogToggleBtnLabel.textContent).toEqual("No Catalogs Loaded.");
-        fireEvent.click(moobleChkBx);
-        await act(() => waitFor(() => expect(container.querySelector(".catalog-product-entry")).toBeTruthy(), {
-            timeout: 10000,
-            onTimeout: (error: Error) => { console.log("\n\n\n WAITING TIMED OUT !!!!! \n\n\n"); return error; }
-        }));
-        expect(moobleChkBx).toBeChecked();
-        expect(catalogToggleBtnLabel.textContent).toEqual("All Selected");
-        fireEvent.click(moobleChkBx);
-        await act(() => waitFor(() => { }));
-        expect(moobleChkBx).not.toBeChecked();
-    });
-
 });
 
