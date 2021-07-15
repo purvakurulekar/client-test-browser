@@ -1,0 +1,5189 @@
+{
+    "Type": "Entity",
+    "RedimServiceType": "None",
+    "DrawingDimension": {
+        "Width": null,
+        "Depth": null,
+        "Height": null
+    },
+    "Dimension": {
+        "Width": "18",
+        "Depth": "24",
+        "Height": "36"
+    },
+    "Models": [{
+        "Id": "kit_col_opt|kit_col_opt_cla_oak",
+        "ModelDefinitionId": "kit_col_opt",
+        "ModelDefinitionName": "Colors/Options",
+        "ModelTypeId": "kit_col_opt_cla_oak",
+        "Name": "Classic Oak",
+        "Preview": "8A51DC42034F1B3B52D727A5D7E684.jpg",
+        "Components": [{
+            "LayerId": "CORPO_H",
+            "MaterialId": "46f8af41-691d-497d-873d-cc29a35369d8",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 20.0,
+                "Y": 20.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "DETALHE",
+            "MaterialId": "46f8af41-691d-497d-873d-cc29a35369d8",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 20.0,
+                "Y": 20.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "MOLDURA",
+            "MaterialId": "46f8af41-691d-497d-873d-cc29a35369d8",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 20.0,
+                "Y": 20.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "COSTAS",
+            "MaterialId": "a781ccaa-aecf-4bdf-a5ed-3ca44336b595",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 20.0,
+                "Y": 20.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "FRENTE_V",
+            "MaterialId": "a781ccaa-aecf-4bdf-a5ed-3ca44336b595",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 20.0,
+                "Y": 20.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "CORPO_V",
+            "MaterialId": "a781ccaa-aecf-4bdf-a5ed-3ca44336b595",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 20.0,
+                "Y": 20.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "FRENTE_H",
+            "MaterialId": "46f8af41-691d-497d-873d-cc29a35369d8",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 20.0,
+                "Y": 20.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "VIDRO",
+            "MaterialId": "71c49a7b-1671-4c9d-aa36-b992dfc216a2",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "PUXADOR",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "STEEL",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "BRANCO",
+            "MaterialId": "638321eb-79a7-41c7-aaf9-04ba9aa29960",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "GRADE",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }],
+        "Informations": {},
+        "Localizations": [{
+            "Id": "pt-br",
+            "Name": "Classic Oak"
+        }],
+        "ModelDefLocalizations": [{
+            "Id": "pt-br",
+            "Name": "Colors/Options"
+        }],
+        "GroupMd5": null,
+        "Unavailable": false
+    }, {
+        "Id": "kit_col_opt|kit_col_opt_whi",
+        "ModelDefinitionId": "kit_col_opt",
+        "ModelDefinitionName": "Colors/Options",
+        "ModelTypeId": "kit_col_opt_whi",
+        "Name": "White",
+        "Preview": "93981F44B523A17F78A939B4418B3EF.jpg",
+        "Components": [{
+            "LayerId": "CORPO_H",
+            "MaterialId": "638321eb-79a7-41c7-aaf9-04ba9aa29960",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "DETALHE",
+            "MaterialId": "638321eb-79a7-41c7-aaf9-04ba9aa29960",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "MOLDURA",
+            "MaterialId": "638321eb-79a7-41c7-aaf9-04ba9aa29960",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "COSTAS",
+            "MaterialId": "638321eb-79a7-41c7-aaf9-04ba9aa29960",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "FRENTE_V",
+            "MaterialId": "638321eb-79a7-41c7-aaf9-04ba9aa29960",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "CORPO_V",
+            "MaterialId": "638321eb-79a7-41c7-aaf9-04ba9aa29960",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "FRENTE_H",
+            "MaterialId": "638321eb-79a7-41c7-aaf9-04ba9aa29960",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "VIDRO",
+            "MaterialId": "71c49a7b-1671-4c9d-aa36-b992dfc216a2",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "PUXADOR",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "STEEL",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "BRANCO",
+            "MaterialId": "638321eb-79a7-41c7-aaf9-04ba9aa29960",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "GRADE",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }],
+        "Informations": {},
+        "Localizations": [{
+            "Id": "pt-br",
+            "Name": "White"
+        }],
+        "ModelDefLocalizations": [{
+            "Id": "pt-br",
+            "Name": "Colors/Options"
+        }],
+        "GroupMd5": null,
+        "Unavailable": false
+    }, {
+        "Id": "kit_col_opt|kit_col_opt_bro",
+        "ModelDefinitionId": "kit_col_opt",
+        "ModelDefinitionName": "Colors/Options",
+        "ModelTypeId": "kit_col_opt_bro",
+        "Name": "Oak Brown",
+        "Preview": "F895CAC42129D1BFD66122F9AC7FA4.jpg",
+        "Components": [{
+            "LayerId": "CORPO_H",
+            "MaterialId": "aa6daa7a-f5c5-40e6-82c7-53b0b04c5b33",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 14.89933,
+                "Y": 20.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "DETALHE",
+            "MaterialId": "aa6daa7a-f5c5-40e6-82c7-53b0b04c5b33",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 14.89933,
+                "Y": 20.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "MOLDURA",
+            "MaterialId": "aa6daa7a-f5c5-40e6-82c7-53b0b04c5b33",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 14.89933,
+                "Y": 20.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "COSTAS",
+            "MaterialId": "cdc85064-18ac-440d-8668-1574b258c7f1",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 20.0,
+                "Y": 26.84685
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "FRENTE_V",
+            "MaterialId": "cdc85064-18ac-440d-8668-1574b258c7f1",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 20.0,
+                "Y": 26.84685
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "CORPO_V",
+            "MaterialId": "cdc85064-18ac-440d-8668-1574b258c7f1",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 20.0,
+                "Y": 26.84685
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "FRENTE_H",
+            "MaterialId": "aa6daa7a-f5c5-40e6-82c7-53b0b04c5b33",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 14.89933,
+                "Y": 20.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "VIDRO",
+            "MaterialId": "71c49a7b-1671-4c9d-aa36-b992dfc216a2",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "PUXADOR",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "STEEL",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "BRANCO",
+            "MaterialId": "638321eb-79a7-41c7-aaf9-04ba9aa29960",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "GRADE",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }],
+        "Informations": {},
+        "Localizations": [{
+            "Id": "pt-br",
+            "Name": "Oak Brown"
+        }],
+        "ModelDefLocalizations": [{
+            "Id": "pt-br",
+            "Name": "Colors/Options"
+        }],
+        "GroupMd5": null,
+        "Unavailable": false
+    }, {
+        "Id": "kit_col_opt|kit_col_opt_red",
+        "ModelDefinitionId": "kit_col_opt",
+        "ModelDefinitionName": "Colors/Options",
+        "ModelTypeId": "kit_col_opt_red",
+        "Name": "Birch Cabernet",
+        "Preview": "A199301158647A1C658425C35FBB92F0.jpg",
+        "Components": [{
+            "LayerId": "CORPO_H",
+            "MaterialId": "dc65f915-7e8c-4971-9716-0b70d335c6b9",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 22.85714,
+                "Y": 20.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "DETALHE",
+            "MaterialId": "dc65f915-7e8c-4971-9716-0b70d335c6b9",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 22.85714,
+                "Y": 20.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "MOLDURA",
+            "MaterialId": "dc65f915-7e8c-4971-9716-0b70d335c6b9",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 22.85714,
+                "Y": 20.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "COSTAS",
+            "MaterialId": "315c7b14-476c-4866-b21c-293eb86e71a4",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 20.0,
+                "Y": 22.85715
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "FRENTE_V",
+            "MaterialId": "315c7b14-476c-4866-b21c-293eb86e71a4",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 20.0,
+                "Y": 22.85715
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "CORPO_V",
+            "MaterialId": "315c7b14-476c-4866-b21c-293eb86e71a4",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 20.0,
+                "Y": 22.85715
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "FRENTE_H",
+            "MaterialId": "dc65f915-7e8c-4971-9716-0b70d335c6b9",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 22.85714,
+                "Y": 20.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "VIDRO",
+            "MaterialId": "71c49a7b-1671-4c9d-aa36-b992dfc216a2",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "PUXADOR",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "STEEL",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "BRANCO",
+            "MaterialId": "638321eb-79a7-41c7-aaf9-04ba9aa29960",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "GRADE",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }],
+        "Informations": {},
+        "Localizations": [{
+            "Id": "pt-br",
+            "Name": "Birch Cabernet"
+        }],
+        "ModelDefLocalizations": [{
+            "Id": "pt-br",
+            "Name": "Colors/Options"
+        }],
+        "GroupMd5": null,
+        "Unavailable": false
+    }, {
+        "Id": "kit_col_opt|kit_col_opt_wen",
+        "ModelDefinitionId": "kit_col_opt",
+        "ModelDefinitionName": "Colors/Options",
+        "ModelTypeId": "kit_col_opt_wen",
+        "Name": "Oak Fawn",
+        "Preview": "A334931429FF75BDEAE28A3F18BA5A.jpg",
+        "Components": [{
+            "LayerId": "CORPO_H",
+            "MaterialId": "9890fd3f-5948-4371-b6ed-b3c0a640c48f",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 40.0,
+                "Y": 58.2
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 90.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "DETALHE",
+            "MaterialId": "9890fd3f-5948-4371-b6ed-b3c0a640c48f",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 40.0,
+                "Y": 58.2
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 90.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "MOLDURA",
+            "MaterialId": "9890fd3f-5948-4371-b6ed-b3c0a640c48f",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 40.0,
+                "Y": 58.2
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 90.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "COSTAS",
+            "MaterialId": "e2c6ec9a-241d-4001-ae3d-8919ee9b8cb1",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 10.30928,
+                "Y": 15.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "FRENTE_V",
+            "MaterialId": "e2c6ec9a-241d-4001-ae3d-8919ee9b8cb1",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 10.30928,
+                "Y": 15.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "CORPO_V",
+            "MaterialId": "e2c6ec9a-241d-4001-ae3d-8919ee9b8cb1",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 10.30928,
+                "Y": 15.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "FRENTE_H",
+            "MaterialId": "9890fd3f-5948-4371-b6ed-b3c0a640c48f",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 40.0,
+                "Y": 58.2
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 90.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "VIDRO",
+            "MaterialId": "71c49a7b-1671-4c9d-aa36-b992dfc216a2",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "PUXADOR",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "STEEL",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "BRANCO",
+            "MaterialId": "638321eb-79a7-41c7-aaf9-04ba9aa29960",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "GRADE",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }],
+        "Informations": {},
+        "Localizations": [{
+            "Id": "pt-br",
+            "Name": "Oak Fawn"
+        }],
+        "ModelDefLocalizations": [{
+            "Id": "pt-br",
+            "Name": "Colors/Options"
+        }],
+        "GroupMd5": null,
+        "Unavailable": false
+    }, {
+        "Id": "kit_col_opt|kit_col_opt_bla",
+        "ModelDefinitionId": "kit_col_opt",
+        "ModelDefinitionName": "Colors/Options",
+        "ModelTypeId": "kit_col_opt_bla",
+        "Name": "Black",
+        "Preview": "E32C855BFDD4C5BE7DA42443F4E8FEDD.jpg",
+        "Components": [{
+            "LayerId": "CORPO_H",
+            "MaterialId": "f0b195bb-e1ca-4176-888e-f2cbdeb88f4e",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "DETALHE",
+            "MaterialId": "f0b195bb-e1ca-4176-888e-f2cbdeb88f4e",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "MOLDURA",
+            "MaterialId": "f0b195bb-e1ca-4176-888e-f2cbdeb88f4e",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "COSTAS",
+            "MaterialId": "f0b195bb-e1ca-4176-888e-f2cbdeb88f4e",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "FRENTE_V",
+            "MaterialId": "f0b195bb-e1ca-4176-888e-f2cbdeb88f4e",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "CORPO_V",
+            "MaterialId": "f0b195bb-e1ca-4176-888e-f2cbdeb88f4e",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "FRENTE_H",
+            "MaterialId": "f0b195bb-e1ca-4176-888e-f2cbdeb88f4e",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "VIDRO",
+            "MaterialId": "71c49a7b-1671-4c9d-aa36-b992dfc216a2",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "PUXADOR",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "STEEL",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "BRANCO",
+            "MaterialId": "638321eb-79a7-41c7-aaf9-04ba9aa29960",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "GRADE",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }],
+        "Informations": {},
+        "Localizations": [{
+            "Id": "pt-br",
+            "Name": "Black"
+        }],
+        "ModelDefLocalizations": [{
+            "Id": "pt-br",
+            "Name": "Colors/Options"
+        }],
+        "GroupMd5": null,
+        "Unavailable": false
+    }, {
+        "Id": "kit_col_opt|kit_col_opt_war_neu",
+        "ModelDefinitionId": "kit_col_opt",
+        "ModelDefinitionName": "Colors/Options",
+        "ModelTypeId": "kit_col_opt_war_neu",
+        "Name": "Birch Neutral",
+        "Preview": "7E66147EDF1F787A6DBAD605C88873C.jpg",
+        "Components": [{
+            "LayerId": "CORPO_H",
+            "MaterialId": "eebc6270-debb-478a-a3d6-e2a96ddf4978",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 42.0,
+                "Y": 48.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 90.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "DETALHE",
+            "MaterialId": "eebc6270-debb-478a-a3d6-e2a96ddf4978",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 42.0,
+                "Y": 48.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 90.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "MOLDURA",
+            "MaterialId": "eebc6270-debb-478a-a3d6-e2a96ddf4978",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 42.0,
+                "Y": 48.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 90.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "COSTAS",
+            "MaterialId": "a761e534-b412-402a-98c5-0178d4f02357",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 17.5,
+                "Y": 20.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "FRENTE_V",
+            "MaterialId": "a761e534-b412-402a-98c5-0178d4f02357",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 17.5,
+                "Y": 20.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "CORPO_V",
+            "MaterialId": "a761e534-b412-402a-98c5-0178d4f02357",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 17.5,
+                "Y": 20.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "FRENTE_H",
+            "MaterialId": "eebc6270-debb-478a-a3d6-e2a96ddf4978",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 42.0,
+                "Y": 48.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 90.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "VIDRO",
+            "MaterialId": "71c49a7b-1671-4c9d-aa36-b992dfc216a2",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "PUXADOR",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "STEEL",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "BRANCO",
+            "MaterialId": "638321eb-79a7-41c7-aaf9-04ba9aa29960",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "GRADE",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }],
+        "Informations": {},
+        "Localizations": [{
+            "Id": "pt-br",
+            "Name": "Birch Neutral"
+        }],
+        "ModelDefLocalizations": [{
+            "Id": "pt-br",
+            "Name": "Colors/Options"
+        }],
+        "GroupMd5": null,
+        "Unavailable": false
+    }, {
+        "Id": "kit_col_opt|kit_col_opt_rov_whi",
+        "ModelDefinitionId": "kit_col_opt",
+        "ModelDefinitionName": "Colors/Options",
+        "ModelTypeId": "kit_col_opt_rov_whi",
+        "Name": "Oak White",
+        "Preview": "186DE6458D4B4382BD083219F25D248.jpg",
+        "Components": [{
+            "LayerId": "CORPO_H",
+            "MaterialId": "3dcd4e51-b9f1-4571-b9fd-e1c2a3eba17a",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 30.0,
+                "Y": 21.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "DETALHE",
+            "MaterialId": "3dcd4e51-b9f1-4571-b9fd-e1c2a3eba17a",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 30.0,
+                "Y": 21.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "MOLDURA",
+            "MaterialId": "3dcd4e51-b9f1-4571-b9fd-e1c2a3eba17a",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 30.0,
+                "Y": 21.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "COSTAS",
+            "MaterialId": "f00d106d-097b-4668-b03c-3e74d138b775",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 15.0,
+                "Y": 30.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "FRENTE_V",
+            "MaterialId": "f00d106d-097b-4668-b03c-3e74d138b775",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 15.0,
+                "Y": 30.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "CORPO_V",
+            "MaterialId": "f00d106d-097b-4668-b03c-3e74d138b775",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 15.0,
+                "Y": 30.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "FRENTE_H",
+            "MaterialId": "3dcd4e51-b9f1-4571-b9fd-e1c2a3eba17a",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 30.0,
+                "Y": 21.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "VIDRO",
+            "MaterialId": "71c49a7b-1671-4c9d-aa36-b992dfc216a2",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "PUXADOR",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "STEEL",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "BRANCO",
+            "MaterialId": "638321eb-79a7-41c7-aaf9-04ba9aa29960",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "GRADE",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }],
+        "Informations": {},
+        "Localizations": [{
+            "Id": "pt-br",
+            "Name": "Oak White"
+        }],
+        "ModelDefLocalizations": [{
+            "Id": "pt-br",
+            "Name": "Colors/Options"
+        }],
+        "GroupMd5": null,
+        "Unavailable": false
+    }, {
+        "Id": "kit_col_opt|kit_col_opt_wal",
+        "ModelDefinitionId": "kit_col_opt",
+        "ModelDefinitionName": "Colors/Options",
+        "ModelTypeId": "kit_col_opt_wal",
+        "Name": "Walnut",
+        "Preview": "23B4F37A119C10FB6A72239E2AC4FE0.jpg",
+        "Components": [{
+            "LayerId": "CORPO_H",
+            "MaterialId": "b31ff914-fa73-408d-9031-8a403b1d90b7",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 24.0,
+                "Y": 28.8
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 90.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "DETALHE",
+            "MaterialId": "b31ff914-fa73-408d-9031-8a403b1d90b7",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 24.0,
+                "Y": 28.8
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 90.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "MOLDURA",
+            "MaterialId": "b31ff914-fa73-408d-9031-8a403b1d90b7",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 24.0,
+                "Y": 28.8
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 90.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "COSTAS",
+            "MaterialId": "0a967206-0505-40cb-9f7d-60063cd9c2da",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 15.0,
+                "Y": 18.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "FRENTE_V",
+            "MaterialId": "0a967206-0505-40cb-9f7d-60063cd9c2da",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 15.0,
+                "Y": 18.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "CORPO_V",
+            "MaterialId": "0a967206-0505-40cb-9f7d-60063cd9c2da",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 15.0,
+                "Y": 18.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "FRENTE_H",
+            "MaterialId": "b31ff914-fa73-408d-9031-8a403b1d90b7",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 24.0,
+                "Y": 28.8
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 90.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "VIDRO",
+            "MaterialId": "71c49a7b-1671-4c9d-aa36-b992dfc216a2",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "PUXADOR",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "STEEL",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "BRANCO",
+            "MaterialId": "638321eb-79a7-41c7-aaf9-04ba9aa29960",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "GRADE",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }],
+        "Informations": {},
+        "Localizations": [{
+            "Id": "pt-br",
+            "Name": "Walnut"
+        }],
+        "ModelDefLocalizations": [{
+            "Id": "pt-br",
+            "Name": "Colors/Options"
+        }],
+        "GroupMd5": null,
+        "Unavailable": false
+    }, {
+        "Id": "kit_col_opt|kit_col_opt_wng",
+        "ModelDefinitionId": "kit_col_opt",
+        "ModelDefinitionName": "Colors/Options",
+        "ModelTypeId": "kit_col_opt_wng",
+        "Name": "Wengue",
+        "Preview": "D028D12D6E1EC228469B3F41356620E3.jpg",
+        "Components": [{
+            "LayerId": "CORPO_H",
+            "MaterialId": "de1db80b-0959-4dc9-ab0a-072ea9f59e33",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 15.0,
+                "Y": 15.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 90.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "DETALHE",
+            "MaterialId": "de1db80b-0959-4dc9-ab0a-072ea9f59e33",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 15.0,
+                "Y": 15.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 90.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "MOLDURA",
+            "MaterialId": "de1db80b-0959-4dc9-ab0a-072ea9f59e33",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 15.0,
+                "Y": 15.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 90.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "COSTAS",
+            "MaterialId": "0fae185e-cb41-47b0-83f5-cf553240805a",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 15.0,
+                "Y": 15.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "FRENTE_V",
+            "MaterialId": "0fae185e-cb41-47b0-83f5-cf553240805a",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 15.0,
+                "Y": 15.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "CORPO_V",
+            "MaterialId": "0fae185e-cb41-47b0-83f5-cf553240805a",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 15.0,
+                "Y": 15.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "FRENTE_H",
+            "MaterialId": "de1db80b-0959-4dc9-ab0a-072ea9f59e33",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 15.0,
+                "Y": 15.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 90.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "VIDRO",
+            "MaterialId": "71c49a7b-1671-4c9d-aa36-b992dfc216a2",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "PUXADOR",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "STEEL",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "BRANCO",
+            "MaterialId": "638321eb-79a7-41c7-aaf9-04ba9aa29960",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "GRADE",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }],
+        "Informations": {},
+        "Localizations": [{
+            "Id": "pt-br",
+            "Name": "Wengue"
+        }],
+        "ModelDefLocalizations": [{
+            "Id": "pt-br",
+            "Name": "Colors/Options"
+        }],
+        "GroupMd5": null,
+        "Unavailable": false
+    }, {
+        "Id": "kit_col_opt|kit_col_opt_gre_ash",
+        "ModelDefinitionId": "kit_col_opt",
+        "ModelDefinitionName": "Colors/Options",
+        "ModelTypeId": "kit_col_opt_gre_ash",
+        "Name": "Grey Ash",
+        "Preview": "A1CEB67BC1A3966D387BDFE521F5D.jpg",
+        "Components": [{
+            "LayerId": "CORPO_H",
+            "MaterialId": "31177ddd-1861-4804-ba10-892ce2c5a17f",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 20.0,
+                "Y": 20.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "DETALHE",
+            "MaterialId": "31177ddd-1861-4804-ba10-892ce2c5a17f",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 20.0,
+                "Y": 20.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "MOLDURA",
+            "MaterialId": "31177ddd-1861-4804-ba10-892ce2c5a17f",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 20.0,
+                "Y": 20.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "COSTAS",
+            "MaterialId": "ecc64eba-bf08-4e85-87f5-8c46fdb92314",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 20.0,
+                "Y": 20.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "FRENTE_V",
+            "MaterialId": "ecc64eba-bf08-4e85-87f5-8c46fdb92314",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 20.0,
+                "Y": 20.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "CORPO_V",
+            "MaterialId": "ecc64eba-bf08-4e85-87f5-8c46fdb92314",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 20.0,
+                "Y": 20.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "FRENTE_H",
+            "MaterialId": "31177ddd-1861-4804-ba10-892ce2c5a17f",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 20.0,
+                "Y": 20.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "VIDRO",
+            "MaterialId": "71c49a7b-1671-4c9d-aa36-b992dfc216a2",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "PUXADOR",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "STEEL",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "BRANCO",
+            "MaterialId": "638321eb-79a7-41c7-aaf9-04ba9aa29960",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "GRADE",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }],
+        "Informations": {},
+        "Localizations": [{
+            "Id": "pt-br",
+            "Name": "Grey Ash"
+        }],
+        "ModelDefLocalizations": [{
+            "Id": "pt-br",
+            "Name": "Colors/Options"
+        }],
+        "GroupMd5": null,
+        "Unavailable": false
+    }, {
+        "Id": "kit_col_opt|kit_col_opt_lig_ash",
+        "ModelDefinitionId": "kit_col_opt",
+        "ModelDefinitionName": "Colors/Options",
+        "ModelTypeId": "kit_col_opt_lig_ash",
+        "Name": "Light Ash",
+        "Preview": "D219CCFBD6CD69798131CAD12D378E7E.png",
+        "Components": [{
+            "LayerId": "CORPO_H",
+            "MaterialId": "aab31bed-e4a1-4885-811b-647cd586ac41",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 20.0,
+                "Y": 20.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "DETALHE",
+            "MaterialId": "aab31bed-e4a1-4885-811b-647cd586ac41",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 20.0,
+                "Y": 20.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "MOLDURA",
+            "MaterialId": "aab31bed-e4a1-4885-811b-647cd586ac41",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 20.0,
+                "Y": 20.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "COSTAS",
+            "MaterialId": "15a90408-0876-4fb8-8dca-b4f508d7617e",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 20.0,
+                "Y": 20.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 90.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "FRENTE_V",
+            "MaterialId": "15a90408-0876-4fb8-8dca-b4f508d7617e",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 20.0,
+                "Y": 20.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 90.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "CORPO_V",
+            "MaterialId": "15a90408-0876-4fb8-8dca-b4f508d7617e",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 20.0,
+                "Y": 20.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 90.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "FRENTE_H",
+            "MaterialId": "aab31bed-e4a1-4885-811b-647cd586ac41",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 20.0,
+                "Y": 20.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "VIDRO",
+            "MaterialId": "71c49a7b-1671-4c9d-aa36-b992dfc216a2",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "PUXADOR",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "STEEL",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "BRANCO",
+            "MaterialId": "638321eb-79a7-41c7-aaf9-04ba9aa29960",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "GRADE",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }],
+        "Informations": {},
+        "Localizations": [{
+            "Id": "pt-br",
+            "Name": "Light Ash"
+        }],
+        "ModelDefLocalizations": [{
+            "Id": "pt-br",
+            "Name": "Colors/Options"
+        }],
+        "GroupMd5": null,
+        "Unavailable": false
+    }, {
+        "Id": "kit_col_opt|kit_col_opt_nog",
+        "ModelDefinitionId": "kit_col_opt",
+        "ModelDefinitionName": "Colors/Options",
+        "ModelTypeId": "kit_col_opt_nog",
+        "Name": "Nogal",
+        "Preview": "D01B45ACC624C758A6439F32C4C9D4B3.jpg",
+        "Components": [{
+            "LayerId": "CORPO_H",
+            "MaterialId": "b69dea62-419b-4f67-b626-5517faa7309a",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 23.00613,
+                "Y": 15.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "DETALHE",
+            "MaterialId": "b69dea62-419b-4f67-b626-5517faa7309a",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 23.00613,
+                "Y": 15.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "MOLDURA",
+            "MaterialId": "b69dea62-419b-4f67-b626-5517faa7309a",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 23.00613,
+                "Y": 15.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "COSTAS",
+            "MaterialId": "b242d788-0881-4c7a-8872-d20fc75895ec",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 15.0,
+                "Y": 23.00613
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "FRENTE_V",
+            "MaterialId": "b242d788-0881-4c7a-8872-d20fc75895ec",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 15.0,
+                "Y": 23.00613
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "CORPO_V",
+            "MaterialId": "b242d788-0881-4c7a-8872-d20fc75895ec",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 15.0,
+                "Y": 23.00613
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "FRENTE_H",
+            "MaterialId": "b69dea62-419b-4f67-b626-5517faa7309a",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 23.00613,
+                "Y": 15.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "VIDRO",
+            "MaterialId": "71c49a7b-1671-4c9d-aa36-b992dfc216a2",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "PUXADOR",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "STEEL",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "BRANCO",
+            "MaterialId": "638321eb-79a7-41c7-aaf9-04ba9aa29960",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "GRADE",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }],
+        "Informations": {},
+        "Localizations": [{
+            "Id": "pt-br",
+            "Name": "Nogal"
+        }],
+        "ModelDefLocalizations": [{
+            "Id": "pt-br",
+            "Name": "Colors/Options"
+        }],
+        "GroupMd5": null,
+        "Unavailable": false
+    }, {
+        "Id": "kit_col_opt|kit_col_opt_gri",
+        "ModelDefinitionId": "kit_col_opt",
+        "ModelDefinitionName": "Colors/Options",
+        "ModelTypeId": "kit_col_opt_gri",
+        "Name": "Gris",
+        "Preview": "FE68749E4BB71D6BF6A7FE885788B.jpg",
+        "Components": [{
+            "LayerId": "CORPO_H",
+            "MaterialId": "6d560f8c-1355-4f83-83e3-db70afa8f157",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 16.48352,
+                "Y": 15.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "DETALHE",
+            "MaterialId": "6d560f8c-1355-4f83-83e3-db70afa8f157",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 16.48352,
+                "Y": 15.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "MOLDURA",
+            "MaterialId": "6d560f8c-1355-4f83-83e3-db70afa8f157",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 16.48352,
+                "Y": 15.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "COSTAS",
+            "MaterialId": "55419dbc-a83c-44d7-9f94-b491a3c2f0fb",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 15.0,
+                "Y": 16.48352
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "FRENTE_V",
+            "MaterialId": "55419dbc-a83c-44d7-9f94-b491a3c2f0fb",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 15.0,
+                "Y": 16.48352
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "CORPO_V",
+            "MaterialId": "55419dbc-a83c-44d7-9f94-b491a3c2f0fb",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 15.0,
+                "Y": 16.48352
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "FRENTE_H",
+            "MaterialId": "6d560f8c-1355-4f83-83e3-db70afa8f157",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 16.48352,
+                "Y": 15.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "VIDRO",
+            "MaterialId": "71c49a7b-1671-4c9d-aa36-b992dfc216a2",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "PUXADOR",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "STEEL",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "BRANCO",
+            "MaterialId": "638321eb-79a7-41c7-aaf9-04ba9aa29960",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "GRADE",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }],
+        "Informations": {},
+        "Localizations": [{
+            "Id": "pt-br",
+            "Name": "Gris"
+        }],
+        "ModelDefLocalizations": [{
+            "Id": "pt-br",
+            "Name": "Colors/Options"
+        }],
+        "GroupMd5": null,
+        "Unavailable": false
+    }, {
+        "Id": "kit_col_opt|kit_col_opt_cof",
+        "ModelDefinitionId": "kit_col_opt",
+        "ModelDefinitionName": "Colors/Options",
+        "ModelTypeId": "kit_col_opt_cof",
+        "Name": "Coffee",
+        "Preview": "AC942B9F5B1BE52E857CA3E57ACCE4C.jpg",
+        "Components": [{
+            "LayerId": "CORPO_H",
+            "MaterialId": "e6f9e90a-0ecd-4ec3-8340-d9735b3d230b",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 16.48125,
+                "Y": 15.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "DETALHE",
+            "MaterialId": "e6f9e90a-0ecd-4ec3-8340-d9735b3d230b",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 16.48125,
+                "Y": 15.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "MOLDURA",
+            "MaterialId": "e6f9e90a-0ecd-4ec3-8340-d9735b3d230b",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 16.48125,
+                "Y": 15.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "COSTAS",
+            "MaterialId": "a87e7a89-f9da-4e95-add2-b06fdfd3111c",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 15.0,
+                "Y": 16.48125
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "FRENTE_V",
+            "MaterialId": "a87e7a89-f9da-4e95-add2-b06fdfd3111c",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 15.0,
+                "Y": 16.48125
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "CORPO_V",
+            "MaterialId": "a87e7a89-f9da-4e95-add2-b06fdfd3111c",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 15.0,
+                "Y": 16.48125
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "FRENTE_H",
+            "MaterialId": "e6f9e90a-0ecd-4ec3-8340-d9735b3d230b",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 16.48125,
+                "Y": 15.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "VIDRO",
+            "MaterialId": "71c49a7b-1671-4c9d-aa36-b992dfc216a2",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "PUXADOR",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "STEEL",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "BRANCO",
+            "MaterialId": "638321eb-79a7-41c7-aaf9-04ba9aa29960",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "GRADE",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }],
+        "Informations": {},
+        "Localizations": [{
+            "Id": "pt-br",
+            "Name": "Coffee"
+        }],
+        "ModelDefLocalizations": [{
+            "Id": "pt-br",
+            "Name": "Colors/Options"
+        }],
+        "GroupMd5": null,
+        "Unavailable": false
+    }, {
+        "Id": "kit_col_opt|kit_col_opt_alm",
+        "ModelDefinitionId": "kit_col_opt",
+        "ModelDefinitionName": "Colors/Options",
+        "ModelTypeId": "kit_col_opt_alm",
+        "Name": "Almond",
+        "Preview": "939AED64A582AA4624FDF85BE98327A.jpg",
+        "Components": [{
+            "LayerId": "CORPO_H",
+            "MaterialId": "763a6c16-46f8-436e-988d-080ab41e71aa",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 40.0,
+                "Y": 15.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "DETALHE",
+            "MaterialId": "763a6c16-46f8-436e-988d-080ab41e71aa",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 40.0,
+                "Y": 15.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "MOLDURA",
+            "MaterialId": "763a6c16-46f8-436e-988d-080ab41e71aa",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 40.0,
+                "Y": 15.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "COSTAS",
+            "MaterialId": "5647f570-debc-4572-9f6a-f873d968485a",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 15.0,
+                "Y": 40.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "FRENTE_V",
+            "MaterialId": "5647f570-debc-4572-9f6a-f873d968485a",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 15.0,
+                "Y": 40.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "CORPO_V",
+            "MaterialId": "5647f570-debc-4572-9f6a-f873d968485a",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 15.0,
+                "Y": 40.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "FRENTE_H",
+            "MaterialId": "763a6c16-46f8-436e-988d-080ab41e71aa",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 40.0,
+                "Y": 15.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "VIDRO",
+            "MaterialId": "71c49a7b-1671-4c9d-aa36-b992dfc216a2",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "PUXADOR",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "STEEL",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "BRANCO",
+            "MaterialId": "638321eb-79a7-41c7-aaf9-04ba9aa29960",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "GRADE",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }],
+        "Informations": {},
+        "Localizations": [{
+            "Id": "pt-br",
+            "Name": "Almond"
+        }],
+        "ModelDefLocalizations": [{
+            "Id": "pt-br",
+            "Name": "Colors/Options"
+        }],
+        "GroupMd5": null,
+        "Unavailable": false
+    }, {
+        "Id": "kit_col_opt|kit_col_opt_can",
+        "ModelDefinitionId": "kit_col_opt",
+        "ModelDefinitionName": "Colors/Options",
+        "ModelTypeId": "kit_col_opt_can",
+        "Name": "Canaletto",
+        "Preview": "D279C20D26A35EA737C3A20B9128C1C.jpg",
+        "Components": [{
+            "LayerId": "CORPO_H",
+            "MaterialId": "4fa0dd33-0f9e-45df-9471-e0e7f5a91ec9",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 22.5,
+                "Y": 15.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "DETALHE",
+            "MaterialId": "4fa0dd33-0f9e-45df-9471-e0e7f5a91ec9",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 22.5,
+                "Y": 15.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "MOLDURA",
+            "MaterialId": "4fa0dd33-0f9e-45df-9471-e0e7f5a91ec9",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 22.5,
+                "Y": 15.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "COSTAS",
+            "MaterialId": "5c956542-de6b-4aa7-b87a-cc7fde30b721",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 15.0,
+                "Y": 22.5
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "FRENTE_V",
+            "MaterialId": "5c956542-de6b-4aa7-b87a-cc7fde30b721",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 15.0,
+                "Y": 22.5
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "CORPO_V",
+            "MaterialId": "5c956542-de6b-4aa7-b87a-cc7fde30b721",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 15.0,
+                "Y": 22.5
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "FRENTE_H",
+            "MaterialId": "4fa0dd33-0f9e-45df-9471-e0e7f5a91ec9",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 22.5,
+                "Y": 15.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "VIDRO",
+            "MaterialId": "71c49a7b-1671-4c9d-aa36-b992dfc216a2",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "PUXADOR",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "STEEL",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "BRANCO",
+            "MaterialId": "638321eb-79a7-41c7-aaf9-04ba9aa29960",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "GRADE",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }],
+        "Informations": {},
+        "Localizations": [{
+            "Id": "pt-br",
+            "Name": "Canaletto"
+        }],
+        "ModelDefLocalizations": [{
+            "Id": "pt-br",
+            "Name": "Colors/Options"
+        }],
+        "GroupMd5": null,
+        "Unavailable": false
+    }, {
+        "Id": "kit_col_opt|kit_col_opt_gre",
+        "ModelDefinitionId": "kit_col_opt",
+        "ModelDefinitionName": "Colors/Options",
+        "ModelTypeId": "kit_col_opt_gre",
+        "Name": "Grey",
+        "Preview": "F8772CD24DEA752FD7E8A19F3E283A0.jpg",
+        "Components": [{
+            "LayerId": "CORPO_H",
+            "MaterialId": "68bafd18-36af-448b-8e69-bceb8b3715d6",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "DETALHE",
+            "MaterialId": "68bafd18-36af-448b-8e69-bceb8b3715d6",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "MOLDURA",
+            "MaterialId": "68bafd18-36af-448b-8e69-bceb8b3715d6",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "COSTAS",
+            "MaterialId": "68bafd18-36af-448b-8e69-bceb8b3715d6",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "FRENTE_V",
+            "MaterialId": "68bafd18-36af-448b-8e69-bceb8b3715d6",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "CORPO_V",
+            "MaterialId": "68bafd18-36af-448b-8e69-bceb8b3715d6",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "FRENTE_H",
+            "MaterialId": "68bafd18-36af-448b-8e69-bceb8b3715d6",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "VIDRO",
+            "MaterialId": "71c49a7b-1671-4c9d-aa36-b992dfc216a2",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "PUXADOR",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "STEEL",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "BRANCO",
+            "MaterialId": "638321eb-79a7-41c7-aaf9-04ba9aa29960",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "GRADE",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }],
+        "Informations": {},
+        "Localizations": [{
+            "Id": "pt-br",
+            "Name": "Grey"
+        }],
+        "ModelDefLocalizations": [{
+            "Id": "pt-br",
+            "Name": "Colors/Options"
+        }],
+        "GroupMd5": null,
+        "Unavailable": false
+    }, {
+        "Id": "kit_col_opt|kit_col_opt_cre",
+        "ModelDefinitionId": "kit_col_opt",
+        "ModelDefinitionName": "Colors/Options",
+        "ModelTypeId": "kit_col_opt_cre",
+        "Name": "Cream",
+        "Preview": "1F12EFBC7F80A1BA1211DCFD53EEA5B.jpg",
+        "Components": [{
+            "LayerId": "CORPO_H",
+            "MaterialId": "3f51a122-7606-4e34-a85f-40c25b7e3666",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "DETALHE",
+            "MaterialId": "3f51a122-7606-4e34-a85f-40c25b7e3666",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "MOLDURA",
+            "MaterialId": "3f51a122-7606-4e34-a85f-40c25b7e3666",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "COSTAS",
+            "MaterialId": "3f51a122-7606-4e34-a85f-40c25b7e3666",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "FRENTE_V",
+            "MaterialId": "3f51a122-7606-4e34-a85f-40c25b7e3666",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "CORPO_V",
+            "MaterialId": "3f51a122-7606-4e34-a85f-40c25b7e3666",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "FRENTE_H",
+            "MaterialId": "3f51a122-7606-4e34-a85f-40c25b7e3666",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "VIDRO",
+            "MaterialId": "71c49a7b-1671-4c9d-aa36-b992dfc216a2",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "PUXADOR",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "STEEL",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "BRANCO",
+            "MaterialId": "638321eb-79a7-41c7-aaf9-04ba9aa29960",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "GRADE",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }],
+        "Informations": {},
+        "Localizations": [{
+            "Id": "pt-br",
+            "Name": "Cream"
+        }],
+        "ModelDefLocalizations": [{
+            "Id": "pt-br",
+            "Name": "Colors/Options"
+        }],
+        "GroupMd5": null,
+        "Unavailable": false
+    }, {
+        "Id": "kit_col_opt|kit_col_opt_ice_blu",
+        "ModelDefinitionId": "kit_col_opt",
+        "ModelDefinitionName": "Colors/Options",
+        "ModelTypeId": "kit_col_opt_ice_blu",
+        "Name": "Ice Blue",
+        "Preview": "4772F54ADF3A9B1181E7CE5AA970BE1E.jpg",
+        "Components": [{
+            "LayerId": "CORPO_H",
+            "MaterialId": "550e7529-4f7f-42a8-b667-22b070f97a63",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "DETALHE",
+            "MaterialId": "550e7529-4f7f-42a8-b667-22b070f97a63",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "MOLDURA",
+            "MaterialId": "550e7529-4f7f-42a8-b667-22b070f97a63",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "COSTAS",
+            "MaterialId": "550e7529-4f7f-42a8-b667-22b070f97a63",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "FRENTE_V",
+            "MaterialId": "550e7529-4f7f-42a8-b667-22b070f97a63",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "CORPO_V",
+            "MaterialId": "550e7529-4f7f-42a8-b667-22b070f97a63",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "FRENTE_H",
+            "MaterialId": "550e7529-4f7f-42a8-b667-22b070f97a63",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "VIDRO",
+            "MaterialId": "71c49a7b-1671-4c9d-aa36-b992dfc216a2",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "PUXADOR",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "STEEL",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "BRANCO",
+            "MaterialId": "638321eb-79a7-41c7-aaf9-04ba9aa29960",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "GRADE",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }],
+        "Informations": {},
+        "Localizations": [{
+            "Id": "pt-br",
+            "Name": "Ice Blue"
+        }],
+        "ModelDefLocalizations": [{
+            "Id": "pt-br",
+            "Name": "Colors/Options"
+        }],
+        "GroupMd5": null,
+        "Unavailable": false
+    }, {
+        "Id": "kit_col_opt|kit_col_opt_red_col",
+        "ModelDefinitionId": "kit_col_opt",
+        "ModelDefinitionName": "Colors/Options",
+        "ModelTypeId": "kit_col_opt_red_col",
+        "Name": "Red",
+        "Preview": "709933E54BB6DF8D66D824A5B75A99C9.jpg",
+        "Components": [{
+            "LayerId": "CORPO_H",
+            "MaterialId": "ab92e3c9-b3db-4a6d-8898-d365b145d549",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "DETALHE",
+            "MaterialId": "ab92e3c9-b3db-4a6d-8898-d365b145d549",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "MOLDURA",
+            "MaterialId": "ab92e3c9-b3db-4a6d-8898-d365b145d549",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "COSTAS",
+            "MaterialId": "ab92e3c9-b3db-4a6d-8898-d365b145d549",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "FRENTE_V",
+            "MaterialId": "ab92e3c9-b3db-4a6d-8898-d365b145d549",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "CORPO_V",
+            "MaterialId": "ab92e3c9-b3db-4a6d-8898-d365b145d549",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "FRENTE_H",
+            "MaterialId": "ab92e3c9-b3db-4a6d-8898-d365b145d549",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "VIDRO",
+            "MaterialId": "71c49a7b-1671-4c9d-aa36-b992dfc216a2",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "PUXADOR",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "STEEL",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "BRANCO",
+            "MaterialId": "638321eb-79a7-41c7-aaf9-04ba9aa29960",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "GRADE",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }],
+        "Informations": {},
+        "Localizations": [{
+            "Id": "pt-br",
+            "Name": "Red"
+        }],
+        "ModelDefLocalizations": [{
+            "Id": "pt-br",
+            "Name": "Colors/Options"
+        }],
+        "GroupMd5": null,
+        "Unavailable": false
+    }, {
+        "Id": "kit_col_opt|kit_col_opt_oli",
+        "ModelDefinitionId": "kit_col_opt",
+        "ModelDefinitionName": "Colors/Options",
+        "ModelTypeId": "kit_col_opt_oli",
+        "Name": "Olive",
+        "Preview": "FE6289EE8EA52BF823AF399F8255963.jpg",
+        "Components": [{
+            "LayerId": "CORPO_H",
+            "MaterialId": "8fea8f6e-a38e-4797-b8ac-b5dafc324366",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "DETALHE",
+            "MaterialId": "8fea8f6e-a38e-4797-b8ac-b5dafc324366",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "MOLDURA",
+            "MaterialId": "8fea8f6e-a38e-4797-b8ac-b5dafc324366",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "COSTAS",
+            "MaterialId": "8fea8f6e-a38e-4797-b8ac-b5dafc324366",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "FRENTE_V",
+            "MaterialId": "8fea8f6e-a38e-4797-b8ac-b5dafc324366",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "CORPO_V",
+            "MaterialId": "8fea8f6e-a38e-4797-b8ac-b5dafc324366",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "FRENTE_H",
+            "MaterialId": "8fea8f6e-a38e-4797-b8ac-b5dafc324366",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "VIDRO",
+            "MaterialId": "71c49a7b-1671-4c9d-aa36-b992dfc216a2",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "PUXADOR",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "STEEL",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "BRANCO",
+            "MaterialId": "638321eb-79a7-41c7-aaf9-04ba9aa29960",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "GRADE",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }],
+        "Informations": {},
+        "Localizations": [{
+            "Id": "pt-br",
+            "Name": "Olive"
+        }],
+        "ModelDefLocalizations": [{
+            "Id": "pt-br",
+            "Name": "Colors/Options"
+        }],
+        "GroupMd5": null,
+        "Unavailable": false
+    }, {
+        "Id": "kit_col_opt|kit_col_opt_lig_gre",
+        "ModelDefinitionId": "kit_col_opt",
+        "ModelDefinitionName": "Colors/Options",
+        "ModelTypeId": "kit_col_opt_lig_gre",
+        "Name": "Light Grey",
+        "Preview": "DD59A3C65174EDC0104C1F8E619F4617.jpg",
+        "Components": [{
+            "LayerId": "CORPO_H",
+            "MaterialId": "e9c919d3-aa98-4331-a366-4feca680b8f9",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "DETALHE",
+            "MaterialId": "e9c919d3-aa98-4331-a366-4feca680b8f9",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "MOLDURA",
+            "MaterialId": "e9c919d3-aa98-4331-a366-4feca680b8f9",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "COSTAS",
+            "MaterialId": "e9c919d3-aa98-4331-a366-4feca680b8f9",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "FRENTE_V",
+            "MaterialId": "e9c919d3-aa98-4331-a366-4feca680b8f9",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "CORPO_V",
+            "MaterialId": "e9c919d3-aa98-4331-a366-4feca680b8f9",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "FRENTE_H",
+            "MaterialId": "e9c919d3-aa98-4331-a366-4feca680b8f9",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": null
+        }, {
+            "LayerId": "VIDRO",
+            "MaterialId": "71c49a7b-1671-4c9d-aa36-b992dfc216a2",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "PUXADOR",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "STEEL",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "BRANCO",
+            "MaterialId": "638321eb-79a7-41c7-aaf9-04ba9aa29960",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }, {
+            "LayerId": "GRADE",
+            "MaterialId": "9ac77068-70ea-4dc6-9e94-ef63338b9edc",
+            "Mapping": "Cubic",
+            "TextureScale": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureNumber": {
+                "X": 0.0,
+                "Y": 0.0
+            },
+            "TextureRotation": 0.0,
+            "Material": null,
+            "Edit": false
+        }],
+        "Informations": {},
+        "Localizations": [{
+            "Id": "pt-br",
+            "Name": "Light Grey"
+        }],
+        "ModelDefLocalizations": [{
+            "Id": "pt-br",
+            "Name": "Colors/Options"
+        }],
+        "GroupMd5": null,
+        "Unavailable": false
+    }],
+    "ModelsFormat": [{
+        "AggregateId": "800|Kit_cla_bas_cab_ocu_mod_for_dor_fro_low",
+        "GroupId": "800|Kit_cla_bas_cab_ocu_mod_for_dor_fro_low",
+        "GroupDescription": "Lower",
+        "GroupLocalizations": [{
+            "Id": "pt-br",
+            "Name": "Lower"
+        }],
+        "ModelName": "Door Styles",
+        "Localizations": [{
+            "Id": "pt-br",
+            "Name": "Door Styles"
+        }],
+        "Items": [{
+            "Id": "800|Kit_cla_bas_cab_ocu_mod_for_dor_fro_low_01",
+            "ModuleParentId": "800|Kit_cla_bas_cab_ocu_por_fre_por_low",
+            "SpecificationId": "2ed2c5e2-bacd-4916-9431-b7083ee0468f",
+            "Name": "Door 01",
+            "Localizations": [{
+                "Id": "pt-br",
+                "Name": "Door 01"
+            }],
+            "Preview": "767EBD57C9CACE77FAEC242386608F2D.PNG",
+            "Unavailable": false
+        }, {
+            "Id": "800|Kit_cla_bas_cab_ocu_mod_for_dor_fro_low_02",
+            "ModuleParentId": "800|Kit_cla_bas_cab_ocu_por_fre_por_low",
+            "SpecificationId": "b4adbfff-7e7f-4585-8db5-58dd55122292",
+            "Name": "Door 02",
+            "Localizations": [{
+                "Id": "pt-br",
+                "Name": "Door 02"
+            }],
+            "Preview": "EF81FC6972DDA72AB42A29A964B5D51C.PNG",
+            "Unavailable": false
+        }, {
+            "Id": "800|Kit_cla_bas_cab_ocu_mod_for_dor_fro_low_03",
+            "ModuleParentId": "800|Kit_cla_bas_cab_ocu_por_fre_por_low",
+            "SpecificationId": "8716249d-1c44-48d5-98ec-3911f4e868a9",
+            "Name": "Door 03",
+            "Localizations": [{
+                "Id": "pt-br",
+                "Name": "Door 03"
+            }],
+            "Preview": "859A8F81768C659BB25055C658AC4092.png",
+            "Unavailable": false
+        }, {
+            "Id": "800|Kit_cla_bas_cab_ocu_mod_for_dor_fro_low_04",
+            "ModuleParentId": "800|Kit_cla_bas_cab_ocu_por_fre_por_low",
+            "SpecificationId": "0fced64e-733e-4702-9968-135cac9e7b87",
+            "Name": "Door 04",
+            "Localizations": [{
+                "Id": "zh-cn",
+                "Name": "Door 04"
+            }, {
+                "Id": "pt-br",
+                "Name": "Door 04"
+            }],
+            "Preview": "1F98611EA22C24F2544116AAECCCE.png",
+            "Unavailable": false
+        }, {
+            "Id": "800|Kit_cla_bas_cab_ocu_mod_for_dor_fro_low_05",
+            "ModuleParentId": "800|Kit_cla_bas_cab_ocu_por_fre_por_low",
+            "SpecificationId": "f331fb21-61e8-4e3a-80bf-b2dcf90e1ee9",
+            "Name": "Door 05",
+            "Localizations": [{
+                "Id": "en-us",
+                "Name": "Door 05"
+            }, {
+                "Id": "es-es",
+                "Name": "Door 05"
+            }, {
+                "Id": "zh-cn",
+                "Name": "Door 05"
+            }, {
+                "Id": "pt-br",
+                "Name": "Door 05"
+            }],
+            "Preview": "811FB1B51C31AB1A8227B1388C5B07D.png",
+            "Unavailable": false
+        }, {
+            "Id": "800|Kit_cla_bas_cab_ocu_mod_for_dor_fro_low_06",
+            "ModuleParentId": "800|Kit_cla_bas_cab_ocu_por_fre_por_low",
+            "SpecificationId": "8eb468d3-d82d-40df-879b-08319caf3d2a",
+            "Name": "Door 06",
+            "Localizations": [{
+                "Id": "pt-br",
+                "Name": "Door 06"
+            }],
+            "Preview": "30D50590F1D2ACD9B435868C6DB9CE.png",
+            "Unavailable": false
+        }, {
+            "Id": "800|Kit_cla_bas_cab_ocu_mod_for_dor_fro_low_07",
+            "ModuleParentId": "800|Kit_cla_bas_cab_ocu_por_fre_por_low",
+            "SpecificationId": "4176cfe8-ce6f-4d4c-9a14-77772e7e9ec8",
+            "Name": "Door 07",
+            "Localizations": [{
+                "Id": "pt-br",
+                "Name": "Door 07"
+            }],
+            "Preview": "20ECF3EC5FCEA39B97DD7DDE3CE5859.png",
+            "Unavailable": false
+        }, {
+            "Id": "800|Kit_cla_bas_cab_ocu_mod_for_dor_fro_low_08",
+            "ModuleParentId": "800|Kit_cla_bas_cab_ocu_por_fre_por_low",
+            "SpecificationId": "a933c4bd-3493-47c9-9598-b0f5c20088c4",
+            "Name": "Door 08",
+            "Localizations": [{
+                "Id": "pt-br",
+                "Name": "Door 08"
+            }],
+            "Preview": "328018E6A9C3F9BB602F82247A6FD4C6.png",
+            "Unavailable": false
+        }],
+        "Unavailable": false,
+        "GroupMd5": null
+    }, {
+        "AggregateId": "800|Kit_cla_bas_cab_ocu_mod_for_dor_fro_low_dra",
+        "GroupId": "800|Kit_cla_bas_cab_ocu_mod_for_dor_fro_low_dra",
+        "GroupDescription": "Lower Drawer",
+        "GroupLocalizations": [{
+            "Id": "pt-br",
+            "Name": "Lower Drawer"
+        }],
+        "ModelName": "Door Styles",
+        "Localizations": [{
+            "Id": "pt-br",
+            "Name": "Door Styles"
+        }],
+        "Items": [{
+            "Id": "800|Kit_cla_bas_cab_ocu_mod_for_dor_fro_low_dra_01",
+            "ModuleParentId": "800|Kit_cla_bas_cab_ocu_por_fre_por_03",
+            "SpecificationId": "365489df-da23-48c9-9eb1-7ca8e6e3e967",
+            "Name": "Door 01",
+            "Localizations": [{
+                "Id": "pt-br",
+                "Name": "Door 01"
+            }],
+            "Preview": "767EBD57C9CACE77FAEC242386608F2D.PNG",
+            "Unavailable": false
+        }, {
+            "Id": "800|Kit_cla_bas_cab_ocu_mod_for_dor_fro_low_dra_02",
+            "ModuleParentId": "800|Kit_cla_bas_cab_ocu_por_fre_por_03",
+            "SpecificationId": "99e5abc7-38fa-4123-855b-58bced7d1e6b",
+            "Name": "Door 02",
+            "Localizations": [{
+                "Id": "pt-br",
+                "Name": "Door 02"
+            }],
+            "Preview": "EF81FC6972DDA72AB42A29A964B5D51C.PNG",
+            "Unavailable": false
+        }, {
+            "Id": "800|Kit_cla_bas_cab_ocu_mod_for_dor_fro_low_dra_03",
+            "ModuleParentId": "800|Kit_cla_bas_cab_ocu_por_fre_por_03",
+            "SpecificationId": "32374001-3e7a-4b39-bed8-f77dd2e0bfea",
+            "Name": "Door 03",
+            "Localizations": [{
+                "Id": "pt-br",
+                "Name": "Door 03"
+            }],
+            "Preview": "859A8F81768C659BB25055C658AC4092.PNG",
+            "Unavailable": false
+        }, {
+            "Id": "800|Kit_cla_bas_cab_ocu_mod_for_dor_fro_low_dra_04",
+            "ModuleParentId": "800|Kit_cla_bas_cab_ocu_por_fre_por_03",
+            "SpecificationId": "c2cb33c2-4db0-4764-a7b5-a7fbc08ef6dc",
+            "Name": "Door 04",
+            "Localizations": [{
+                "Id": "pt-br",
+                "Name": "Door 04"
+            }],
+            "Preview": "1F98611EA22C24F2544116AAECCCE.PNG",
+            "Unavailable": false
+        }, {
+            "Id": "800|Kit_cla_bas_cab_ocu_mod_for_dor_fro_low_dra_05",
+            "ModuleParentId": "800|Kit_cla_bas_cab_ocu_por_fre_por_03",
+            "SpecificationId": "1cb4dc74-f9f2-4917-ac7c-5b86994910f9",
+            "Name": "Door 05",
+            "Localizations": [{
+                "Id": "pt-br",
+                "Name": "Door 05"
+            }],
+            "Preview": "811FB1B51C31AB1A8227B1388C5B07D.PNG",
+            "Unavailable": false
+        }, {
+            "Id": "800|Kit_cla_bas_cab_ocu_mod_for_dor_fro_low_dra_06",
+            "ModuleParentId": "800|Kit_cla_bas_cab_ocu_por_fre_por_03",
+            "SpecificationId": "57062750-5a35-4ac3-9499-05c3a2142c18",
+            "Name": "Door 06",
+            "Localizations": [{
+                "Id": "zh-cn",
+                "Name": "Door 06"
+            }, {
+                "Id": "pt-br",
+                "Name": "Door 06"
+            }],
+            "Preview": "30D50590F1D2ACD9B435868C6DB9CE.PNG",
+            "Unavailable": false
+        }, {
+            "Id": "800|Kit_cla_bas_cab_ocu_mod_for_dor_fro_low_dra_07",
+            "ModuleParentId": "800|Kit_cla_bas_cab_ocu_por_fre_por_03",
+            "SpecificationId": "1f7e13cb-5fe1-4333-abb6-60386fa7ab33",
+            "Name": "Door 07",
+            "Localizations": [{
+                "Id": "pt-br",
+                "Name": "Door 07"
+            }],
+            "Preview": "20ECF3EC5FCEA39B97DD7DDE3CE5859.PNG",
+            "Unavailable": false
+        }, {
+            "Id": "800|Kit_cla_bas_cab_ocu_mod_for_dor_fro_low_dra_08",
+            "ModuleParentId": "800|Kit_cla_bas_cab_ocu_por_fre_por_03",
+            "SpecificationId": "209af278-6b8b-4b91-b524-7601327c24ba",
+            "Name": "Door 08",
+            "Localizations": [{
+                "Id": "pt-br",
+                "Name": "Door 08"
+            }],
+            "Preview": "328018E6A9C3F9BB602F82247A6FD4C6.PNG",
+            "Unavailable": false
+        }],
+        "Unavailable": false,
+        "GroupMd5": null
+    }, {
+        "AggregateId": "800|Kit_cla_bas_cab_ocu_mod_for_bas_for",
+        "GroupId": "800|Kit_cla_bas_cab_ocu_mod_for_bas_for",
+        "GroupDescription": "Base Format ",
+        "GroupLocalizations": [{
+            "Id": "pt-br",
+            "Name": "Base Format "
+        }],
+        "ModelName": "Counter Format",
+        "Localizations": [{
+            "Id": "pt-br",
+            "Name": "Counter Format"
+        }],
+        "Items": [{
+            "Id": "800|Kit_cla_bas_cab_ocu_mod_for_bas_for_01",
+            "ModuleParentId": "800|Kit_cla_bas_cab_ocu_ace_cou_top_01",
+            "SpecificationId": "6370e9c9-d965-4b43-8f85-9cad8151f62b",
+            "Name": "Profile 01",
+            "Localizations": [{
+                "Id": "pt-br",
+                "Name": "Profile 01"
+            }],
+            "Preview": "11B0C948C3B9BF572B8743AC71AE21.jpg",
+            "Unavailable": false
+        }, {
+            "Id": "800|Kit_cla_bas_cab_ocu_mod_for_bas_for_02",
+            "ModuleParentId": "800|Kit_cla_bas_cab_ocu_ace_cou_top_01",
+            "SpecificationId": "417c8b5c-72cc-4a66-a799-d7ef6678a8f0",
+            "Name": "Profile 02",
+            "Localizations": [{
+                "Id": "pt-br",
+                "Name": "Profile 02"
+            }],
+            "Preview": "FD5D62111BBB21CEBC3A1DBF8D6EF1.jpg",
+            "Unavailable": false
+        }],
+        "Unavailable": false,
+        "GroupMd5": null
+    }],
+    "GroupPath": ["bibliotecas", "800|Kitchens", "800|Kit_cla_med", "800|Kit_cla_bas_cab", "800|Kit_cla_bas_cab_bas"],
+    "Aggregates": [{
+        "Id": "door",
+        "Calculated": "True",
+        "EntityId": "800|Kit_cla_bas_cab_ocu_por_fre_por_low",
+        "Specifications": ["c39ea42b-0f3c-4449-b9a3-f38854997ac2"],
+        "Dimension": {
+            "Width": "$pw$-1.36",
+            "Depth": "0.7",
+            "Height": "$PH$-16.03"
+        },
+        "Position": {
+            "X": "($PW$-$W$)/2",
+            "Y": "-$PD$",
+            "Z": "6.25",
+            "Rotation": "0"
+        },
+        "Description": "Door",
+        "Localizations": [{
+            "Id": "pt-br",
+            "Name": "Door"
+        }],
+        "CanChangeSelectionModel": true,
+        "Constant": true,
+        "Attributes": {
+            "CALCULATED": {
+                "VALUE": "True",
+                "VISIBLE": "N"
+            },
+            "COUPLED": {
+                "VALUE": "True",
+                "VISIBLE": "N"
+            }
+        },
+        "Repetitions": {},
+        "Coupled": true,
+        "Joints": [],
+        "GroupMd5": null
+    }, {
+        "Id": "drawer_box",
+        "Calculated": "False",
+        "EntityId": "800|Kit_cla_bas_cab_ocu_div_cor_gav",
+        "Specifications": ["72363c0b-70eb-4bff-ba98-334454ecaf84"],
+        "Dimension": {
+            "Width": "($pw$-0.08*2-3)-2.1",
+            "Depth": "$PD$-2",
+            "Height": "($PH$-4.9)/4-5"
+        },
+        "Position": {
+            "X": "$PW$/2-$W$/2",
+            "Y": "$D$-$PD$-0.7+0.7",
+            "Z": "$ph$-($ph$-5.36)/4-1.08+1.2",
+            "Rotation": "0"
+        },
+        "Description": "Drawer",
+        "Localizations": [{
+            "Id": "pt-br",
+            "Name": "Drawer"
+        }],
+        "Concurrent": true,
+        "CanChangeSelectionModel": true,
+        "Constant": true,
+        "Attributes": {
+            "DESCRIPTION": {
+                "VALUE": "Corpo Gaveta",
+                "VISIBLE": "N"
+            },
+            "CALCULATED": {
+                "VALUE": "False",
+                "VISIBLE": "N"
+            }
+        },
+        "Repetitions": {},
+        "Joints": [],
+        "GroupMd5": null
+    }, {
+        "Id": "Drawer Front",
+        "Calculated": "False",
+        "EntityId": "800|Kit_cla_bas_cab_ocu_por_fre_por_03",
+        "Specifications": ["6ba95fb5-c5d0-4a6e-8bfa-4ff49321f234"],
+        "Dimension": {
+            "Width": "$pw$-1.36",
+            "Depth": "0.7",
+            "Height": "($PH$-5.36)/4-1.5"
+        },
+        "Position": {
+            "X": "($PW$-$W$)/2",
+            "Y": "-$PD$+$D$-0.7",
+            "Z": "$ph$-$h$-2.58",
+            "Rotation": "0"
+        },
+        "Description": "Drawer Front",
+        "Localizations": [{
+            "Id": "pt-br",
+            "Name": "Drawer Front"
+        }],
+        "CanChangeSelectionModel": true,
+        "Constant": true,
+        "Attributes": {
+            "DESCRIPTION": {
+                "VALUE": "Front Classic",
+                "VISIBLE": "N"
+            },
+            "CANMIRROR": {
+                "VALUE": "True",
+                "VISIBLE": "N"
+            },
+            "CALCULATED": {
+                "VALUE": "False",
+                "VISIBLE": "N"
+            }
+        },
+        "Repetitions": {},
+        "Joints": [],
+        "GroupMd5": null
+    }, {
+        "Id": "Cabinet",
+        "Calculated": "False",
+        "EntityId": "800|Kit_cla_bas_cab_ocu_mod_bas_02",
+        "Specifications": ["4de63442-4888-4dd2-8bd8-56da4a4d2cd0"],
+        "Dimension": {
+            "Width": "$pw$",
+            "Depth": "$PD$",
+            "Height": "$PH$-1.5"
+        },
+        "Position": {
+            "X": "0",
+            "Y": "0",
+            "Z": "0",
+            "Rotation": "0"
+        },
+        "Description": "Cabinet",
+        "Localizations": [{
+            "Id": "pt-br",
+            "Name": "Cabinet"
+        }],
+        "CanChangeSelectionModel": true,
+        "Constant": true,
+        "Attributes": {
+            "CALCULATED": {
+                "VALUE": "False",
+                "VISIBLE": "N"
+            }
+        },
+        "Repetitions": {},
+        "Joints": [],
+        "GroupMd5": null
+    }, {
+        "Id": "Ag57229312",
+        "Calculated": "True",
+        "EntityId": "800|Kit_cla_bas_cab_ocu_ace_cou_top_01",
+        "Specifications": ["6ddb7175-5ba9-4ce7-bced-f4ee87997b8d"],
+        "Dimension": {
+            "Width": "$PW$",
+            "Depth": "$PD$+1.5",
+            "Height": "1.5"
+        },
+        "Position": {
+            "X": "0",
+            "Y": "0",
+            "Z": "34.5",
+            "Rotation": "0"
+        },
+        "Description": "Counter Top",
+        "Localizations": [{
+            "Id": "pt-br",
+            "Name": "Counter Top"
+        }],
+        "Concurrent": true,
+        "Default": true,
+        "Attributes": {
+            "CALCULATED": {
+                "VALUE": "True",
+                "VISIBLE": "N"
+            },
+            "COUPLED": {
+                "VALUE": "True",
+                "VISIBLE": "N"
+            },
+            "DESCRIPTION": {
+                "VALUE": "Counter Top f/ Cabinet",
+                "VISIBLE": "N"
+            },
+            "LARGMAX": {
+                "VALUE": "@com_caixas.2(LARG_MAX)@",
+                "DYNAMIC": "Y",
+                "VISIBLE": "N"
+            }
+        },
+        "Coupled": true,
+        "Joints": [],
+        "GroupMd5": null
+    }],
+    "OpenServices": [{
+        "Type": "Door",
+        "AggregatePath": [0, 0],
+        "X": "@($I$?-$w$+($D$/2):$w$-$D$/2)",
+        "Y": "-$D$/2",
+        "Max": "110",
+        "Invert": "@($INVERTED$?0:1)",
+        "Description": "Door",
+        "Localizations": [{
+            "Id": "pt-br",
+            "Name": "Door"
+        }],
+        "Options": []
+    }, {
+        "Type": "Door",
+        "AggregatePath": [0, 0],
+        "X": "@($I$?-$w$+($D$/2):$w$-$D$/2)",
+        "Y": "-$D$/2",
+        "Max": "110",
+        "Invert": "@($INVERTED$?0:1)",
+        "Description": "Lower Classic",
+        "Localizations": [{
+            "Id": "pt-br",
+            "Name": "Lower Classic"
+        }],
+        "Options": []
+    }, {
+        "Type": "Drawer",
+        "AggregatePath": [1, 0],
+        "Max": "$PD$-8",
+        "Description": "Drawer",
+        "Localizations": [{
+            "Id": "pt-br",
+            "Name": "Drawer"
+        }],
+        "Options": []
+    }, {
+        "Type": "Drawer",
+        "AggregatePath": [1, 0],
+        "Max": "$PD$-8",
+        "Description": "Corpo Gaveta",
+        "Localizations": [{
+            "Id": "pt-br",
+            "Name": "Corpo Gaveta"
+        }],
+        "Options": []
+    }, {
+        "Type": "Drawer",
+        "AggregatePath": [2, 0],
+        "Max": "$PD$-8",
+        "Description": "Drawer Front",
+        "Localizations": [{
+            "Id": "pt-br",
+            "Name": "Drawer Front"
+        }],
+        "Options": []
+    }, {
+        "Type": "Drawer",
+        "AggregatePath": [2, 0],
+        "Max": "$PD$-8",
+        "Description": "Front Classic",
+        "Localizations": [{
+            "Id": "en-us",
+            "Name": "Upper Dumper (FOD3) (Cópia)"
+        }, {
+            "Id": "es-es",
+            "Name": "Upper Dumper (FOD3) (Cópia)"
+        }, {
+            "Id": "zh-cn",
+            "Name": "Upper Dumper (FOD3) (Cópia)"
+        }, {
+            "Id": "pt-br",
+            "Name": "Front Classic"
+        }],
+        "Options": []
+    }],
+    "DisableCulling": false,
+    "IsHole": false,
+    "Reference": {
+        "Complete": "$TEXT$",
+        "ReferenceCodes": [],
+        "ReferenceExceptions": []
+    },
+    "InsertDimension": {
+        "Increment": {
+            "X": 0.0,
+            "Y": 0.0,
+            "Z": 0.0
+        },
+        "Text": "B",
+        "ProposedValues": [{
+            "Width": 12.0
+        }, {
+            "Width": 15.0
+        }, {
+            "Width": 18.0
+        }, {
+            "Width": 21.0
+        }, {
+            "Width": 24.0
+        }]
+    },
+    "PlainNormal": false,
+    "LayerParameters": {
+        "On": true,
+        "Description": "$ROOTGROUP$",
+        "Localizations": [{
+            "Id": "pt-br",
+            "ExpressionName": "$ROOTGROUP$"
+        }],
+        "ShadeMode": "Default",
+        "LineType": "Solid",
+        "Thickness": 1.0
+    },
+    "Preview": "C9E444ED8EE34B282A7F3D83F09C81.png",
+    "Attributes": {
+        "DESCRIPTION": {
+            "VALUE": "1 Door 1 Drawer",
+            "VISIBLE": "N"
+        },
+        "CANMIRROR": {
+            "VALUE": "True",
+            "VISIBLE": "N"
+        }
+    },
+    "MeasureFactor": 25.4,
+    "RootGroups": [{
+        "Id": "en-us",
+        "Name": "Kitchens Classic"
+    }, {
+        "Id": "es-es",
+        "Name": "Kitchens Classic"
+    }, {
+        "Id": "es-mx",
+        "Name": "Kitchens Classic"
+    }, {
+        "Id": "zh-cn",
+        "Name": "Kitchens Classic"
+    }, {
+        "Id": "pt-br",
+        "Name": "Kitchens"
+    }]
+}

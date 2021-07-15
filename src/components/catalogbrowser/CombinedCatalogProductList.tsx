@@ -44,7 +44,7 @@ export default function CombinedCatalogProductList(props: ICombinedCatalogProduc
 
     useEffect(() => {
         if(!props.isFetching) {
-            console.log("Fetching Catalog Product List Completed!");
+            // console.log("Fetching Catalog Product List Completed!");
             setScrolledEnough(false);
         }
     }, [props.isFetching]);

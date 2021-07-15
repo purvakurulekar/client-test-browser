@@ -1,13 +1,15 @@
 {
   "name": "client-catalogbrowser",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Client Catalog Browser, catalog browser using Content Platform API",
-  "main": "src/index.tsx",
+  "main": "index.js",
   "scripts": {
     "pipeline-setup": "node scripts/pipelineSetup.js",
     "build-prod": "webpack --progress --config webpack.prod.config.ts",
     "build-watch": "webpack watch --config webpack.dev.config.ts",
     "build-dev": "webpack --progress --config webpack.dev.config.ts",
+    "build-lib": "webpack --progress --config webpack.prodlib.config.ts",
+    "deploy": "npm run build-lib && cd dist/ && npm publish",
     "test": "jest --verbose ./unit_tests/"
   },
   "repository": {
@@ -41,6 +43,8 @@
     ]
   },
   "dependencies": {
+  },
+  "devDependencies": {
     "@fortawesome/fontawesome": "^1.1.8",
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-regular-svg-icons": "^5.15.3",
@@ -48,9 +52,7 @@
     "@fortawesome/react-fontawesome": "^0.1.14",
     "client-ui-toolkit": "^0.1.4",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
-  },
-  "devDependencies": {
+    "react-dom": "^17.0.2",
     "@babel/core": "^7.14.6",
     "@babel/plugin-proposal-class-properties": "^7.14.5",
     "@babel/plugin-transform-runtime": "^7.14.5",
