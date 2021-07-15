@@ -1,7 +1,7 @@
 {
-  "name": "client-catalogbrowser",
+  "name": "client-test-browser",
   "version": "1.0.1",
-  "description": "Client Catalog Browser, catalog browser using Content Platform API",
+  "description": "Client Test Catalog Browser, catalog browser using Content Platform API",
   "main": "index.js",
   "scripts": {
     "pipeline-setup": "node scripts/pipelineSetup.js",
@@ -11,6 +11,9 @@
     "build-lib": "webpack --progress --config webpack.prodlib.config.ts",
     "deploy": "npm run build-lib && cd dist/ && npm publish",
     "test": "jest --verbose ./unit_tests/"
+  },
+  "publishConfig": {
+    "registry": "http://cic-npmregistry-dev-ci.centralus.azurecontainer.io:4873"
   },
   "repository": {
     "type": "git",
