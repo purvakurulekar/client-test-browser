@@ -1,0 +1,655 @@
+{
+    "Name": "1 Door 1 Drawer (B18)",
+    "Description": "1 Door 1 Drawer",
+    "Brand": {
+        "Name": "2020 Generic Content",
+        "Id": "DesignPremium",
+        "LibraryId": "800",
+        "StoreByCollection": false,
+        "IsPlannedBrand": true
+    },
+    "Collection": {
+        "Name": "Kitchens",
+        "Id": "d7Uwvvex0R",
+        "Type": "Collection",
+        "Value": "Kitchens",
+        "Localizations": [{
+            "Id": "pt-br",
+            "Name": "Kitchens"
+        }],
+        "ValidMeaningIds": ["Marca"],
+        "ParentTagIds": ["DesignPremium"],
+        "StoreByCollection": false
+    },
+    "RelationsInternal": [{
+        "Meaning": {
+            "Name": "Ocultar",
+            "ShowAllTagsOption": false,
+            "Id": "Ocultar",
+            "Internal": true
+        },
+        "Tags": [{
+            "Level": 0,
+            "Name": "Ocultar Marcon",
+            "Id": "OcultarMarcon",
+            "LibraryId": "",
+            "StoreByCollection": false
+        }]
+    }, {
+        "Meaning": {
+            "Name": "Type",
+            "ShowAllTagsOption": false,
+            "Id": "Tipo",
+            "Internal": true
+        },
+        "Tags": [{
+            "Level": 0,
+            "Name": "Item",
+            "Id": "Item",
+            "LibraryId": "",
+            "StoreByCollection": false
+        }]
+    }, {
+        "Meaning": {
+            "Name": "System",
+            "ShowAllTagsOption": false,
+            "Id": "Sistema",
+            "Internal": true
+        },
+        "Tags": [{
+            "Level": 0,
+            "Name": "Mooble",
+            "Id": "MoobleSistema",
+            "StoreByCollection": false
+        }]
+    }, {
+        "Meaning": {
+            "Name": "Region",
+            "ShowAllTagsOption": false,
+            "Id": "Regiao",
+            "Internal": true
+        },
+        "Tags": [{
+            "Level": 0,
+            "Name": "us",
+            "Id": "RegiaoUs",
+            "LibraryId": "",
+            "StoreByCollection": false
+        }]
+    }, {
+        "Meaning": {
+            "Name": "Plane",
+            "ShowAllTagsOption": false,
+            "Id": "Plano",
+            "Internal": true
+        },
+        "Tags": [{
+            "Level": 0,
+            "Name": "Floor",
+            "Id": "Piso",
+            "LibraryId": "",
+            "StoreByCollection": false
+        }]
+    }, {
+        "Meaning": {
+            "Name": "PlannerFlags",
+            "ShowAllTagsOption": false,
+            "Id": "PlannerFlags",
+            "Internal": true
+        },
+        "Tags": [{
+            "Level": 0,
+            "Name": "Aceita furação",
+            "Id": "AceitaFuracao",
+            "StoreByCollection": false
+        }, {
+            "Level": 0,
+            "Name": "Colisão forte",
+            "Id": "ColisaoForte",
+            "StoreByCollection": false
+        }]
+    }],
+    "HideBrands": true,
+    "Id": "9a539759-273f-417d-92ca-4520ba1c8463",
+    "AccountId": "667611bf-d604-4a78-a712-974a0d5c6aaa",
+    "BrandId": "DesignPremium",
+    "Relations": [{
+        "Meaning": {
+            "Name": "Department",
+            "ShowAllTagsOption": false,
+            "Id": "Departamento"
+        },
+        "Tags": [{
+            "Level": 0,
+            "Name": "Furniture",
+            "Id": "Moveis",
+            "StoreByCollection": false
+        }, {
+            "Level": 1,
+            "Name": "Kitchen",
+            "Id": "Cozinha",
+            "StoreByCollection": false
+        }, {
+            "Level": 2,
+            "Name": "Wood Kitchens",
+            "Id": "CozinhasdeMadeira",
+            "Order": 0,
+            "StoreByCollection": false
+        }, {
+            "Level": 3,
+            "Name": "Modular Kitchens",
+            "Id": "hC7hUyOV1I",
+            "Order": 1,
+            "StoreByCollection": false
+        }, {
+            "Level": 4,
+            "Name": "Base Cabinet",
+            "Id": "Balcoes",
+            "Order": 1,
+            "StoreByCollection": false
+        }, {
+            "Level": 2,
+            "Name": "Framed Kitchens",
+            "Id": "URLTuVjJja",
+            "Order": 4,
+            "StoreByCollection": false
+        }, {
+            "Level": 3,
+            "Name": "Base Cabinets",
+            "Id": "vCLxQ0xM7J",
+            "StoreByCollection": false
+        }, {
+            "Level": 4,
+            "Name": "Base",
+            "Id": "SKiSRWkoA0",
+            "StoreByCollection": false
+        }]
+    }, {
+        "Meaning": {
+            "Name": "Brand",
+            "ShowAllTagsOption": false,
+            "Id": "Marca"
+        },
+        "Tags": [{
+            "Level": 0,
+            "Name": "2020 Generic Content",
+            "Id": "DesignPremium",
+            "LibraryId": "800",
+            "StoreByCollection": false,
+            "IsPlannedBrand": true
+        }, {
+            "Level": 1,
+            "Name": "Kitchens",
+            "Id": "d7Uwvvex0R",
+            "Type": "Collection",
+            "StoreByCollection": false
+        }, {
+            "Level": 2,
+            "Name": "Framed Kitchens",
+            "Id": "cZatAiq8BB",
+            "StoreByCollection": false
+        }, {
+            "Level": 3,
+            "Name": "Base Cabinets",
+            "Id": "hArWjE605U",
+            "Order": 0,
+            "StoreByCollection": false
+        }, {
+            "Level": 4,
+            "Name": "Base",
+            "Id": "V3b1EfCjAv",
+            "StoreByCollection": false
+        }]
+    }, {
+        "Meaning": {
+            "Name": "Width",
+            "ShowAllTagsOption": false,
+            "Id": "Largura"
+        },
+        "Tags": [{
+            "Level": 0,
+            "Name": "17.99in",
+            "Id": "457",
+            "StoreByCollection": false
+        }]
+    }, {
+        "Meaning": {
+            "Name": "Height",
+            "ShowAllTagsOption": false,
+            "Id": "Altura"
+        },
+        "Tags": [{
+            "Level": 0,
+            "Name": "36.00in",
+            "Id": "914",
+            "StoreByCollection": false
+        }]
+    }, {
+        "Meaning": {
+            "Name": "Depth",
+            "ShowAllTagsOption": false,
+            "Id": "Profundidade"
+        },
+        "Tags": [{
+            "Level": 0,
+            "Name": "24.02in",
+            "Id": "610",
+            "StoreByCollection": false
+        }]
+    }],
+    "Type": "Shape",
+    "Properties": {
+        "Dimension": {
+            "Width": 457.2,
+            "Depth": 609.6,
+            "Height": 914.4
+        },
+        "Models": [
+            [{
+                "Id": "kit_col_opt_doo|kit_col_opt_doo_whi",
+                "Name": "White",
+                "Preview": "93981F44B523A17F78A939B4418B3EF.jpg",
+                "ModelTypeId": "kit_col_opt_doo_whi",
+                "ModelDefinitionId": "kit_col_opt_doo",
+                "ModelDefinitionName": "Colors/Options - Doors"
+            }, {
+                "Id": "kit_col_opt_doo|kit_col_opt_doo_cla_oak",
+                "Name": "Classic Oak",
+                "Preview": "8A51DC42034F1B3B52D727A5D7E684.jpg",
+                "ModelTypeId": "kit_col_opt_doo_cla_oak",
+                "ModelDefinitionId": "kit_col_opt_doo",
+                "ModelDefinitionName": "Colors/Options - Doors"
+            }, {
+                "Id": "kit_col_opt_doo|kit_col_opt_doo_bro",
+                "Name": "Oak Brown",
+                "Preview": "F895CAC42129D1BFD66122F9AC7FA4.jpg",
+                "ModelTypeId": "kit_col_opt_doo_bro",
+                "ModelDefinitionId": "kit_col_opt_doo",
+                "ModelDefinitionName": "Colors/Options - Doors"
+            }, {
+                "Id": "kit_col_opt_doo|kit_col_opt_doo_red",
+                "Name": "Birch Cabernet",
+                "Preview": "A199301158647A1C658425C35FBB92F0.jpg",
+                "ModelTypeId": "kit_col_opt_doo_red",
+                "ModelDefinitionId": "kit_col_opt_doo",
+                "ModelDefinitionName": "Colors/Options - Doors"
+            }, {
+                "Id": "kit_col_opt_doo|kit_col_opt_doo_wen",
+                "Name": "Oak Fawn",
+                "Preview": "A334931429FF75BDEAE28A3F18BA5A.jpg",
+                "ModelTypeId": "kit_col_opt_doo_wen",
+                "ModelDefinitionId": "kit_col_opt_doo",
+                "ModelDefinitionName": "Colors/Options - Doors"
+            }, {
+                "Id": "kit_col_opt_doo|kit_col_opt_doo_bla",
+                "Name": "Black",
+                "Preview": "E32C855BFDD4C5BE7DA42443F4E8FEDD.jpg",
+                "ModelTypeId": "kit_col_opt_doo_bla",
+                "ModelDefinitionId": "kit_col_opt_doo",
+                "ModelDefinitionName": "Colors/Options - Doors"
+            }, {
+                "Id": "kit_col_opt_doo|kit_col_opt_doo_neu",
+                "Name": "Birch Neutral",
+                "Preview": "7E66147EDF1F787A6DBAD605C88873C.jpg",
+                "ModelTypeId": "kit_col_opt_doo_neu",
+                "ModelDefinitionId": "kit_col_opt_doo",
+                "ModelDefinitionName": "Colors/Options - Doors"
+            }, {
+                "Id": "kit_col_opt_doo|kit_col_opt_doo_rov_whi",
+                "Name": "Oak White",
+                "Preview": "186DE6458D4B4382BD083219F25D248.jpg",
+                "ModelTypeId": "kit_col_opt_doo_rov_whi",
+                "ModelDefinitionId": "kit_col_opt_doo",
+                "ModelDefinitionName": "Colors/Options - Doors"
+            }, {
+                "Id": "kit_col_opt_doo|kit_col_opt_doo_wal",
+                "Name": "Walnut",
+                "Preview": "23B4F37A119C10FB6A72239E2AC4FE0.jpg",
+                "ModelTypeId": "kit_col_opt_doo_wal",
+                "ModelDefinitionId": "kit_col_opt_doo",
+                "ModelDefinitionName": "Colors/Options - Doors"
+            }, {
+                "Id": "kit_col_opt_doo|kit_col_opt_doo_wng",
+                "Name": "Wengue",
+                "Preview": "D028D12D6E1EC228469B3F41356620E3.jpg",
+                "ModelTypeId": "kit_col_opt_doo_wng",
+                "ModelDefinitionId": "kit_col_opt_doo",
+                "ModelDefinitionName": "Colors/Options - Doors"
+            }, {
+                "Id": "kit_col_opt_doo|kit_col_opt_doo_gre_ash",
+                "Name": "Grey Ash",
+                "Preview": "A1CEB67BC1A3966D387BDFE521F5D.jpg",
+                "ModelTypeId": "kit_col_opt_doo_gre_ash",
+                "ModelDefinitionId": "kit_col_opt_doo",
+                "ModelDefinitionName": "Colors/Options - Doors"
+            }, {
+                "Id": "kit_col_opt_doo|kit_col_opt_doo_lig_ash",
+                "Name": "Light Ash",
+                "Preview": "D219CCFBD6CD69798131CAD12D378E7E.png",
+                "ModelTypeId": "kit_col_opt_doo_lig_ash",
+                "ModelDefinitionId": "kit_col_opt_doo",
+                "ModelDefinitionName": "Colors/Options - Doors"
+            }, {
+                "Id": "kit_col_opt_doo|kit_col_opt_doo_nog",
+                "Name": "Nogal",
+                "Preview": "D01B45ACC624C758A6439F32C4C9D4B3.jpg",
+                "ModelTypeId": "kit_col_opt_doo_nog",
+                "ModelDefinitionId": "kit_col_opt_doo",
+                "ModelDefinitionName": "Colors/Options - Doors"
+            }, {
+                "Id": "kit_col_opt_doo|kit_col_opt_doo_gri",
+                "Name": "Gris",
+                "Preview": "FE68749E4BB71D6BF6A7FE885788B.jpg",
+                "ModelTypeId": "kit_col_opt_doo_gri",
+                "ModelDefinitionId": "kit_col_opt_doo",
+                "ModelDefinitionName": "Colors/Options - Doors"
+            }, {
+                "Id": "kit_col_opt_doo|kit_col_opt_doo_cof",
+                "Name": "Coffee",
+                "Preview": "AC942B9F5B1BE52E857CA3E57ACCE4C.jpg",
+                "ModelTypeId": "kit_col_opt_doo_cof",
+                "ModelDefinitionId": "kit_col_opt_doo",
+                "ModelDefinitionName": "Colors/Options - Doors"
+            }, {
+                "Id": "kit_col_opt_doo|kit_col_opt_doo_alm",
+                "Name": "Almond",
+                "Preview": "939AED64A582AA4624FDF85BE98327A.jpg",
+                "ModelTypeId": "kit_col_opt_doo_alm",
+                "ModelDefinitionId": "kit_col_opt_doo",
+                "ModelDefinitionName": "Colors/Options - Doors"
+            }, {
+                "Id": "kit_col_opt_doo|kit_col_opt_doo_can",
+                "Name": "Canaletto",
+                "Preview": "D279C20D26A35EA737C3A20B9128C1C.jpg",
+                "ModelTypeId": "kit_col_opt_doo_can",
+                "ModelDefinitionId": "kit_col_opt_doo",
+                "ModelDefinitionName": "Colors/Options - Doors"
+            }, {
+                "Id": "kit_col_opt_doo|kit_col_opt_doo_gre",
+                "Name": "Grey",
+                "Preview": "F8772CD24DEA752FD7E8A19F3E283A0.jpg",
+                "ModelTypeId": "kit_col_opt_doo_gre",
+                "ModelDefinitionId": "kit_col_opt_doo",
+                "ModelDefinitionName": "Colors/Options - Doors"
+            }, {
+                "Id": "kit_col_opt_doo|kit_col_opt_doo_cre",
+                "Name": "Cream",
+                "Preview": "1F12EFBC7F80A1BA1211DCFD53EEA5B.jpg",
+                "ModelTypeId": "kit_col_opt_doo_cre",
+                "ModelDefinitionId": "kit_col_opt_doo",
+                "ModelDefinitionName": "Colors/Options - Doors"
+            }, {
+                "Id": "kit_col_opt_doo|kit_col_opt_doo_ice_blu",
+                "Name": "Ice Blue",
+                "Preview": "4772F54ADF3A9B1181E7CE5AA970BE1E.jpg",
+                "ModelTypeId": "kit_col_opt_doo_ice_blu",
+                "ModelDefinitionId": "kit_col_opt_doo",
+                "ModelDefinitionName": "Colors/Options - Doors"
+            }, {
+                "Id": "kit_col_opt_doo|kit_col_opt_doo_col",
+                "Name": "Red",
+                "Preview": "709933E54BB6DF8D66D824A5B75A99C9.jpg",
+                "ModelTypeId": "kit_col_opt_doo_col",
+                "ModelDefinitionId": "kit_col_opt_doo",
+                "ModelDefinitionName": "Colors/Options - Doors"
+            }, {
+                "Id": "kit_col_opt_doo|kit_col_opt_doo_oli",
+                "Name": "Olive",
+                "Preview": "FE6289EE8EA52BF823AF399F8255963.jpg",
+                "ModelTypeId": "kit_col_opt_doo_oli",
+                "ModelDefinitionId": "kit_col_opt_doo",
+                "ModelDefinitionName": "Colors/Options - Doors"
+            }, {
+                "Id": "kit_col_opt_doo|kit_col_opt_doo_lig_gre",
+                "Name": "Light Grey",
+                "Preview": "DD59A3C65174EDC0104C1F8E619F4617.jpg",
+                "ModelTypeId": "kit_col_opt_doo_lig_gre",
+                "ModelDefinitionId": "kit_col_opt_doo",
+                "ModelDefinitionName": "Colors/Options - Doors"
+            }],
+            [{
+                "Id": "kit_col_opt|kit_col_opt_cla_oak",
+                "Name": "Classic Oak",
+                "Preview": "8A51DC42034F1B3B52D727A5D7E684.jpg",
+                "ModelTypeId": "kit_col_opt_cla_oak",
+                "ModelDefinitionId": "kit_col_opt",
+                "ModelDefinitionName": "Colors/Options"
+            }, {
+                "Id": "kit_col_opt|kit_col_opt_whi",
+                "Name": "White",
+                "Preview": "93981F44B523A17F78A939B4418B3EF.jpg",
+                "ModelTypeId": "kit_col_opt_whi",
+                "ModelDefinitionId": "kit_col_opt",
+                "ModelDefinitionName": "Colors/Options"
+            }, {
+                "Id": "kit_col_opt|kit_col_opt_bro",
+                "Name": "Oak Brown",
+                "Preview": "F895CAC42129D1BFD66122F9AC7FA4.jpg",
+                "ModelTypeId": "kit_col_opt_bro",
+                "ModelDefinitionId": "kit_col_opt",
+                "ModelDefinitionName": "Colors/Options"
+            }, {
+                "Id": "kit_col_opt|kit_col_opt_red",
+                "Name": "Birch Cabernet",
+                "Preview": "A199301158647A1C658425C35FBB92F0.jpg",
+                "ModelTypeId": "kit_col_opt_red",
+                "ModelDefinitionId": "kit_col_opt",
+                "ModelDefinitionName": "Colors/Options"
+            }, {
+                "Id": "kit_col_opt|kit_col_opt_wen",
+                "Name": "Oak Fawn",
+                "Preview": "A334931429FF75BDEAE28A3F18BA5A.jpg",
+                "ModelTypeId": "kit_col_opt_wen",
+                "ModelDefinitionId": "kit_col_opt",
+                "ModelDefinitionName": "Colors/Options"
+            }, {
+                "Id": "kit_col_opt|kit_col_opt_bla",
+                "Name": "Black",
+                "Preview": "E32C855BFDD4C5BE7DA42443F4E8FEDD.jpg",
+                "ModelTypeId": "kit_col_opt_bla",
+                "ModelDefinitionId": "kit_col_opt",
+                "ModelDefinitionName": "Colors/Options"
+            }, {
+                "Id": "kit_col_opt|kit_col_opt_war_neu",
+                "Name": "Birch Neutral",
+                "Preview": "7E66147EDF1F787A6DBAD605C88873C.jpg",
+                "ModelTypeId": "kit_col_opt_war_neu",
+                "ModelDefinitionId": "kit_col_opt",
+                "ModelDefinitionName": "Colors/Options"
+            }, {
+                "Id": "kit_col_opt|kit_col_opt_rov_whi",
+                "Name": "Oak White",
+                "Preview": "186DE6458D4B4382BD083219F25D248.jpg",
+                "ModelTypeId": "kit_col_opt_rov_whi",
+                "ModelDefinitionId": "kit_col_opt",
+                "ModelDefinitionName": "Colors/Options"
+            }, {
+                "Id": "kit_col_opt|kit_col_opt_wal",
+                "Name": "Walnut",
+                "Preview": "23B4F37A119C10FB6A72239E2AC4FE0.jpg",
+                "ModelTypeId": "kit_col_opt_wal",
+                "ModelDefinitionId": "kit_col_opt",
+                "ModelDefinitionName": "Colors/Options"
+            }, {
+                "Id": "kit_col_opt|kit_col_opt_wng",
+                "Name": "Wengue",
+                "Preview": "D028D12D6E1EC228469B3F41356620E3.jpg",
+                "ModelTypeId": "kit_col_opt_wng",
+                "ModelDefinitionId": "kit_col_opt",
+                "ModelDefinitionName": "Colors/Options"
+            }, {
+                "Id": "kit_col_opt|kit_col_opt_gre_ash",
+                "Name": "Grey Ash",
+                "Preview": "A1CEB67BC1A3966D387BDFE521F5D.jpg",
+                "ModelTypeId": "kit_col_opt_gre_ash",
+                "ModelDefinitionId": "kit_col_opt",
+                "ModelDefinitionName": "Colors/Options"
+            }, {
+                "Id": "kit_col_opt|kit_col_opt_lig_ash",
+                "Name": "Light Ash",
+                "Preview": "D219CCFBD6CD69798131CAD12D378E7E.png",
+                "ModelTypeId": "kit_col_opt_lig_ash",
+                "ModelDefinitionId": "kit_col_opt",
+                "ModelDefinitionName": "Colors/Options"
+            }, {
+                "Id": "kit_col_opt|kit_col_opt_nog",
+                "Name": "Nogal",
+                "Preview": "D01B45ACC624C758A6439F32C4C9D4B3.jpg",
+                "ModelTypeId": "kit_col_opt_nog",
+                "ModelDefinitionId": "kit_col_opt",
+                "ModelDefinitionName": "Colors/Options"
+            }, {
+                "Id": "kit_col_opt|kit_col_opt_gri",
+                "Name": "Gris",
+                "Preview": "FE68749E4BB71D6BF6A7FE885788B.jpg",
+                "ModelTypeId": "kit_col_opt_gri",
+                "ModelDefinitionId": "kit_col_opt",
+                "ModelDefinitionName": "Colors/Options"
+            }, {
+                "Id": "kit_col_opt|kit_col_opt_cof",
+                "Name": "Coffee",
+                "Preview": "AC942B9F5B1BE52E857CA3E57ACCE4C.jpg",
+                "ModelTypeId": "kit_col_opt_cof",
+                "ModelDefinitionId": "kit_col_opt",
+                "ModelDefinitionName": "Colors/Options"
+            }, {
+                "Id": "kit_col_opt|kit_col_opt_alm",
+                "Name": "Almond",
+                "Preview": "939AED64A582AA4624FDF85BE98327A.jpg",
+                "ModelTypeId": "kit_col_opt_alm",
+                "ModelDefinitionId": "kit_col_opt",
+                "ModelDefinitionName": "Colors/Options"
+            }, {
+                "Id": "kit_col_opt|kit_col_opt_can",
+                "Name": "Canaletto",
+                "Preview": "D279C20D26A35EA737C3A20B9128C1C.jpg",
+                "ModelTypeId": "kit_col_opt_can",
+                "ModelDefinitionId": "kit_col_opt",
+                "ModelDefinitionName": "Colors/Options"
+            }, {
+                "Id": "kit_col_opt|kit_col_opt_gre",
+                "Name": "Grey",
+                "Preview": "F8772CD24DEA752FD7E8A19F3E283A0.jpg",
+                "ModelTypeId": "kit_col_opt_gre",
+                "ModelDefinitionId": "kit_col_opt",
+                "ModelDefinitionName": "Colors/Options"
+            }, {
+                "Id": "kit_col_opt|kit_col_opt_cre",
+                "Name": "Cream",
+                "Preview": "1F12EFBC7F80A1BA1211DCFD53EEA5B.jpg",
+                "ModelTypeId": "kit_col_opt_cre",
+                "ModelDefinitionId": "kit_col_opt",
+                "ModelDefinitionName": "Colors/Options"
+            }, {
+                "Id": "kit_col_opt|kit_col_opt_ice_blu",
+                "Name": "Ice Blue",
+                "Preview": "4772F54ADF3A9B1181E7CE5AA970BE1E.jpg",
+                "ModelTypeId": "kit_col_opt_ice_blu",
+                "ModelDefinitionId": "kit_col_opt",
+                "ModelDefinitionName": "Colors/Options"
+            }, {
+                "Id": "kit_col_opt|kit_col_opt_red_col",
+                "Name": "Red",
+                "Preview": "709933E54BB6DF8D66D824A5B75A99C9.jpg",
+                "ModelTypeId": "kit_col_opt_red_col",
+                "ModelDefinitionId": "kit_col_opt",
+                "ModelDefinitionName": "Colors/Options"
+            }, {
+                "Id": "kit_col_opt|kit_col_opt_oli",
+                "Name": "Olive",
+                "Preview": "FE6289EE8EA52BF823AF399F8255963.jpg",
+                "ModelTypeId": "kit_col_opt_oli",
+                "ModelDefinitionId": "kit_col_opt",
+                "ModelDefinitionName": "Colors/Options"
+            }, {
+                "Id": "kit_col_opt|kit_col_opt_lig_gre",
+                "Name": "Light Grey",
+                "Preview": "DD59A3C65174EDC0104C1F8E619F4617.jpg",
+                "ModelTypeId": "kit_col_opt_lig_gre",
+                "ModelDefinitionId": "kit_col_opt",
+                "ModelDefinitionName": "Colors/Options"
+            }],
+            [{
+                "Id": "kit_tam|kit_tam_whi",
+                "Name": " Misty Carrera",
+                "Preview": "C67A77E94193AC0A52EAFE822525565.jpg",
+                "ModelTypeId": "kit_tam_whi",
+                "ModelDefinitionId": "kit_tam",
+                "ModelDefinitionName": "Counter Top"
+            }, {
+                "Id": "kit_tam|kit_tam_pre",
+                "Name": "Jet Black",
+                "Preview": "FF3B22EBF3B6550515ADB7AF66CA19.jpg",
+                "ModelTypeId": "kit_tam_pre",
+                "ModelDefinitionId": "kit_tam",
+                "ModelDefinitionName": "Counter Top"
+            }, {
+                "Id": "kit_tam|kit_tam_bro",
+                "Name": "Caramel",
+                "Preview": "2759AAA8F9B9F7213FB8FBE364BD9.jpg",
+                "ModelTypeId": "kit_tam_bro",
+                "ModelDefinitionId": "kit_tam",
+                "ModelDefinitionName": "Counter Top"
+            }]
+        ],
+        "InsertDimension": {
+            "Increment": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.0
+            },
+            "ProposedValues": [{
+                "Width": 304.8
+            }, {
+                "Width": 381.0
+            }, {
+                "Width": 457.199982
+            }, {
+                "Width": 533.399963
+            }, {
+                "Width": 609.6
+            }]
+        },
+        "References": [{
+            "Id": "00000000-0000-0000-0000-000000000000",
+            "SpecificationId": "9a539759-273f-417d-92ca-4520ba1c8463",
+            "Reference": "B",
+            "Dimension": {
+                "X": 457.2,
+                "Y": 609.6,
+                "Z": 914.4
+            }
+        }, {
+            "Id": "605f588f-5705-4aa9-9f53-4a6b4bc64a60",
+            "SpecificationId": "72beb3f5-1406-472a-a748-eec1d80056bc",
+            "Reference": "HD04",
+            "Dimension": {
+                "X": 127.0,
+                "Y": 20.32,
+                "Z": 7.62
+            }
+        }, {
+            "Id": "76c338af-ffaa-4385-bcf0-06509a922eef",
+            "SpecificationId": "72beb3f5-1406-472a-a748-eec1d80056bc",
+            "Reference": "HD04",
+            "Dimension": {
+                "X": 127.0,
+                "Y": 20.32,
+                "Z": 7.62
+            }
+        }]
+    },
+    "MoobleProperties": {
+        "CastShadow": true
+    },
+    "CustomizationGroups": ["87eb824677555d52ee752851b049c654", "b66bea55d3b1b3a6903264b0d4ee6355", "1c0a5c5c3ee79bb23b4473720885d891", "8af594226615e6d829340e92b45cb257", "954cb3afabbef715d72c1e52c38a5a85", "2bda182d9c1269c8ce34c3b609cc04af", "551a0c1ae3ec97ee17fa534e36fc1075"],
+    "Links": {
+        "Content": "https://cdn.mooble.com/contents/49321CBB0347DA259933E8564563.pcontent",
+        "PromobAttributes": "https://cdn.mooble.com/contents/151EF7E3952DCFC3970D195AFAF258E.extension",
+        "ContentImage": "https://cdn.mooble.com/contents/f58376e167d0943fcd969d58d846eeb6.png",
+        "ContentImageSmall": "https://cdn.mooble.com/contents/b8f0ad452c68c4e03a7084a1e56c2ef7.png"
+    },
+    "Draft": null,
+    "IsDraft": false,
+    "AutoDesignItemType": "Kitchen.Cabinet.Base.Standard.Rectangular..DrawerDoor"
+}

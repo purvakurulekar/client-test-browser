@@ -107,6 +107,8 @@ async function _fetchDataSourceProducts(source: DATA_SOURCES, options: IFetchDat
         });
 }
 
+export { SELECT_ALL_CATALOG };
+
 // make fetch request change the page offset ?!
 //=============================================================================
 export default function CatalogBrowser(props: ICatalogBrowserProps) {
@@ -164,7 +166,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
             let searchCatalogs: Array<IPublicCatalog> | undefined = _getSearchCatalogsList(selectedCatalogs),
                 fetchProductOptions: IFetchDataSourceProductsOptions = { searchQuery, nbPerPage, selectedCatalogs };
 
-            console.log("Updating product list...");
+            // console.log("Updating product list...");
             if (searchCatalogs.length > 0) {
                 if (_isSourceEnabled(CiCAPI.content.constants.DATA_SOURCES.cic2) && !isCiC2ProductsFetching && (pageOffset < totalCiC2Results || pageOffset === 0)) {
                     setCiC2ProductsFetching(true);
@@ -261,7 +263,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
                         });
                         catalogs.unshift(SELECT_ALL_CATALOG);
                     } catch (e) {
-                        console.log("Fetch Catalog Aborted... ", e.message);
+                        // console.log("Fetch Catalog Aborted... ", e.message);
                         catalogs = [];
                     }
                 } else {
@@ -274,7 +276,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
                 setSelectedCatalogs(catalogs as []);
                 pageOffset = 0;
 
-                console.log("Catalogs Loaded!");
+                // console.log("Catalogs Loaded!");
             },
             onConfigChanged = (configKey: string, value: ConfigValue, oldValue: ConfigValue) => {
                 let isFetchingCatalogs: boolean = configKey === "reset" || CATALOG_CONFIG_CHANGED_RE.test(configKey); // direct config

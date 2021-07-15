@@ -8,8 +8,8 @@ const fetch = require("node-fetch");
 global.fetch = fetch;
 require("fake-indexeddb/auto");
 
-//const DEFAULT_CICAPI_SRC_URL = "http://localhost:2020/client-api/dist/debug/cicapi.web.js";
-const DEFAULT_CICAPI_SRC_URL = "https://clientapi-dev.2020-contentplatform.net/cicapi.web.js";
+const DEFAULT_CICAPI_SRC_URL = "http://localhost:2020/content-platform/client-api/dist/debug/cicapi.web.js";
+// const DEFAULT_CICAPI_SRC_URL = "https://clientapi-dev.2020-contentplatform.net/cicapi.web.js";
 
 //=============================================================================
 async function _importCiCAPI(apiCodeUrl) {
@@ -90,6 +90,26 @@ describe("CatalogBrowser Basic UI Checks", () => {
         expect(cic3ChkBx).not.toBeChecked();
     });
 
+    it("Check Mooble checkbox", async () => {
+        let { debug, container } = baseTests(),
+            moobleChkBx,
+            catalogToggleBtnLabel;
+        moobleChkBx = document.getElementById("Mooble-source")
+        expect(moobleChkBx).not.toBeChecked();
+        catalogToggleBtnLabel = container.getElementsByClassName("catalog-selector-toggle-label")[0];
+        expect(catalogToggleBtnLabel).toBeInTheDocument();
+        expect(catalogToggleBtnLabel.textContent).toEqual("No Catalogs Loaded.");
+        fireEvent.click(moobleChkBx);
+        await act(() => waitFor(() => expect(container.querySelector(".catalog-product-entry")).toBeTruthy(), {
+            timeout: 10000,
+            onTimeout: (error: Error) => { console.log("\n\n\n WAITING TIMED OUT !!!!! \n\n\n"); return error; }
+        }));
+        expect(moobleChkBx).toBeChecked();
+        expect(catalogToggleBtnLabel.textContent).toEqual("All Selected"); // for now, no endpoint connected
+        fireEvent.click(moobleChkBx);
+        await act(() => waitFor(() => { }));
+        expect(moobleChkBx).not.toBeChecked();
+    });
 
     it("Check CiC2 checkbox", async () => {
         let { debug, container } = baseTests(),
@@ -111,27 +131,5 @@ describe("CatalogBrowser Basic UI Checks", () => {
         await act(() => waitFor(() => { }));
         expect(cic2ChkBx).not.toBeChecked();
     });
-
-    it("Check Mooble checkbox", async () => {
-        let { debug, container } = baseTests(),
-            moobleChkBx,
-            catalogToggleBtnLabel;
-        moobleChkBx = document.getElementById("Mooble-source")
-        expect(moobleChkBx).not.toBeChecked();
-        catalogToggleBtnLabel = container.getElementsByClassName("catalog-selector-toggle-label")[0];
-        expect(catalogToggleBtnLabel).toBeInTheDocument();
-        expect(catalogToggleBtnLabel.textContent).toEqual("No Catalogs Loaded.");
-        fireEvent.click(moobleChkBx);
-        await act(() => waitFor(() => expect(container.querySelector(".catalog-product-entry")).toBeTruthy(), {
-            timeout: 10000,
-            onTimeout: (error: Error) => { console.log("\n\n\n WAITING TIMED OUT !!!!! \n\n\n"); return error; }
-        }));
-        expect(moobleChkBx).toBeChecked();
-        expect(catalogToggleBtnLabel.textContent).toEqual("All Selected");
-        fireEvent.click(moobleChkBx);
-        await act(() => waitFor(() => { }));
-        expect(moobleChkBx).not.toBeChecked();
-    });
-
 });
 

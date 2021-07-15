@@ -13,7 +13,7 @@ export default function DataSourceCheckbox(props: IDataSourceCheckboxProps) {
 
     return (
         <div className="centered-flex">
-            <input id={inputId} type="checkbox" checked={props.isChecked} value="" onChange={(e) => props.onChange(e)} />
+            <input id={inputId} type="checkbox" checked={props.isChecked || false} value="checked" onChange={(e) => props.onChange(e)} />
             <label htmlFor={inputId}>{props.label}</label>
         </div>
     );

@@ -1,0 +1,598 @@
+{
+	"Input": {
+		"ShowAllBrands": true,
+		"Client": "mooble",
+		"Top": 30,
+		"FilterBrands": [
+			"DesignPremium"
+		],
+		"ShowMyMaterials": false,
+		"HasRevest": false,
+		"ExploerVersion2": true,
+		"Count": true,
+		"WithoutCountItems": true
+	},
+	"Output": {
+		"Filters": [
+			{
+				"Name": "Department",
+				"ShowAllTagsOption": false,
+				"AvailableTags": {
+					"Count": 2,
+					"Data": [
+						{
+							"Level": 0,
+							"Name": "Kitchen",
+							"FilterUrl": "https://catalog.mooble.com/api/explorer/?showallbrands=True&!Departamento=Cozinha&region=us&client=mooble&filterBrands=DesignPremium&exploerversion2=true&count=true",
+							"SpecCount": 236,
+							"Id": "Cozinha",
+							"StoreByCollection": false
+						},
+						{
+							"Level": 0,
+							"Name": "Offices",
+							"FilterUrl": "https://catalog.mooble.com/api/explorer/?showallbrands=True&!Departamento=Escritorio&region=us&client=mooble&filterBrands=DesignPremium&exploerversion2=true&count=true",
+							"SpecCount": 35,
+							"Id": "Escritorio",
+							"StoreByCollection": false
+						}
+					]
+				},
+				"Id": "Departamento"
+			},
+			{
+				"Name": "Brand",
+				"ShowAllTagsOption": false,
+				"AvailableTags": {
+					"Count": 1,
+					"Data": [
+						{
+							"Level": 0,
+							"Name": "2020 Generic Content",
+							"FilterUrl": "https://catalog.mooble.com/api/explorer/?showallbrands=True&!Marca=DesignPremium&region=us&client=mooble&filterBrands=DesignPremium&exploerversion2=true&count=true",
+							"SpecCount": 271,
+							"Id": "DesignPremium",
+							"LibraryId": "800",
+							"StoreByCollection": false,
+							"IsPlannedBrand": true
+						}
+					]
+				},
+				"Id": "Marca"
+			},
+			{
+				"Name": "Width",
+				"ShowAllTagsOption": false,
+				"Range": {
+					"Unit": "mm",
+					"Min": 76,
+					"Max": 2445,
+					"Start": 76,
+					"End": 2445,
+					"MaskFilterUrl": "https://catalog.mooble.com/api/explorer/?showallbrands=True&!Largura=%7Bstart%7D,%7Bend%7D&region=us&client=mooble&%24top=30&filterBrands=DesignPremium&exploerversion2=true&count=true",
+					"UnfilterUrl": "https://catalog.mooble.com/api/explorer/?showallbrands=True&region=us&client=mooble&%24top=30&filterBrands=DesignPremium&exploerversion2=true&count=true"
+				},
+				"Id": "Largura"
+			},
+			{
+				"Name": "Height",
+				"ShowAllTagsOption": false,
+				"Range": {
+					"Unit": "mm",
+					"Min": 351,
+					"Max": 2565,
+					"Start": 351,
+					"End": 2565,
+					"MaskFilterUrl": "https://catalog.mooble.com/api/explorer/?showallbrands=True&!Altura=%7Bstart%7D,%7Bend%7D&region=us&client=mooble&%24top=30&filterBrands=DesignPremium&exploerversion2=true&count=true",
+					"UnfilterUrl": "https://catalog.mooble.com/api/explorer/?showallbrands=True&region=us&client=mooble&%24top=30&filterBrands=DesignPremium&exploerversion2=true&count=true"
+				},
+				"Id": "Altura"
+			},
+			{
+				"Name": "Depth",
+				"ShowAllTagsOption": false,
+				"Range": {
+					"Unit": "mm",
+					"Min": 305,
+					"Max": 1168,
+					"Start": 305,
+					"End": 1168,
+					"MaskFilterUrl": "https://catalog.mooble.com/api/explorer/?showallbrands=True&!Profundidade=%7Bstart%7D,%7Bend%7D&region=us&client=mooble&%24top=30&filterBrands=DesignPremium&exploerversion2=true&count=true",
+					"UnfilterUrl": "https://catalog.mooble.com/api/explorer/?showallbrands=True&region=us&client=mooble&%24top=30&filterBrands=DesignPremium&exploerversion2=true&count=true"
+				},
+				"Id": "Profundidade"
+			}
+		],
+		"Specifications": {
+			"Count": 2,
+			"HasMore": true,
+			"Links": {
+				"Next": "https://catalog.mooble.com/api/explorer/GetNext/Specs/?showallbrands=True&region=us&client=mooble&%24top=15&%24skip=30&filterBrands=DesignPremium&exploerversion2=true&count=true"
+			},
+			"Data": [
+				{
+					"Name": "1 Door 1 Drawer (B18)",
+					"Description": "1 Door 1 Drawer",
+					"Brand": {
+						"Name": "2020 Generic Content",
+						"Id": "DesignPremium",
+						"LibraryId": "800",
+						"StoreByCollection": false,
+						"IsPlannedBrand": true
+					},
+					"Collection": {
+						"Name": "Kitchens",
+						"Id": "d7Uwvvex0R",
+						"Type": "Collection",
+						"Value": "Kitchens",
+						"Localizations": [
+							{
+								"Id": "pt-br",
+								"Name": "Kitchens"
+							}
+						],
+						"ValidMeaningIds": [
+							"Marca"
+						],
+						"ParentTagIds": [
+							"DesignPremium"
+						],
+						"StoreByCollection": false
+					},
+					"RelationsInternal": [
+						{
+							"Meaning": {
+								"Name": "Ocultar",
+								"ShowAllTagsOption": false,
+								"Id": "Ocultar",
+								"Internal": true
+							},
+							"Tags": [
+								{
+									"Level": 0,
+									"Name": "Ocultar Marcon",
+									"Id": "OcultarMarcon",
+									"LibraryId": "",
+									"StoreByCollection": false
+								}
+							]
+						},
+						{
+							"Meaning": {
+								"Name": "Type",
+								"ShowAllTagsOption": false,
+								"Id": "Tipo",
+								"Internal": true
+							},
+							"Tags": [
+								{
+									"Level": 0,
+									"Name": "Item",
+									"Id": "Item",
+									"LibraryId": "",
+									"StoreByCollection": false
+								},
+								{
+									"Level": 0,
+									"Name": "Modulation",
+									"Id": "TipoModulacao",
+									"LibraryId": "",
+									"StoreByCollection": false
+								}
+							]
+						},
+						{
+							"Meaning": {
+								"Name": "System",
+								"ShowAllTagsOption": false,
+								"Id": "Sistema",
+								"Internal": true
+							},
+							"Tags": [
+								{
+									"Level": 0,
+									"Name": "Mooble",
+									"Id": "MoobleSistema",
+									"StoreByCollection": false
+								}
+							]
+						},
+						{
+							"Meaning": {
+								"Name": "Region",
+								"ShowAllTagsOption": false,
+								"Id": "Regiao",
+								"Internal": true
+							},
+							"Tags": [
+								{
+									"Level": 0,
+									"Name": "us",
+									"Id": "RegiaoUs",
+									"LibraryId": "",
+									"StoreByCollection": false
+								}
+							]
+						},
+						{
+							"Meaning": {
+								"Name": "Section",
+								"ShowAllTagsOption": false,
+								"Id": "OldSection",
+								"Internal": true
+							},
+							"Tags": [
+								{
+									"Level": 0,
+									"Name": "Furniture",
+									"Id": "OldSection_Furniture",
+									"StoreByCollection": false
+								}
+							]
+						},
+						{
+							"Meaning": {
+								"Name": "Plane",
+								"ShowAllTagsOption": false,
+								"Id": "Plano",
+								"Internal": true
+							},
+							"Tags": [
+								{
+									"Level": 0,
+									"Name": "Floor",
+									"Id": "Piso",
+									"LibraryId": "",
+									"StoreByCollection": false
+								}
+							]
+						},
+						{
+							"Meaning": {
+								"Name": "PlannerFlags",
+								"ShowAllTagsOption": false,
+								"Id": "PlannerFlags",
+								"Internal": true
+							},
+							"Tags": [
+								{
+									"Level": 0,
+									"Name": "Aceita furação",
+									"Id": "AceitaFuracao",
+									"StoreByCollection": false
+								},
+								{
+									"Level": 0,
+									"Name": "Colisão forte",
+									"Id": "ColisaoForte",
+									"StoreByCollection": false
+								}
+							]
+						}
+					],
+					"DetailUrl": "https://catalog.mooble.com/api/explorer/GetSpec/9a539759-273f-417d-92ca-4520ba1c8463",
+					"HideBrands": true,
+					"Id": "9a539759-273f-417d-92ca-4520ba1c8463",
+					"AccountId": "667611bf-d604-4a78-a712-974a0d5c6aaa",
+					"BrandId": "DesignPremium",
+					"Type": "Shape",
+					"Properties": {
+						"Dimension": {
+							"Width": 457.2,
+							"Depth": 609.6,
+							"Height": 914.4
+						},
+						"InsertDimension": {
+							"Increment": {
+								"X": 0,
+								"Y": 0,
+								"Z": 0
+							},
+							"ProposedValues": [
+								{
+									"Width": 304.8
+								},
+								{
+									"Width": 381
+								},
+								{
+									"Width": 457.199982
+								},
+								{
+									"Width": 533.399963
+								},
+								{
+									"Width": 609.6
+								}
+							]
+						},
+						"References": [
+							{
+								"Id": "00000000-0000-0000-0000-000000000000",
+								"SpecificationId": "9a539759-273f-417d-92ca-4520ba1c8463",
+								"Reference": "B",
+								"Dimension": {
+									"X": 457.2,
+									"Y": 609.6,
+									"Z": 914.4
+								}
+							},
+							{
+								"Id": "605f588f-5705-4aa9-9f53-4a6b4bc64a60",
+								"SpecificationId": "72beb3f5-1406-472a-a748-eec1d80056bc",
+								"Reference": "HD04",
+								"Dimension": {
+									"X": 127,
+									"Y": 20.32,
+									"Z": 7.62
+								}
+							},
+							{
+								"Id": "76c338af-ffaa-4385-bcf0-06509a922eef",
+								"SpecificationId": "72beb3f5-1406-472a-a748-eec1d80056bc",
+								"Reference": "HD04",
+								"Dimension": {
+									"X": 127,
+									"Y": 20.32,
+									"Z": 7.62
+								}
+							}
+						]
+					},
+					"MoobleProperties": {
+						"CastShadow": true
+					},
+					"CustomizationGroups": [
+						"87eb824677555d52ee752851b049c654",
+						"b66bea55d3b1b3a6903264b0d4ee6355",
+						"1c0a5c5c3ee79bb23b4473720885d891",
+						"8af594226615e6d829340e92b45cb257",
+						"954cb3afabbef715d72c1e52c38a5a85",
+						"2bda182d9c1269c8ce34c3b609cc04af",
+						"551a0c1ae3ec97ee17fa534e36fc1075"
+					],
+					"Links": {
+						"ContentImage": "https://cdn.mooble.com/contents/f58376e167d0943fcd969d58d846eeb6.png",
+						"ContentImageSmall": "https://cdn.mooble.com/contents/b8f0ad452c68c4e03a7084a1e56c2ef7.png"
+					},
+					"Draft": null,
+					"IsDraft": false,
+					"AutoDesignItemType": "Kitchen.Cabinet.Base.Standard.Rectangular..DrawerDoor"
+				},
+				{
+					"Name": "Angle 36\" (BAC36)",
+					"Description": "Angle 36''",
+					"Brand": {
+						"Name": "2020 Generic Content",
+						"Id": "DesignPremium",
+						"LibraryId": "800",
+						"StoreByCollection": false,
+						"IsPlannedBrand": true
+					},
+					"Collection": {
+						"Name": "Kitchens",
+						"Id": "d7Uwvvex0R",
+						"Type": "Collection",
+						"Value": "Kitchens",
+						"Localizations": [
+							{
+								"Id": "pt-br",
+								"Name": "Kitchens"
+							}
+						],
+						"ValidMeaningIds": [
+							"Marca"
+						],
+						"ParentTagIds": [
+							"DesignPremium"
+						],
+						"StoreByCollection": false
+					},
+					"RelationsInternal": [
+						{
+							"Meaning": {
+								"Name": "Type",
+								"ShowAllTagsOption": false,
+								"Id": "Tipo",
+								"Internal": true
+							},
+							"Tags": [
+								{
+									"Level": 0,
+									"Name": "Item",
+									"Id": "Item",
+									"LibraryId": "",
+									"StoreByCollection": false
+								},
+								{
+									"Level": 0,
+									"Name": "Modulation",
+									"Id": "TipoModulacao",
+									"LibraryId": "",
+									"StoreByCollection": false
+								}
+							]
+						},
+						{
+							"Meaning": {
+								"Name": "Ocultar",
+								"ShowAllTagsOption": false,
+								"Id": "Ocultar",
+								"Internal": true
+							},
+							"Tags": [
+								{
+									"Level": 0,
+									"Name": "Ocultar Marcon",
+									"Id": "OcultarMarcon",
+									"LibraryId": "",
+									"StoreByCollection": false
+								}
+							]
+						},
+						{
+							"Meaning": {
+								"Name": "System",
+								"ShowAllTagsOption": false,
+								"Id": "Sistema",
+								"Internal": true
+							},
+							"Tags": [
+								{
+									"Level": 0,
+									"Name": "Mooble",
+									"Id": "MoobleSistema",
+									"StoreByCollection": false
+								}
+							]
+						},
+						{
+							"Meaning": {
+								"Name": "Region",
+								"ShowAllTagsOption": false,
+								"Id": "Regiao",
+								"Internal": true
+							},
+							"Tags": [
+								{
+									"Level": 0,
+									"Name": "us",
+									"Id": "RegiaoUs",
+									"LibraryId": "",
+									"StoreByCollection": false
+								}
+							]
+						},
+						{
+							"Meaning": {
+								"Name": "Section",
+								"ShowAllTagsOption": false,
+								"Id": "OldSection",
+								"Internal": true
+							},
+							"Tags": [
+								{
+									"Level": 0,
+									"Name": "Furniture",
+									"Id": "OldSection_Furniture",
+									"StoreByCollection": false
+								}
+							]
+						},
+						{
+							"Meaning": {
+								"Name": "Plane",
+								"ShowAllTagsOption": false,
+								"Id": "Plano",
+								"Internal": true
+							},
+							"Tags": [
+								{
+									"Level": 0,
+									"Name": "Floor",
+									"Id": "Piso",
+									"LibraryId": "",
+									"StoreByCollection": false
+								}
+							]
+						},
+						{
+							"Meaning": {
+								"Name": "PlannerFlags",
+								"ShowAllTagsOption": false,
+								"Id": "PlannerFlags",
+								"Internal": true
+							},
+							"Tags": [
+								{
+									"Level": 0,
+									"Name": "Aceita furação",
+									"Id": "AceitaFuracao",
+									"StoreByCollection": false
+								},
+								{
+									"Level": 0,
+									"Name": "Colisão forte",
+									"Id": "ColisaoForte",
+									"StoreByCollection": false
+								}
+							]
+						}
+					],
+					"DetailUrl": "https://catalog.mooble.com/api/explorer/GetSpec/6ecabd78-2dfd-4477-9864-271bad1469b7",
+					"HideBrands": true,
+					"Id": "6ecabd78-2dfd-4477-9864-271bad1469b7",
+					"AccountId": "667611bf-d604-4a78-a712-974a0d5c6aaa",
+					"BrandId": "DesignPremium",
+					"Type": "Shape",
+					"Properties": {
+						"Dimension": {
+							"Width": 914.4,
+							"Depth": 914.4,
+							"Height": 914.4
+						},
+						"Limits": {
+							"Min": {
+								"X": 0,
+								"Y": -914.4,
+								"Z": 0
+							},
+							"Max": {
+								"X": 914.399963,
+								"Y": 0,
+								"Z": 914.399963
+							}
+						},
+						"InsertDimension": {
+							"Increment": {
+								"X": 0,
+								"Y": 0,
+								"Z": 0
+							}
+						},
+						"References": [
+							{
+								"Id": "00000000-0000-0000-0000-000000000000",
+								"SpecificationId": "6ecabd78-2dfd-4477-9864-271bad1469b7",
+								"Reference": "BAC36",
+								"Dimension": {
+									"X": 914.4,
+									"Y": 914.4,
+									"Z": 914.4
+								}
+							},
+							{
+								"Id": "11b841ec-f9b4-474e-8c20-461933b77f62",
+								"SpecificationId": "72beb3f5-1406-472a-a748-eec1d80056bc",
+								"Reference": "HD04",
+								"Dimension": {
+									"X": 127,
+									"Y": 20.32,
+									"Z": 7.62
+								}
+							}
+						]
+					},
+					"CustomizationGroups": [
+						"87eb824677555d52ee752851b049c654",
+						"b66bea55d3b1b3a6903264b0d4ee6355",
+						"1c0a5c5c3ee79bb23b4473720885d891",
+						"8af594226615e6d829340e92b45cb257",
+						"954cb3afabbef715d72c1e52c38a5a85",
+						"2bda182d9c1269c8ce34c3b609cc04af",
+						"551a0c1ae3ec97ee17fa534e36fc1075"
+					],
+					"Links": {
+						"ContentImage": "https://cdn.mooble.com/contents/70ec56ad1b1c438b5e545fe5ed9f9c4b.png",
+						"ContentImageSmall": "https://cdn.mooble.com/contents/088bf03ba6391a0079cdccd55be9ef37.png"
+					},
+					"Draft": null,
+					"IsDraft": false,
+					"AutoDesignItemType": "Kitchen.Cabinet.Base.Corner.Diagonal..FullDoor..WithVersatileAccessory"
+				}
+			]
+		},
+		"ResponseTime": "00:00:00.1452628",
+		"Version": "1.0.0"
+	}
+}
