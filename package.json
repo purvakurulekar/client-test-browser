@@ -4,6 +4,7 @@
   "description": "Client Catalog Browser, catalog browser using Content Platform API",
   "main": "src/index.tsx",
   "scripts": {
+    "pipeline-setup": "node scripts/pipelineSetup.js",
     "build-prod": "webpack --progress --config webpack.prod.config.ts",
     "build-watch": "webpack watch --config webpack.dev.config.ts",
     "build-dev": "webpack --progress --config webpack.dev.config.ts",
