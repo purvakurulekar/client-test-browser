@@ -1,5 +1,4 @@
 import React from 'react';
-import { IPublicProduct } from "../../api/ContentAPI";
 
 interface CatalogProductEntryProps {
     product: IPublicProduct,
