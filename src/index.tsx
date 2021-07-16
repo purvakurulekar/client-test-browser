@@ -2,11 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import "./index.scss";
 import CatalogBrowser from "components/catalogbrowser/CatalogBrowser";
-import 'footer/footer.scss';
 
 const
-    // DEFAULT_CICAPI_SRC_URL = "http://localhost:2020/content-platform/client-api/dist/debug/cicapi.web.js",
-    DEFAULT_CICAPI_SRC_URL = "https://clientapi-dev.2020-contentplatform.net/cicapi.web.js",
+    DEFAULT_CICAPI_SRC_URL = "http://localhost:2020/content-platform/client-api/dist/debug/cicapi.web.js",
+    // DEFAULT_CICAPI_SRC_URL = "https://clientapi-dev.2020-contentplatform.net/cicapi.web.js",
     APP_CONFIG_NAME = "appconfig.json";
 
 interface IAppConfig {

@@ -4,11 +4,9 @@ import { SELECT_ALL_CATALOG } from "../../interfaces/IPublicAPIInterfaces";
 
 import "./catalogBrowser.scss";
 
-import DataSourceControl from "../../footer/DataSourceControl";
-import SettingsPanel from "../../footer/SettingsPanel";
+import { DataSourceControl, SettingsPanel} from "client-ui-toolkit";
 
 import CatalogSelector from './CatalogSelector';
-
 import CombinedCatalogProductList from './CombinedCatalogProductList';
 import ProductInformationPanel from './ProductInformationPanel';
 
