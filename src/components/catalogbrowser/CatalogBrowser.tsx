@@ -4,7 +4,7 @@ import { SELECT_ALL_CATALOG } from "../../interfaces/IPublicAPIInterfaces";
 
 import "./catalogBrowser.scss";
 
-import { DataSourceControl, SettingsPanel} from "client-ui-toolkit";
+import { DataSourceControl, SettingsPanel } from "client-ui-toolkit";
 
 import CatalogSelector from './CatalogSelector';
 import CombinedCatalogProductList from './CombinedCatalogProductList';
@@ -48,10 +48,47 @@ interface IFetchDataSourceProductResults {
     productList: Array<IPublicProduct>
 }
 
+interface IEnabledSourceMap {
+    [key: string]: boolean
+}
+
 // move to utils ?
 //=============================================================================
 function _isSourceEnabled(src: DATA_SOURCES) {
     return CiCAPI.getConfig(`sources.${src.toLowerCase()}_enabled`);
+}
+
+//=============================================================================
+function _assertEnabledSources(catalogsToAssert: Array<IPublicCatalog>, sources: Array<string>, enabledSourceMap: IEnabledSourceMap ) {
+    let catalogs: Array<IPublicCatalog> = catalogsToAssert;
+    Object.values(CiCAPI.content.constants.DATA_SOURCES)
+        .forEach((value: string) => {
+
+            let found: boolean = sources.find((src: string) => src === value) !== void (0),
+                isEnabled: boolean = false;
+            if (found) {
+
+                if (value === CiCAPI.content.constants.DATA_SOURCES.cic2) {
+                    isEnabled = enabledSourceMap.isCiC2SourceEnabled;
+                }
+                else if (value === CiCAPI.content.constants.DATA_SOURCES.mooble) {
+                    isEnabled = enabledSourceMap.isMoobleSourceEnabled;
+                }
+                else if (value === CiCAPI.content.constants.DATA_SOURCES.cic3) {
+                    isEnabled = enabledSourceMap.isCiC3SourceEnabled;
+                }
+
+                if (!isEnabled) {
+                    if (sources.length === 1) {
+                        catalogs = [];
+                    } else {
+                        catalogs = catalogs.filter((catalog: IPublicCatalog) => { catalog.source !== value })
+                    }
+                }
+            }
+        });
+
+    return catalogs;
 }
 
 //=============================================================================
@@ -123,6 +160,11 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
         [searchQuery, setSearchQuery] = useState(""),
         [isSettingsVisible, setSettingsVisible] = useState(false),
 
+        // sources control
+        [isCiC2SourceEnabled, setCiC2SourceEnabled] = useState(false),
+        [isMoobleSourceEnabled, setMoobleSourceEnabled] = useState(false),
+        [isCiC3SourceEnabled, setCiC3SourceEnabled] = useState(false),
+
         // put in custom hook ?!
         [totalCiC2Results, setTotalCiC2Results] = useState(0),
         [isCiC2ProductsFetching, setCiC2ProductsFetching] = useState(false),
@@ -166,7 +208,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
 
             // console.log("Updating product list...");
             if (searchCatalogs.length > 0) {
-                if (_isSourceEnabled(CiCAPI.content.constants.DATA_SOURCES.cic2) && !isCiC2ProductsFetching && (pageOffset < totalCiC2Results || pageOffset === 0)) {
+                if (isCiC2SourceEnabled && !isCiC2ProductsFetching && (pageOffset < totalCiC2Results || pageOffset === 0)) {
                     setCiC2ProductsFetching(true);
                     fetchProductOptions.productList = cic2CatalogProducts;
                     fetchProductOptions.totalResults = totalCiC2Results;
@@ -180,7 +222,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
                         });
                 }
 
-                if (_isSourceEnabled(CiCAPI.content.constants.DATA_SOURCES.mooble) && !isMoobleProductsFetching && (pageOffset < totalMoobleResults || pageOffset === 0)) {
+                if (isMoobleSourceEnabled && !isMoobleProductsFetching && (pageOffset < totalMoobleResults || pageOffset === 0)) {
                     setMoobleProductsFetching(true);
                     fetchProductOptions.productList = moobleCatalogProducts;
                     fetchProductOptions.totalResults = totalMoobleResults;
@@ -193,7 +235,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
                             }
                         });
                 }
-                if (_isSourceEnabled(CiCAPI.content.constants.DATA_SOURCES.cic3) && !isCiC3ProductsFetching && (pageOffset < totalCiC3Results || pageOffset === 0)) {
+                if (isCiC3SourceEnabled && !isCiC3ProductsFetching && (pageOffset < totalCiC3Results || pageOffset === 0)) {
                     setCiC3ProductsFetching(true);
                     fetchProductOptions.productList = cic3CatalogProducts;
                     fetchProductOptions.totalResults = totalCiC3Results;
@@ -210,13 +252,13 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
         };
 
     nbActiveSources = 0;
-    if (_isSourceEnabled(CiCAPI.content.constants.DATA_SOURCES.cic2)) {
+    if (isCiC2SourceEnabled) {
         nbActiveSources++;
     }
-    if (_isSourceEnabled(CiCAPI.content.constants.DATA_SOURCES.cic3)) {
+    if (isCiC3SourceEnabled) {
         nbActiveSources++;
     }
-    if (_isSourceEnabled(CiCAPI.content.constants.DATA_SOURCES.mooble)) {
+    if (isMoobleSourceEnabled) {
         nbActiveSources++;
     }
     nbPerPage = Math.round(DEFAULT_NB_PER_PAGE / nbActiveSources);
@@ -230,52 +272,49 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
         nbActiveSources: nbActiveSources
     };
     useEffect(() => {
-        let abortCtrl: AbortController,
-            fetchCatalogFunc = async () => {
-                let catalogs: Array<IPublicCatalog>,
-                    sources: Array<DATA_SOURCES> = [];
-                // use abort controller's signal here
-                if (abortCtrl) {
-                    abortCtrl.abort();
-                }
+        let fetchCatalogFunc = async () => {
+            let catalogs: Array<IPublicCatalog>,
+                sources: Array<DATA_SOURCES> = [];
 
-                if (_isSourceEnabled(CiCAPI.content.constants.DATA_SOURCES.cic2)) {
-                    sources.push(CiCAPI.content.constants.DATA_SOURCES.cic2);
-                }
+            if (isCiC2SourceEnabled) {
+                sources.push(CiCAPI.content.constants.DATA_SOURCES.cic2);
+            }
 
-                if (_isSourceEnabled(CiCAPI.content.constants.DATA_SOURCES.cic3)) {
-                    sources.push(CiCAPI.content.constants.DATA_SOURCES.cic3);
-                }
+            if (isCiC3SourceEnabled) {
+                sources.push(CiCAPI.content.constants.DATA_SOURCES.cic3);
+            }
 
-                if (_isSourceEnabled(CiCAPI.content.constants.DATA_SOURCES.mooble)) {
-                    sources.push(CiCAPI.content.constants.DATA_SOURCES.mooble);
-                }
+            if (isMoobleSourceEnabled) {
+                sources.push(CiCAPI.content.constants.DATA_SOURCES.mooble);
+            }
 
-                if (sources.length > 0) {
-                    setLoadingCatalogs(true);
-                    abortCtrl = new AbortController();
-                    try {
-                        catalogs = await CiCAPI.content.getCatalogs({
-                            sources,
-                            signal: abortCtrl.signal
-                        });
-                        catalogs.unshift(SELECT_ALL_CATALOG);
-                    } catch (e) {
-                        // console.log("Fetch Catalog Aborted... ", e.message);
-                        catalogs = [];
-                    }
-                } else {
+            if (sources.length > 0) {
+                setLoadingCatalogs(true);
+                try {
+                    catalogs = await CiCAPI.content.getCatalogs({
+                        sources
+                    });
+                    catalogs.unshift(SELECT_ALL_CATALOG);
+                } catch (e) {
+                    // console.log("Fetch Catalog Aborted... ", e.message);
                     catalogs = [];
                 }
+            } else {
+                catalogs = [];
+            }
 
 
-                setLoadingCatalogs(false);
-                setCatalogs(catalogs as []);
-                setSelectedCatalogs(catalogs as []);
-                pageOffset = 0;
+            setLoadingCatalogs(false);
 
-                // console.log("Catalogs Loaded!");
-            },
+            // make sure source is still enabled
+            catalogs = _assertEnabledSources(catalogs, sources, { isCiC2SourceEnabled, isMoobleSourceEnabled, isCiC3SourceEnabled });
+
+            setCatalogs(catalogs as []);
+            setSelectedCatalogs(catalogs as []);
+            pageOffset = 0;
+
+            // console.log("Catalogs Loaded!");
+        },
             onConfigChanged = (configKey: string, value: ConfigValue, oldValue: ConfigValue) => {
                 let isFetchingCatalogs: boolean = configKey === "reset" || CATALOG_CONFIG_CHANGED_RE.test(configKey); // direct config
 
@@ -288,7 +327,21 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
                             return !isFetchingCatalogs;
                         });
                     }
+                }
 
+                if (configKey.includes(CiCAPI.content.constants.DATA_SOURCES.cic2.toLocaleLowerCase())) {
+                    isCiC2SourceEnabled = value as boolean;
+                    setCiC2SourceEnabled(isCiC2SourceEnabled);
+                }
+
+                if (configKey.includes(CiCAPI.content.constants.DATA_SOURCES.mooble.toLocaleLowerCase())) {
+                    isMoobleSourceEnabled = value as boolean;
+                    setMoobleSourceEnabled(isMoobleSourceEnabled);
+                }
+
+                if (configKey.includes(CiCAPI.content.constants.DATA_SOURCES.cic3.toLocaleLowerCase())) {
+                    isCiC3SourceEnabled = value as boolean;
+                    setCiC3SourceEnabled(isCiC3SourceEnabled);
                 }
 
                 if (isFetchingCatalogs) {
@@ -300,11 +353,19 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
         // AppState.registerToConfigChange(onConfigChanged);
         CiCAPI.content.registerToChanges(onConfigChanged);
 
+        isCiC2SourceEnabled = _isSourceEnabled(CiCAPI.content.constants.DATA_SOURCES.cic2) as boolean;
+        setCiC2SourceEnabled(isCiC2SourceEnabled);
+        isMoobleSourceEnabled = _isSourceEnabled(CiCAPI.content.constants.DATA_SOURCES.mooble) as boolean;
+        setMoobleSourceEnabled(isMoobleSourceEnabled);
+        isCiC3SourceEnabled = _isSourceEnabled(CiCAPI.content.constants.DATA_SOURCES.cic3) as boolean;
+        setCiC3SourceEnabled(isCiC3SourceEnabled);
+
         fetchCatalogFunc(); // initial fetch
+
         return () => {
-            if (abortCtrl) {
-                abortCtrl.abort();
-            }
+            // if (abortCtrl) {
+            //     abortCtrl.abort();
+            // }
             // AppState.dataEndpoint.unregisterToChanges(fetchCatalogFunc);
             // AppState.unregisterToConfigChange(onConfigChanged);
             CiCAPI.content.unregisterToChanges(onConfigChanged);
@@ -344,8 +405,22 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
         if (isCiC2ProductsFetching || isMoobleProductsFetching || isCiC3ProductsFetching) {
             previewProps.totalResults = 0;
         }
+
     }
-    previewProps.totalResults = previewProps.totalCiC2Results + previewProps.totalMoobleResults + previewProps.totalCiC3Results;
+    previewProps.totalResults = 0;
+    if (isCiC2SourceEnabled) {
+        previewProps.totalResults += previewProps.totalCiC2Results;
+    }
+
+    if (isMoobleSourceEnabled) {
+        previewProps.totalResults += previewProps.totalMoobleResults;
+    }
+
+    if (isCiC3SourceEnabled) {
+        previewProps.totalResults += previewProps.totalCiC3Results;
+    }
+
+    // previewProps.totalResults = previewProps.totalCiC2Results + previewProps.totalMoobleResults + previewProps.totalCiC3Results;
 
     return (
         <div className="catalog-browser">
@@ -368,7 +443,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
             </CatalogResultsPreview>
 
             <CombinedCatalogProductList onFetchRequest={fetchMoreProductsRequests} isFetching={isMoobleProductsFetching || isCiC2ProductsFetching || isCiC3ProductsFetching}>
-                {_isSourceEnabled(CiCAPI.content.constants.DATA_SOURCES.mooble) &&
+                {isMoobleSourceEnabled &&
                     <CatalogProductList
                         isLoading={isMoobleProductsFetching}
                         products={moobleCatalogProducts}
@@ -377,7 +452,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
                         onAddProduct={addProduct}
                     />}
 
-                {_isSourceEnabled(CiCAPI.content.constants.DATA_SOURCES.cic2) &&
+                {isCiC2SourceEnabled &&
                     <CatalogProductList
                         isLoading={isCiC2ProductsFetching}
                         products={cic2CatalogProducts}
@@ -386,7 +461,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
                         onAddProduct={addProduct}
                     />}
 
-                {_isSourceEnabled(CiCAPI.content.constants.DATA_SOURCES.cic3) &&
+                {isCiC3SourceEnabled &&
                     <CatalogProductList
                         isLoading={isCiC3ProductsFetching}
                         products={cic3CatalogProducts}
