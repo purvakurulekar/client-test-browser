@@ -1,19 +1,13 @@
-import React, { useEffect, useState } from 'react';
-
+import React, { useRef, useEffect, useState } from 'react';
 import { SELECT_ALL_CATALOG } from "../../interfaces/IPublicAPIInterfaces";
-
 import "./catalogBrowser.scss";
-
 import { DataSourceControl, SettingsPanel } from "client-ui-toolkit";
-
 import CatalogSelector from './CatalogSelector';
 import CombinedCatalogProductList from './CombinedCatalogProductList';
 import ProductInformationPanel from './ProductInformationPanel';
-
 import CatalogSearch from './CatalogSearch';
 import { Loader } from "client-ui-toolkit";
 import CategorySelector from './CategorySelector';
-
 import CatalogResultsPreview from './CatalogResultsPreview';
 import CatalogProductList from './CatalogProductList';
 
@@ -33,8 +27,6 @@ interface ICatalogBrowserProps {
     includeSettings?: boolean
 }
 
-let pageOffset: number = 0;
-
 interface IFetchDataSourceProductsOptions {
     searchQuery: string,
     nbPerPage: number,
@@ -52,109 +44,25 @@ interface IEnabledSourceMap {
     [key: string]: boolean
 }
 
-// move to utils ?
-//=============================================================================
-function _isSourceEnabled(src: DATA_SOURCES) {
-    return CiCAPI.getConfig(`sources.${src.toLowerCase()}_enabled`);
-}
-
-//=============================================================================
-function _assertEnabledSources(catalogsToAssert: Array<IPublicCatalog>, sources: Array<string>, enabledSourceMap: IEnabledSourceMap ) {
-    let catalogs: Array<IPublicCatalog> = catalogsToAssert;
-    Object.values(CiCAPI.content.constants.DATA_SOURCES)
-        .forEach((value: string) => {
-
-            let found: boolean = sources.find((src: string) => src === value) !== void (0),
-                isEnabled: boolean = false;
-            if (found) {
-
-                if (value === CiCAPI.content.constants.DATA_SOURCES.cic2) {
-                    isEnabled = enabledSourceMap.isCiC2SourceEnabled;
-                }
-                else if (value === CiCAPI.content.constants.DATA_SOURCES.mooble) {
-                    isEnabled = enabledSourceMap.isMoobleSourceEnabled;
-                }
-                else if (value === CiCAPI.content.constants.DATA_SOURCES.cic3) {
-                    isEnabled = enabledSourceMap.isCiC3SourceEnabled;
-                }
-
-                if (!isEnabled) {
-                    if (sources.length === 1) {
-                        catalogs = [];
-                    } else {
-                        catalogs = catalogs.filter((catalog: IPublicCatalog) => { catalog.source !== value })
-                    }
-                }
-            }
-        });
-
-    return catalogs;
-}
-
-//=============================================================================
-async function _fetchDataSourceProducts(source: DATA_SOURCES, options: IFetchDataSourceProductsOptions): Promise<IFetchDataSourceProductResults | undefined> {
-    let
-        { searchQuery, nbPerPage, selectedCatalogs, productList, totalResults } = options,
-        searchCatalogs: Array<IPublicCatalog> = _getSearchCatalogsList(selectedCatalogs),
-        searchCatalogIds: Array<string>,
-        // searchPayload: ICommonFetchProductOptions = {
-        //     search: searchQuery,
-        //     offset: pageOffset,
-        //     nbPerPage: nbPerPage,
-        //     searchingAllCatalogs: (selectedCatalogs.length > 0 && (selectedCatalogs as Array<IPublicCatalog>)[0].id === SELECT_ALL_CATALOG.id)
-        // },
-        catalogProductList: Array<IPublicProduct> = productList || [];
-
-    searchCatalogIds = searchCatalogs
-        .filter((publicCatalog: IPublicCatalog) => publicCatalog.source === source)
-        .map((publicCatalog: IPublicCatalog) => publicCatalog.id);
-
-    return CiCAPI.content.findProducts(searchQuery ?? "", searchCatalogIds, { nbPerPage, offset: pageOffset })
-        .then((productResults: IProductResults) => {
-            let combinedProducts: Array<IPublicProduct>,
-                existingProductIds: Array<string>;
-
-            if (pageOffset > 0) {
-                if (source === CiCAPI.content.constants.DATA_SOURCES.cic2) {
-                    existingProductIds = catalogProductList.map((product: IPublicProduct) => product.id);
-                    // prevent from adding dups
-                    combinedProducts = [].concat(catalogProductList as []);
-
-                    productResults.products.forEach((productToAdd: IPublicProduct) => {
-                        if (!existingProductIds.includes(productToAdd.id)) {
-                            combinedProducts.push(productToAdd);
-                        } else {
-                            console.log("\n\n *** DUPLICATE PRODUCT RETURNED FROM SEARCH ***\n\n");
-                        }
-                    });
-                } else {
-                    combinedProducts = [].concat(catalogProductList as [], productResults.products as []);
-                }
-            } else {
-                combinedProducts = productResults.products;
-                totalResults = productResults.total;
-            }
-
-            return {
-                totalResults: totalResults,
-                productList: combinedProducts
-            } as IFetchDataSourceProductResults;
-        });
-}
-
 export { SELECT_ALL_CATALOG };
 
 // make fetch request change the page offset ?!
 //=============================================================================
 export default function CatalogBrowser(props: ICatalogBrowserProps) {
     let nbActiveSources: number,
-        nbPerPage: number,
+        pageOffset = useRef(0),
+        domRef = useRef(null),
+
+        [nbPerPage, setNbPerPage] = useState(DEFAULT_NB_PER_PAGE),
         // 
         [stateCatalogs, setCatalogs] = useState([]),
         [selectedCatalogs, setSelectedCatalogs] = useState([]),
+
+        // product lists
         [cic2CatalogProducts, setCiC2CatalogProducts] = useState([]),
         [moobleCatalogProducts, setMoobleCatalogProducts] = useState([]),
         [cic3CatalogProducts, setCiC3CatalogProducts] = useState([]),
+
         [isLoadingCatalogs, setLoadingCatalogs] = useState(false),
         [selectedProduct, setSelectedProduct] = useState(null),
         [searchQuery, setSearchQuery] = useState(""),
@@ -178,7 +86,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
         loader,
         previewProps,
         resetProductsFunc = () => {
-            pageOffset = 0;
+            pageOffset.current = 0;
             setCiC2CatalogProducts([]);
             setMoobleCatalogProducts([]);
             setTotalCiC2Results(0);
@@ -199,20 +107,21 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
 
         },
         fetchMoreProductsRequests = () => {
-            pageOffset += nbPerPage;
+            pageOffset.current += nbPerPage;
             updateProductsFunc();
         },
         updateProductsFunc = async () => {
             let searchCatalogs: Array<IPublicCatalog> | undefined = _getSearchCatalogsList(selectedCatalogs),
-                fetchProductOptions: IFetchDataSourceProductsOptions = { searchQuery, nbPerPage, selectedCatalogs };
+                fetchProductOptions: IFetchDataSourceProductsOptions = { searchQuery, nbPerPage, selectedCatalogs },
+                offset: Number = pageOffset.current;
 
             // console.log("Updating product list...");
             if (searchCatalogs.length > 0) {
-                if (isCiC2SourceEnabled && !isCiC2ProductsFetching && (pageOffset < totalCiC2Results || pageOffset === 0)) {
+                if (isCiC2SourceEnabled && !isCiC2ProductsFetching && (offset < totalCiC2Results || offset === 0)) {
                     setCiC2ProductsFetching(true);
                     fetchProductOptions.productList = cic2CatalogProducts;
                     fetchProductOptions.totalResults = totalCiC2Results;
-                    _fetchDataSourceProducts(CiCAPI.content.constants.DATA_SOURCES.cic2, fetchProductOptions)
+                    _fetchDataSourceProducts(pageOffset.current, CiCAPI.content.constants.DATA_SOURCES.cic2, fetchProductOptions)
                         .then((result: IFetchDataSourceProductResults | undefined) => {
                             setCiC2ProductsFetching(false);
                             if (result !== void (0)) {
@@ -222,11 +131,11 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
                         });
                 }
 
-                if (isMoobleSourceEnabled && !isMoobleProductsFetching && (pageOffset < totalMoobleResults || pageOffset === 0)) {
+                if (isMoobleSourceEnabled && !isMoobleProductsFetching && (offset < totalMoobleResults || offset === 0)) {
                     setMoobleProductsFetching(true);
                     fetchProductOptions.productList = moobleCatalogProducts;
                     fetchProductOptions.totalResults = totalMoobleResults;
-                    _fetchDataSourceProducts(CiCAPI.content.constants.DATA_SOURCES.mooble, fetchProductOptions)
+                    _fetchDataSourceProducts(pageOffset.current, CiCAPI.content.constants.DATA_SOURCES.mooble, fetchProductOptions)
                         .then((result: IFetchDataSourceProductResults | undefined) => {
                             setMoobleProductsFetching(false);
                             if (result !== void (0)) {
@@ -235,11 +144,11 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
                             }
                         });
                 }
-                if (isCiC3SourceEnabled && !isCiC3ProductsFetching && (pageOffset < totalCiC3Results || pageOffset === 0)) {
+                if (isCiC3SourceEnabled && !isCiC3ProductsFetching && (offset < totalCiC3Results || offset === 0)) {
                     setCiC3ProductsFetching(true);
                     fetchProductOptions.productList = cic3CatalogProducts;
                     fetchProductOptions.totalResults = totalCiC3Results;
-                    _fetchDataSourceProducts(CiCAPI.content.constants.DATA_SOURCES.cic3, fetchProductOptions)
+                    _fetchDataSourceProducts(pageOffset.current, CiCAPI.content.constants.DATA_SOURCES.cic3, fetchProductOptions)
                         .then((result: IFetchDataSourceProductResults | undefined) => {
                             setCiC3ProductsFetching(false);
                             if (result !== void (0)) {
@@ -261,7 +170,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
     if (isMoobleSourceEnabled) {
         nbActiveSources++;
     }
-    nbPerPage = Math.round(DEFAULT_NB_PER_PAGE / nbActiveSources);
+    nbPerPage = Math.round(nbPerPage / nbActiveSources);
 
     previewProps = {
         totalCatalogs: selectedCatalogs.length,
@@ -311,7 +220,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
 
             setCatalogs(catalogs as []);
             setSelectedCatalogs(catalogs as []);
-            pageOffset = 0;
+            pageOffset.current = 0;
 
             // console.log("Catalogs Loaded!");
         },
@@ -344,13 +253,12 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
                     setCiC3SourceEnabled(isCiC3SourceEnabled);
                 }
 
+                // console.log("CONFIG CHANGED, FETCHING CATALOG: ", isFetchingCatalogs);
                 if (isFetchingCatalogs) {
                     fetchCatalogFunc();
                 }
             };
 
-        // AppState.dataEndpoint.registerToChanges(fetchCatalogFunc); // changes to DataSources
-        // AppState.registerToConfigChange(onConfigChanged);
         CiCAPI.content.registerToChanges(onConfigChanged);
 
         isCiC2SourceEnabled = _isSourceEnabled(CiCAPI.content.constants.DATA_SOURCES.cic2) as boolean;
@@ -362,25 +270,26 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
 
         fetchCatalogFunc(); // initial fetch
 
+        let rootContainer: HTMLDivElement = domRef.current! as HTMLDivElement,
+            boundingRect: DOMRect,
+            workWidth: number,
+            workHeight: number,
+            maxNbTilesPerPage: number = 0,
+            prodSquareSize: number = 105 + 4; // 105x105 gap of 4px
+
+        boundingRect = rootContainer.getBoundingClientRect();
+
+        workWidth = boundingRect.width - 10; // 10 => padding, borders
+        workHeight = boundingRect.height - 174; // 174 rest of UI
+
+        maxNbTilesPerPage += Math.ceil(workWidth / prodSquareSize) * Math.ceil(workHeight / prodSquareSize); // we want a bit of overflow
+
+        setNbPerPage(maxNbTilesPerPage);
+
         return () => {
-            // if (abortCtrl) {
-            //     abortCtrl.abort();
-            // }
-            // AppState.dataEndpoint.unregisterToChanges(fetchCatalogFunc);
-            // AppState.unregisterToConfigChange(onConfigChanged);
             CiCAPI.content.unregisterToChanges(onConfigChanged);
         };
     }, []);
-
-    // input search query 
-    // useEffect(() => {
-    //     // debouncing request
-    //     let updateTimeoutHandle = setTimeout(() => {
-    //         fetchProductsFunc();
-    //     }, 500);
-
-    //     return () => clearTimeout(updateTimeoutHandle);
-    // }, [searchQuery]);
 
     // no need to wait here, if catalogs change lets update directly
     useEffect(() => { fetchProductsFunc(); }, [selectedCatalogs, searchQuery]);
@@ -389,7 +298,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
         loader = (<Loader />);
     }
 
-    if (pageOffset === 0) {
+    if (pageOffset.current === 0) {
         if (isCiC2ProductsFetching) {
             previewProps.totalCiC2Results = 0;
         }
@@ -420,10 +329,8 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
         previewProps.totalResults += previewProps.totalCiC3Results;
     }
 
-    // previewProps.totalResults = previewProps.totalCiC2Results + previewProps.totalMoobleResults + previewProps.totalCiC3Results;
-
     return (
-        <div className="catalog-browser">
+        <div ref={domRef} className="catalog-browser">
             {
                 isSettingsVisible && <SettingsPanel onClose={() => setSettingsVisible(false)} />
             }
@@ -493,4 +400,88 @@ function _getSearchCatalogsList(selectedCatalogs: Array<IPublicCatalog>): Array<
     }
 
     return searchCatalogs;
+}
+
+// move to utils ?
+//=============================================================================
+function _isSourceEnabled(src: DATA_SOURCES) {
+    return CiCAPI.getConfig(`sources.${src.toLowerCase()}_enabled`);
+}
+
+//=============================================================================
+function _assertEnabledSources(catalogsToAssert: Array<IPublicCatalog>, sources: Array<string>, enabledSourceMap: IEnabledSourceMap ) {
+    let catalogs: Array<IPublicCatalog> = catalogsToAssert;
+    Object.values(CiCAPI.content.constants.DATA_SOURCES)
+        .forEach((value: string) => {
+
+            let found: boolean = sources.find((src: string) => src === value) !== void (0),
+                isEnabled: boolean = false;
+            if (found) {
+
+                if (value === CiCAPI.content.constants.DATA_SOURCES.cic2) {
+                    isEnabled = enabledSourceMap.isCiC2SourceEnabled;
+                }
+                else if (value === CiCAPI.content.constants.DATA_SOURCES.mooble) {
+                    isEnabled = enabledSourceMap.isMoobleSourceEnabled;
+                }
+                else if (value === CiCAPI.content.constants.DATA_SOURCES.cic3) {
+                    isEnabled = enabledSourceMap.isCiC3SourceEnabled;
+                }
+
+                if (!isEnabled) {
+                    if (sources.length === 1) {
+                        catalogs = [];
+                    } else {
+                        catalogs = catalogs.filter((catalog: IPublicCatalog) => { catalog.source !== value })
+                    }
+                }
+            }
+        });
+
+    return catalogs;
+}
+
+//=============================================================================
+async function _fetchDataSourceProducts(pageOffset: number, source: DATA_SOURCES, options: IFetchDataSourceProductsOptions): Promise<IFetchDataSourceProductResults | undefined> {
+    let
+        { searchQuery, nbPerPage, selectedCatalogs, productList, totalResults } = options,
+        searchCatalogs: Array<IPublicCatalog> = _getSearchCatalogsList(selectedCatalogs),
+        searchCatalogIds: Array<string>,
+        catalogProductList: Array<IPublicProduct> = productList || [];
+
+    searchCatalogIds = searchCatalogs
+        .filter((publicCatalog: IPublicCatalog) => publicCatalog.source === source)
+        .map((publicCatalog: IPublicCatalog) => publicCatalog.id);
+
+    return CiCAPI.content.findProducts(searchQuery ?? "", searchCatalogIds, { nbPerPage, offset: pageOffset })
+        .then((productResults: IProductResults) => {
+            let combinedProducts: Array<IPublicProduct>,
+                existingProductIds: Array<string>;
+
+            if (pageOffset > 0) {
+                if (source === CiCAPI.content.constants.DATA_SOURCES.cic2) {
+                    existingProductIds = catalogProductList.map((product: IPublicProduct) => product.id);
+                    // prevent from adding dups
+                    combinedProducts = [].concat(catalogProductList as []);
+
+                    productResults.products.forEach((productToAdd: IPublicProduct) => {
+                        if (!existingProductIds.includes(productToAdd.id)) {
+                            combinedProducts.push(productToAdd);
+                        } else {
+                            console.log("\n\n *** DUPLICATE PRODUCT RETURNED FROM SEARCH ***\n\n");
+                        }
+                    });
+                } else {
+                    combinedProducts = [].concat(catalogProductList as [], productResults.products as []);
+                }
+            } else {
+                combinedProducts = productResults.products;
+                totalResults = productResults.total;
+            }
+
+            return {
+                totalResults: totalResults,
+                productList: combinedProducts
+            } as IFetchDataSourceProductResults;
+        });
 }
