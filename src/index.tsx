@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import "./index.scss";
+import { importCiCAPI } from "client-ui-toolkit";
 import CatalogBrowser from "components/catalogbrowser/CatalogBrowser";
 
 const
@@ -34,15 +35,6 @@ async function _loadConfig() {
 }
 
 //=============================================================================
-async function _importCiCAPI(apiCodeUrl: string) {
-    let response: Response = await fetch(apiCodeUrl),
-        code: string;
-
-    code = await response.text();
-    (new Function(code))();
-}
-
-//=============================================================================
 function render() {
 
     let onProductAdd = (catalogProduct: IPublicProduct) => {
@@ -65,7 +57,7 @@ async function main() {
 
     console.log("[-] Loading CiCAPI...");
     //@ts-ignore
-    await _importCiCAPI(config.cicapi_url);
+    await importCiCAPI(config.cicapi_url);
     console.log("[+] CiCAPI Loaded, initializing....");
     //@ts-ignore
     await CiCAPI.init();
