@@ -54,110 +54,110 @@ stages:
             skip_app_build: true
             azure_static_web_apps_api_token: $(deployment_token_dev)
 
-- stage: stg
-  displayName: Staging
-  dependsOn: dev
-  jobs:
-    - job: waitForValidation
-      displayName: Wait for external validation    
-      timeoutInMinutes: 4320
-      pool: server
-      steps:   
-       - task: ManualValidation@0
-         timeoutInMinutes: 1440
-         inputs:
-          notifyUsers: |
-            lantth@2020spaces.com
-          instructions: 'Please validate the build configuration and resume'
-          onTimeout: 'reject'
-    - job: deploy
-      displayName: Deploy Static Web App
-      dependsOn: waitForValidation
-      steps:
-        - checkout: self
-          submodules: true
-        - task: NodeTool@0
-          inputs:
-            versionSpec: "14.x"
-          displayName: "Install Node.js"
-        - bash: |
-            echo "Listing PreBuild... $stage_env"
-            ls -la
-            echo "Listing PreBuild Complete!"
-          env:
-            stage_env: "staging"
-            cicapi_url: "$(cicapi_url_staging)"
-        - script: |
-            npm install -g webpack webpack-cli --save-dev
-            npm config set registry http://cic-npmregistry-dev-ci.centralus.azurecontainer.io:4873/
-            npm install
-            npx webpack --progress --config webpack.dev.config.ts
-            npx webpack --progress --config webpack.prod.config.ts
-            npm run test
-          env:
-            stage_env: "staging"
-            cicapi_url: "$(cicapi_url_staging)"
-          displayName: "npm install, run webpack"
-        - bash: |
-            echo "Listing PostBuild..."
-            ls -la
-            echo "Listing PostBuild Complete!"
-        - task: AzureStaticWebApp@0
-          inputs:
-            app_location: 'dist'
-            skip_app_build: true
-            azure_static_web_apps_api_token: $(deployment_token_stg)
+# - stage: stg
+#   displayName: Staging
+#   dependsOn: dev
+#   jobs:
+#     - job: waitForValidation
+#       displayName: Wait for external validation    
+#       timeoutInMinutes: 4320
+#       pool: server
+#       steps:   
+#        - task: ManualValidation@0
+#          timeoutInMinutes: 1440
+#          inputs:
+#           notifyUsers: |
+#             lantth@2020spaces.com
+#           instructions: 'Please validate the build configuration and resume'
+#           onTimeout: 'reject'
+#     - job: deploy
+#       displayName: Deploy Static Web App
+#       dependsOn: waitForValidation
+#       steps:
+#         - checkout: self
+#           submodules: true
+#         - task: NodeTool@0
+#           inputs:
+#             versionSpec: "14.x"
+#           displayName: "Install Node.js"
+#         - bash: |
+#             echo "Listing PreBuild... $stage_env"
+#             ls -la
+#             echo "Listing PreBuild Complete!"
+#           env:
+#             stage_env: "staging"
+#             cicapi_url: "$(cicapi_url_staging)"
+#         - script: |
+#             npm install -g webpack webpack-cli --save-dev
+#             npm config set registry http://cic-npmregistry-dev-ci.centralus.azurecontainer.io:4873/
+#             npm install
+#             npx webpack --progress --config webpack.dev.config.ts
+#             npx webpack --progress --config webpack.prod.config.ts
+#             npm run test
+#           env:
+#             stage_env: "staging"
+#             cicapi_url: "$(cicapi_url_staging)"
+#           displayName: "npm install, run webpack"
+#         - bash: |
+#             echo "Listing PostBuild..."
+#             ls -la
+#             echo "Listing PostBuild Complete!"
+#         - task: AzureStaticWebApp@0
+#           inputs:
+#             app_location: 'dist'
+#             skip_app_build: true
+#             azure_static_web_apps_api_token: $(deployment_token_stg)
 
-- stage: prod
-  displayName: Production
-  dependsOn: stg
-  jobs:
-    - job: waitForValidation
-      displayName: Wait for external validation    
-      timeoutInMinutes: 8640
-      pool: server
-      steps:   
-       - task: ManualValidation@0
-         timeoutInMinutes: 4320
-         inputs:
-          notifyUsers: |
-            lantth@2020spaces.com
-          instructions: 'Please validate the build configuration and resume'
-          onTimeout: 'reject'
-    - job: deploy
-      displayName: Build and Deploy Static Web App
-      dependsOn: waitForValidation
-      steps:
-        - checkout: self
-          submodules: true
-        - task: NodeTool@0
-          inputs:
-            versionSpec: "14.x"
-          displayName: "Install Node.js"
-        - bash: |
-            echo "Listing PreBuild... $stage_env"
-            ls -la
-            echo "Listing PreBuild Complete!"
-          env:
-            stage_env: "prod"
-            cicapi_url: "$(cicapi_url_prod)"
-        - script: |
-            npm install -g webpack webpack-cli --save-dev
-            npm config set registry http://cic-npmregistry-dev-ci.centralus.azurecontainer.io:4873/
-            npm install
-            npx webpack --progress --config webpack.dev.config.ts
-            npx webpack --progress --config webpack.prod.config.ts
-            npm run test
-          env:
-            stage_env: "prod"
-            cicapi_url: "$(cicapi_url_prod)"
-          displayName: "npm install, run webpack"
-        - bash: |
-            echo "Listing PostBuild..."
-            ls -la
-            echo "Listing PostBuild Complete!"
-        - task: AzureStaticWebApp@0
-          inputs:
-            app_location: 'dist'
-            skip_app_build: true
-            azure_static_web_apps_api_token: $(deployment_token_prod)
+# - stage: prod
+#   displayName: Production
+#   dependsOn: stg
+#   jobs:
+#     - job: waitForValidation
+#       displayName: Wait for external validation    
+#       timeoutInMinutes: 8640
+#       pool: server
+#       steps:   
+#        - task: ManualValidation@0
+#          timeoutInMinutes: 4320
+#          inputs:
+#           notifyUsers: |
+#             lantth@2020spaces.com
+#           instructions: 'Please validate the build configuration and resume'
+#           onTimeout: 'reject'
+#     - job: deploy
+#       displayName: Build and Deploy Static Web App
+#       dependsOn: waitForValidation
+#       steps:
+#         - checkout: self
+#           submodules: true
+#         - task: NodeTool@0
+#           inputs:
+#             versionSpec: "14.x"
+#           displayName: "Install Node.js"
+#         - bash: |
+#             echo "Listing PreBuild... $stage_env"
+#             ls -la
+#             echo "Listing PreBuild Complete!"
+#           env:
+#             stage_env: "prod"
+#             cicapi_url: "$(cicapi_url_prod)"
+#         - script: |
+#             npm install -g webpack webpack-cli --save-dev
+#             npm config set registry http://cic-npmregistry-dev-ci.centralus.azurecontainer.io:4873/
+#             npm install
+#             npx webpack --progress --config webpack.dev.config.ts
+#             npx webpack --progress --config webpack.prod.config.ts
+#             npm run test
+#           env:
+#             stage_env: "prod"
+#             cicapi_url: "$(cicapi_url_prod)"
+#           displayName: "npm install, run webpack"
+#         - bash: |
+#             echo "Listing PostBuild..."
+#             ls -la
+#             echo "Listing PostBuild Complete!"
+#         - task: AzureStaticWebApp@0
+#           inputs:
+#             app_location: 'dist'
+#             skip_app_build: true
+#             azure_static_web_apps_api_token: $(deployment_token_prod)
