@@ -37,15 +37,9 @@
 }
 
 .catalog-categories-container {
-    margin-top: 3px;
-    background-color: #f4f4f4;
-    color: #999;
-    cursor: default;
-    line-height: 22px;
-    border: 1px solid #b7b7b7;
-    padding-left: 5px;
-    box-sizing: border-box;
-    font-size: 12px;
+    position: relative;
+    display: flex;
+    flex-flow: row;
 }
 
 .catalog-search-container {
@@ -89,7 +83,8 @@
     margin-right: 3px;
 }
 
-.catalog-list-root {
+.catalog-list-root,
+.catalog-categories-tree-list {
     position: absolute;
     top: 24px;
     min-width: 200px;
@@ -203,7 +198,8 @@
 //     border-left: none;
 // }
 
-.catalog-selector-toggle {
+.catalog-selector-toggle,
+.catalog-categories-selector-toggle {
     width: 100%;
     display: flex;
     flex-flow: row;
@@ -216,7 +212,8 @@
     outline: none;
 }
 
-.catalog-selector-toggle-btn {
+.catalog-selector-toggle-btn ,
+.catalog-categories-selector-toggle-btn{
     width: 24px;
     border: none;
     text-align: center;
@@ -231,11 +228,14 @@
 }
 
 .catalog-selector-toggle-btn:hover,
-.catalog-selector-toggle:hover {
+.catalog-selector-toggle:hover,
+.catalog-categories-selector-toggle-btn:hover,
+.catalog-categories-selector-toggle:hover {
     color: #f8971d;
 }
 
-.catalog-selector-toggle-label {
+.catalog-selector-toggle-label,
+.catalog-categories-selector-toggle-label {
     flex: 1 1;
     padding: 2px;
     text-align: left;
