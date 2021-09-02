@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import CatalogList from './CatalogList';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
 interface Props {
     catalogs: Array<IPublicCatalog>,
@@ -21,6 +22,14 @@ function CatalogSelector(props: Props) {
             setOpened(false);
             props.onSelectOnlyCatalogSelected(catalog);
         }
+
+    const handleClick = () => {
+        setOpened((prev) => !prev);
+        };
+    
+    const handleClickAway = () => {
+        setOpened(false);
+    };
 
     if (isOpened) {
         selectorIcon = faCaretUp;
@@ -47,13 +56,15 @@ function CatalogSelector(props: Props) {
     }
 
     return (
+        <ClickAwayListener onClickAway={handleClickAway}>
         <div className="catalog-selector">
-            <button className="catalog-selector-toggle" onClick={() => setOpened(!isOpened)} disabled={props.catalogs.length === 0}>
+            <button className="catalog-selector-toggle" onClick={handleClick}  disabled={props.catalogs.length === 0}>
                 <div className="catalog-selector-toggle-label">{label}</div>
                 <div className="catalog-selector-toggle-btn"><FontAwesomeIcon icon={selectorIcon} /></div>
             </button>
             {catalogListElement}
         </div>
+        </ClickAwayListener>
     );
 }
 
