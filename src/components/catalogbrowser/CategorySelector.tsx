@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import CategoryTree from "components/catalogbrowser/CategoryTree"
+import CategoryTree from "./CategoryTree"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
