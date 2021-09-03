@@ -119,8 +119,8 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
             if (stateCatalogs.length > 0 || (stateCatalogs.length === 0 && (totalCiC2Results + totalMoobleResults + totalCiC3Results) > 0)) {
                 resetProductsFunc();
                 if ( needsCategoriesUpdate ) {
-                    updateCategoriesFunc();
-                    setNeedsCategoriesUpdate(false);                
+                    setNeedsCategoriesUpdate(false);  
+                    updateCategoriesFunc();                      
                 }
                 updateProductsFunc();
             }
@@ -130,7 +130,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
             pageOffset.current += nbPerPage;
             updateProductsFunc();
         },
-        updateCategoriesFunc = () => {
+        updateCategoriesFunc = async () => {
             let offset = pageOffset.current;
             if (isCiC3SourceEnabled && (offset < totalCiC3Results || offset === 0)) {
                 setSelectedCategoryName("");
@@ -144,7 +144,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
         },
         updateProductsFunc = async () => {
             let searchCatalogs: Array<IPublicCatalog> | undefined = _getSearchCatalogsList(selectedCatalogs),
-                fetchProductOptions: IFetchDataSourceProductsOptions = { searchQuery, nbPerPage, selectedCatalogs, selectedCategory: selectedCategoryID !== "" ? selectedCategoryID : ""},
+                fetchProductOptions: IFetchDataSourceProductsOptions = { searchQuery, nbPerPage, selectedCatalogs, selectedCategory: selectedCategoryID},
                 offset: Number = pageOffset.current;
 
             // console.log("Updating product list...");
