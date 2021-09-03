@@ -72,6 +72,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
         [selectedCategoryID, setSelectedCategoryID] = useState(""),
         [selectedCategoryName, setSelectedCategoryName] = useState(""),
         [expandedCategoryNodes, setExpandedCategoryNodes] = useState([]),
+        [needsCategoriesUpdate, setNeedsCategoriesUpdate] = useState(false),
 
         // product lists
         [cic2CatalogProducts, setCiC2CatalogProducts] = useState([]),
@@ -117,6 +118,10 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
         fetchProductsFunc = () => {
             if (stateCatalogs.length > 0 || (stateCatalogs.length === 0 && (totalCiC2Results + totalMoobleResults + totalCiC3Results) > 0)) {
                 resetProductsFunc();
+                if ( needsCategoriesUpdate ) {
+                    setNeedsCategoriesUpdate(false);  
+                    updateCategoriesFunc();                      
+                }
                 updateProductsFunc();
             }
 
@@ -125,7 +130,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
             pageOffset.current += nbPerPage;
             updateProductsFunc();
         },
-        updateCategoriesFunc = () => {
+        updateCategoriesFunc = async () => {
             let offset = pageOffset.current;
             if (isCiC3SourceEnabled && (offset < totalCiC3Results || offset === 0)) {
                 setSelectedCategoryName("");
@@ -139,7 +144,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
         },
         updateProductsFunc = async () => {
             let searchCatalogs: Array<IPublicCatalog> | undefined = _getSearchCatalogsList(selectedCatalogs),
-                fetchProductOptions: IFetchDataSourceProductsOptions = { searchQuery, nbPerPage, selectedCatalogs, selectedCategory: selectedCategoryID },
+                fetchProductOptions: IFetchDataSourceProductsOptions = { searchQuery, nbPerPage, selectedCatalogs, selectedCategory: selectedCategoryID},
                 offset: Number = pageOffset.current;
 
             // console.log("Updating product list...");
@@ -369,7 +374,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
                 catalogs={stateCatalogs}
                 selectedCatalogs={selectedCatalogs}
                 onCatalogSelected={setSelectedCatalogs}
-                onSelectOnlyCatalogSelected={(catalog: IPublicCatalog) => { setSelectedCatalogs(([catalog] as Array<IPublicCatalog>) as []), updateCategoriesFunc() }}
+                onSelectOnlyCatalogSelected={(catalog: IPublicCatalog) => {setSelectedCatalogs(([catalog] as Array<IPublicCatalog>) as []), setNeedsCategoriesUpdate(true) }}
             />
 
             <CategorySelector 
