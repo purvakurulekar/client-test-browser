@@ -8,7 +8,7 @@ interface CategorySelectorProps {
     categories: Array<ICommonCategory>,
     onCategorySelected: Function,
     selectedCategoryName: string,
-    selectedCategoryID: string,
+    selectedCategoryIDs: Array<string>,
     expandedCategoryNodes: Array<string>
 }
 
@@ -21,9 +21,9 @@ export default function CategorySelector(props: CategorySelectorProps) {
     [isOpened, setOpened] = useState(false),
     selectorIcon,
     categoryTreeElement,
-    onCategorySelected = (categoryID: string, categoryName: string, expandedNodes: Array<string>) => {
+    onCategorySelected = (categoryIDs: Array<string>, categoryName: string, expandedNodes: Array<string>) => {
         setOpened(false);
-        props.onCategorySelected( categoryID, categoryName, expandedNodes );
+        props.onCategorySelected( categoryIDs, categoryName, expandedNodes );
     };
     const handleClick = () => {
         setOpened((prev) => !prev);
@@ -41,7 +41,7 @@ export default function CategorySelector(props: CategorySelectorProps) {
 
     if (isOpened) {
         categoryTreeElement = (
-            <CategoryTree {...Object.assign({}, props, props.selectedCategoryID, props.expandedCategoryNodes,  { onCategorySelected })} />
+            <CategoryTree {...Object.assign({}, props, props.selectedCategoryIDs, props.expandedCategoryNodes,  { onCategorySelected })} />
         );
     }
     

@@ -1,29 +1,35 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TreeView from '@material-ui/lab/TreeView';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretRight, faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import TreeItem from '@material-ui/lab/TreeItem';
 
 interface ICategoryListProps {
   categories: Array<ICommonCategory>,
-  selectedCategoryID: string,
+  selectedCategoryIDs: Array<string>,
   expandedCategoryNodes: Array<string>,
   onCategorySelected: Function
 }
 let sendSelection: boolean = true,
 expandedNodes: Array<string> = [],
-ctrlPress: boolean = false;
+ctrlPress: boolean = false,
+needsSelection: boolean = false,
+nodesToSend: Array<string> = [],
+categoryProps: ICategoryListProps;
 
-function handleSelection( props: ICategoryListProps,  nodeId: string )
+function handleSelection( props: ICategoryListProps,  nodeIds: Array<string> )
 {
-  if ( sendSelection ) {
-    if ( nodeId !== "All Items" ) {
-      let nodeName: string = findNodeName( nodeId, props.categories[0]);
-      props.onCategorySelected(nodeId, nodeName, expandedNodes);
+  let nodeNames: Array<string> = [];
+  if ( sendSelection && ( nodeIds.length > 0 ) ) {
+    if ( nodeIds[0] !== "All Items" ) {
+      nodeNames = nodeIds.map((id: string) => findNodeName(id, props.categories[0]));
+      props.onCategorySelected(nodeIds, nodeNames.join(","), expandedNodes);
     } else {
       props.onCategorySelected("", "", []);
     }
+  } else if ( ctrlPress ) {
+    nodesToSend = nodeIds;
   }
 };
 
@@ -55,7 +61,12 @@ const iconSelection = () => {
 }; 
 
 const labelSelection = () => {
-  sendSelection = true;
+  if ( !ctrlPress ) {
+    sendSelection = true;
+  } else {
+    needsSelection = true;
+    sendSelection = false;
+  }
 };
 
 const useStyles = makeStyles({
@@ -64,9 +75,34 @@ const useStyles = makeStyles({
   },
 });
 
+const CheckCtrlPressed = ( e: KeyboardEvent ) => {
+  if ( e.ctrlKey === true ) {
+    ctrlPress = true;
+  }
+};
+
+const CheckNeedsSelection = ( e: KeyboardEvent ) => {
+  if ( needsSelection ) {
+    ctrlPress = false;
+    needsSelection = false;
+    sendSelection = true;
+    if ( nodesToSend.length > 0 ) {
+      handleSelection( categoryProps, nodesToSend );
+      nodesToSend = [];
+    }
+  }
+};
+
 function CategoryTree( props: ICategoryListProps) {
   const classes = useStyles();
-  let handleNodeSelect = ( event: object, nodeId: string) => handleSelection( props, nodeId ),
+  window.addEventListener("keydown", (e)=> {
+    CheckCtrlPressed(e);
+  });
+  window.addEventListener("keyup", (e)=> {
+    CheckNeedsSelection(e);
+  });
+  categoryProps = props;
+  let handleNodeSelect = ( event: object, nodeIds: Array<string>) => handleSelection( props, nodeIds ),
   handleNodeToggle = ( event: object, nodeIds: Array<string>) => handleExpansion( nodeIds ),
   selectAll: ICommonCategory = {code: "All Items", name: "All Items", groups: props.categories };
   const renderTree = (category: ICommonCategory) => (
@@ -79,12 +115,13 @@ function CategoryTree( props: ICategoryListProps) {
   return (
     <TreeView
       className="catalog-categories-tree-list"
-      defaultCollapseIcon={<ExpandMoreIcon />}
-      defaultExpandIcon={<ChevronRightIcon />}
+      defaultCollapseIcon={<FontAwesomeIcon icon={faCaretDown}/>}
+      defaultExpandIcon={<FontAwesomeIcon icon={faCaretRight}/>}
       defaultExpanded={props.expandedCategoryNodes}
-      defaultSelected={props.selectedCategoryID}
+      defaultSelected={props.selectedCategoryIDs}
       onNodeSelect={handleNodeSelect}
       onNodeToggle={handleNodeToggle}
+      multiSelect={true}
     >
       {renderTree(selectAll)}
     </TreeView>

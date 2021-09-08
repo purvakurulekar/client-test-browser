@@ -33,7 +33,7 @@ interface IFetchDataSourceProductsOptions {
     searchQuery: string,
     nbPerPage: number,
     selectedCatalogs: Array<IPublicCatalog>,
-    selectedCategory: string,
+    selectedCategories: Array<string>,
     productList?: Array<IPublicProduct>,
     totalResults?: number
 }
@@ -69,7 +69,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
         [stateCatalogs, setCatalogs] = useState([]),
         [selectedCatalogs, setSelectedCatalogs] = useState([]),
         [categories, setCategories] = useState([]),
-        [selectedCategoryID, setSelectedCategoryID] = useState(""),
+        [selectedCategoryIDs, setSelectedCategoryIDs] = useState([]),
         [selectedCategoryName, setSelectedCategoryName] = useState(""),
         [expandedCategoryNodes, setExpandedCategoryNodes] = useState([]),
         [needsCategoriesUpdate, setNeedsCategoriesUpdate] = useState(false),
@@ -134,7 +134,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
             let offset = pageOffset.current;
             if (isCiC3SourceEnabled && (offset < totalCiC3Results || offset === 0)) {
                 setSelectedCategoryName("");
-                setSelectedCategoryID("");
+                setSelectedCategoryIDs([]);
                 setExpandedCategoryNodes([]);
                  let fetchCategoryOptions: IFetchCatalogCategoriesOptions = { selectedCatalogs };
                 _fetchCatalogCategories( fetchCategoryOptions ).then((result: IFetchCatalogCategoriesResults) => {
@@ -144,7 +144,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
         },
         updateProductsFunc = async () => {
             let searchCatalogs: Array<IPublicCatalog> | undefined = _getSearchCatalogsList(selectedCatalogs),
-                fetchProductOptions: IFetchDataSourceProductsOptions = { searchQuery, nbPerPage, selectedCatalogs, selectedCategory: selectedCategoryID},
+                fetchProductOptions: IFetchDataSourceProductsOptions = { searchQuery, nbPerPage, selectedCatalogs, selectedCategories: selectedCategoryIDs},
                 offset: Number = pageOffset.current;
 
             // console.log("Updating product list...");
@@ -253,7 +253,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
             setCatalogs(catalogs as []);
             setSelectedCatalogs(catalogs as []);
             setSelectedCategoryName("");
-            setSelectedCategoryID("");
+            setSelectedCategoryIDs([]);
             setCategories([]);
             setExpandedCategoryNodes([]);
             pageOffset.current = 0;
@@ -328,7 +328,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
     }, []);
 
     // no need to wait here, if catalogs change lets update directly
-    useEffect(() => { fetchProductsFunc(); }, [selectedCatalogs, searchQuery, selectedCategoryID]);
+    useEffect(() => { fetchProductsFunc(); }, [selectedCatalogs, searchQuery, selectedCategoryIDs]);
 
     if (isLoadingCatalogs || isCiC2ProductsFetching || isMoobleProductsFetching || isCiC3ProductsFetching) {
         loader = (<Loader />);
@@ -379,9 +379,9 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
 
             <CategorySelector 
                 categories={categories}
-                onCategorySelected={(categoryID: string, categoryName: string, expandedNodes: Array<string>) => { setSelectedCategoryID(categoryID), setSelectedCategoryName(categoryName), setExpandedCategoryNodes( expandedNodes as [] ) }}
+                onCategorySelected={(categoryIDs: Array<string>, categoryName: string, expandedNodes: Array<string>) => { setSelectedCategoryIDs(categoryIDs as []), setSelectedCategoryName(categoryName), setExpandedCategoryNodes( expandedNodes as [] ) }}
                 selectedCategoryName={selectedCategoryName}
-                selectedCategoryID={selectedCategoryID}
+                selectedCategoryIDs={selectedCategoryIDs}
                 expandedCategoryNodes={expandedCategoryNodes}
              />
 
@@ -486,7 +486,7 @@ function _assertEnabledSources(catalogsToAssert: Array<IPublicCatalog>, sources:
 //=============================================================================
 async function _fetchDataSourceProducts(pageOffset: number, source: DATA_SOURCES, options: IFetchDataSourceProductsOptions): Promise<IFetchDataSourceProductResults | undefined> {
     let
-        { searchQuery, nbPerPage, selectedCatalogs, selectedCategory, productList, totalResults } = options,
+        { searchQuery, nbPerPage, selectedCatalogs, selectedCategories, productList, totalResults } = options,
         searchCatalogs: Array<IPublicCatalog> = _getSearchCatalogsList(selectedCatalogs),
         searchCatalogIds: Array<string>,
         catalogProductList: Array<IPublicProduct> = productList || [];
@@ -495,7 +495,7 @@ async function _fetchDataSourceProducts(pageOffset: number, source: DATA_SOURCES
         .filter((publicCatalog: IPublicCatalog) => publicCatalog.source === source)
         .map((publicCatalog: IPublicCatalog) => publicCatalog.id);
 
-    return CiCAPI.content.findProducts(searchQuery ?? "", searchCatalogIds, { nbPerPage, offset: pageOffset, categoryName: selectedCategory })
+    return CiCAPI.content.findProducts(searchQuery ?? "", searchCatalogIds, { nbPerPage, offset: pageOffset, categoryNames: selectedCategories })
         .then((productResults: IProductResults) => {
             let combinedProducts: Array<IPublicProduct>,
                 existingProductIds: Array<string>;
