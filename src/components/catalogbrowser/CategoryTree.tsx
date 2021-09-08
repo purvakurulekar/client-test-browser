@@ -6,7 +6,7 @@ import { faCaretRight, faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import TreeItem from '@material-ui/lab/TreeItem';
 
 interface ICategoryListProps {
-  categories: Array<ICommonCategory>,
+  categories: Array<ICommonGroup>,
   selectedCategoryIDs: Array<string>,
   expandedCategoryNodes: Array<string>,
   onCategorySelected: Function
@@ -38,7 +38,7 @@ function handleExpansion( nodeIds: Array<string> )
   expandedNodes = nodeIds;
 };
 
-function findNodeName( nodeId: string, category: ICommonCategory): string
+function findNodeName( nodeId: string, category: ICommonGroup): string
 {
   let nodeName: string = "";
   if (category.code === nodeId) {
@@ -104,8 +104,8 @@ function CategoryTree( props: ICategoryListProps) {
   categoryProps = props;
   let handleNodeSelect = ( event: object, nodeIds: Array<string>) => handleSelection( props, nodeIds ),
   handleNodeToggle = ( event: object, nodeIds: Array<string>) => handleExpansion( nodeIds ),
-  selectAll: ICommonCategory = {code: "All Items", name: "All Items", groups: props.categories };
-  const renderTree = (category: ICommonCategory) => (
+  selectAll: ICommonGroup = {code: "All Items", name: "All Items", groups: props.categories };
+  const renderTree = (category: ICommonGroup) => (
     <TreeItem key={category.code} nodeId={category.code} label={category.name} onIconClick={iconSelection}
     onLabelClick={labelSelection} classes={{ label: classes.treeItem }}>
       {Array.isArray(category.groups) ? category.groups.map((node) => renderTree(node)) : null}

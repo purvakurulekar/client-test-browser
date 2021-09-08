@@ -62,7 +62,7 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
     "@testing-library/user-event": "^13.1.9",
-    "@types/client-api": "0.x",
+    "@types/client-api": "^0.10.13",
     "@types/copy-webpack-plugin": "^8.0.0",
     "@types/jest": "^26.0.23",
     "@types/node": "^16.3.1",
@@ -73,7 +73,6 @@
     "babel-plugin-transform-class-properties": "^6.24.1",
     "clean-webpack-plugin": "^4.0.0-alpha.0",
     "client-ui-toolkit": "0.x",
-
     "copy-webpack-plugin": "^9.0.1",
     "css-loader": "^5.2.6",
     "fake-indexeddb": "^3.1.3",

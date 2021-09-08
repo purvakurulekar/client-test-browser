@@ -14,7 +14,7 @@ import CatalogProductList from './CatalogProductList';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog } from "@fortawesome/free-solid-svg-icons";
 
-let categoriesMap: Map<string, Array<ICommonCategory>> = new Map();
+let categoriesMap: Map<string, Array<ICommonGroup>> = new Map();
 
 const
     DEFAULT_NB_PER_PAGE = 50,
@@ -48,7 +48,7 @@ interface IFetchCatalogCategoriesOptions {
 }
 
 interface IFetchCatalogCategoriesResults {
-    categoryList: Array<ICommonCategory>
+    categoryList: Array<ICommonGroup>
 }
 
 interface IEnabledSourceMap {
@@ -537,7 +537,7 @@ async function _fetchCatalogCategories( options: IFetchCatalogCategoriesOptions)
 
         searchCatalogIds = searchCatalogs.map((publicCatalog: IPublicCatalog) => publicCatalog.id.substr(publicCatalog.source.length+1));
         if ( !categoriesMap.has(searchCatalogIds[0]) ){
-        return CiCAPI.content.getCategoriesForCatalog(searchCatalogIds[0]).then( (categoryResults: Array<ICommonCategory> ) => {
+        return CiCAPI.content.getCategoriesForCatalog(searchCatalogIds[0]).then( (categoryResults: Array<ICommonGroup> ) => {
             categoriesMap.set(searchCatalogIds[0], categoryResults);
             return {
                 categoryList: categoryResults
