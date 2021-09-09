@@ -36,10 +36,13 @@ stages:
             npm install -D client-ui-toolkit@latest @types/client-api@latest
             npm config delete registry
             npm install
-            npm run test
-            npm run pipeline-setup
-            npm run build-prod
-            npm run build-dev
+            npm config set registry http://cic-npmregistry-dev-ci.centralus.azurecontainer.io:4873/
+            npm set //cic-npmregistry-dev-ci.centralus.azurecontainer.io:4873/:_authToken $(verdaccio_token)
+            npm run test && npm run deploy && npm run pipeline-setup && npm run build-dev && npm run build-prod
+            # npm run test
+            # npm run pipeline-setup
+            # npm run build-prod
+            # npm run build-dev
           env:
             stage_env: "dev"
             cicapi_url: "$(cicapi_url_dev)"
