@@ -18,6 +18,7 @@ let categoriesMap: Map<string, Array<ICommonGroup>> = new Map();
 
 const
     DEFAULT_NB_PER_PAGE = 50,
+    MIN_NB_TILES_PER_PAGE = 10,
     GLOBAL_CONFIG_RE = /^(sources.)?(cic[23]|mooble)(_enabled)?$/i,
     CATALOG_CONFIG_CHANGED_RE = /region|contextCode|catalogs?ApiUrl/i,
     SOURCES_CONFIG_PREFIX = "sources.",
@@ -118,9 +119,9 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
         fetchProductsFunc = () => {
             if (stateCatalogs.length > 0 || (stateCatalogs.length === 0 && (totalCiC2Results + totalMoobleResults + totalCiC3Results) > 0)) {
                 resetProductsFunc();
-                if ( needsCategoriesUpdate ) {
-                    setNeedsCategoriesUpdate(false);  
-                    updateCategoriesFunc();                      
+                if (needsCategoriesUpdate) {
+                    setNeedsCategoriesUpdate(false);
+                    updateCategoriesFunc();
                 }
                 updateProductsFunc();
             }
@@ -136,9 +137,9 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
                 setSelectedCategoryName("");
                 setSelectedCategoryIDs([]);
                 setExpandedCategoryNodes([]);
-                 let fetchCategoryOptions: IFetchCatalogCategoriesOptions = { selectedCatalogs };
-                _fetchCatalogCategories( fetchCategoryOptions ).then((result: IFetchCatalogCategoriesResults) => {
-                    setCategories( result.categoryList as [] );
+                let fetchCategoryOptions: IFetchCatalogCategoriesOptions = { selectedCatalogs };
+                _fetchCatalogCategories(fetchCategoryOptions).then((result: IFetchCatalogCategoriesResults) => {
+                    setCategories(result.categoryList as []);
                 });
             }
         },
@@ -213,42 +214,9 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
         nbActiveSources: nbActiveSources
     };
     useEffect(() => {
-        let fetchCatalogFunc = async () => {
-            let catalogs: Array<IPublicCatalog>,
-                sources: Array<DATA_SOURCES> = [];
-
-            if (isCiC2SourceEnabled) {
-                sources.push(CiCAPI.content.constants.DATA_SOURCES.cic2);
-            }
-
-            if (isCiC3SourceEnabled) {
-                sources.push(CiCAPI.content.constants.DATA_SOURCES.cic3);
-            }
-
-            if (isMoobleSourceEnabled) {
-                sources.push(CiCAPI.content.constants.DATA_SOURCES.mooble);
-            }
-
-            if (sources.length > 0) {
-                setLoadingCatalogs(true);
-                try {
-                    catalogs = await CiCAPI.content.getCatalogs({
-                        sources
-                    });
-                    catalogs.unshift(SELECT_ALL_CATALOG);
-                } catch (e) {
-                    // console.log("Fetch Catalog Aborted... ", e.message);
-                    catalogs = [];
-                }
-            } else {
-                catalogs = [];
-            }
-
-
-            setLoadingCatalogs(false);
-
-            // make sure source is still enabled
-            catalogs = _assertEnabledSources(catalogs, sources, { isCiC2SourceEnabled, isMoobleSourceEnabled, isCiC3SourceEnabled });
+        let calcOptimalTilesFunc = () => setNbPerPage(_calculateOptimalNbTiles(domRef.current! as HTMLDivElement)),
+            fetchCatalogFunc = async () => {
+            let catalogs: Array<IPublicCatalog> = await _fetchCatalogs(isCiC2SourceEnabled, isCiC3SourceEnabled, isMoobleSourceEnabled, setLoadingCatalogs);
 
             setCatalogs(catalogs as []);
             setSelectedCatalogs(catalogs as []);
@@ -257,7 +225,6 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
             setCategories([]);
             setExpandedCategoryNodes([]);
             pageOffset.current = 0;
-
             // console.log("Catalogs Loaded!");
         },
             onConfigChanged = (configKey: string, value: ConfigValue, oldValue: ConfigValue) => {
@@ -306,24 +273,13 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
 
         fetchCatalogFunc(); // initial fetch
 
-        let rootContainer: HTMLDivElement = domRef.current! as HTMLDivElement,
-            boundingRect: DOMRect,
-            workWidth: number,
-            workHeight: number,
-            maxNbTilesPerPage: number = 0,
-            prodSquareSize: number = 105 + 4; // 105x105 gap of 4px
-
-        boundingRect = rootContainer.getBoundingClientRect();
-
-        workWidth = boundingRect.width - 10; // 10 => padding, borders
-        workHeight = boundingRect.height - 174; // 174 rest of UI
-
-        maxNbTilesPerPage += Math.ceil(workWidth / prodSquareSize) * Math.ceil(workHeight / prodSquareSize); // we want a bit of overflow
-
-        setNbPerPage(maxNbTilesPerPage);
+        
+        calcOptimalTilesFunc();
+        window.addEventListener("resize", calcOptimalTilesFunc);
 
         return () => {
             CiCAPI.content.unregisterToChanges(onConfigChanged);
+            window.removeEventListener("resize", calcOptimalTilesFunc);
         };
     }, []);
 
@@ -374,16 +330,16 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
                 catalogs={stateCatalogs}
                 selectedCatalogs={selectedCatalogs}
                 onCatalogSelected={setSelectedCatalogs}
-                onSelectOnlyCatalogSelected={(catalog: IPublicCatalog) => {setSelectedCatalogs(([catalog] as Array<IPublicCatalog>) as []), setNeedsCategoriesUpdate(true) }}
+                onSelectOnlyCatalogSelected={(catalog: IPublicCatalog) => { setSelectedCatalogs(([catalog] as Array<IPublicCatalog>) as []), setNeedsCategoriesUpdate(true) }}
             />
 
-            <CategorySelector 
+            <CategorySelector
                 categories={categories}
                 onCategorySelected={(categoryIDs: Array<string>, categoryName: string, expandedNodes: Array<string>) => { setSelectedCategoryIDs(categoryIDs as []), setSelectedCategoryName(categoryName), setExpandedCategoryNodes( expandedNodes as [] ) }}
                 selectedCategoryName={selectedCategoryName}
                 selectedCategoryIDs={selectedCategoryIDs}
                 expandedCategoryNodes={expandedCategoryNodes}
-             />
+            />
 
             <CatalogSearch searchQuery={searchQuery} setSearchQuery={setSearchQuery} searchFunc={fetchProductsFunc} />
 
@@ -434,6 +390,67 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
 }
 
 //=============================================================================
+function _calculateOptimalNbTiles(rootContainer: HTMLDivElement): number {
+    let boundingRect: DOMRect,
+        workWidth: number,
+        workHeight: number,
+        maxNbTilesPerPage: number = 0,
+        prodSquareSize: number = 105 + 4; // 105x105 gap of 4px
+
+    boundingRect = rootContainer.getBoundingClientRect();
+
+    workWidth = boundingRect.width - 10; // 10 => padding, borders
+    workHeight = boundingRect.height - 174; // 174 rest of UI
+
+    maxNbTilesPerPage += Math.ceil(workWidth / prodSquareSize) * Math.ceil(workHeight / prodSquareSize); // we want a bit of overflow
+
+    maxNbTilesPerPage = Math.max(maxNbTilesPerPage, MIN_NB_TILES_PER_PAGE);
+
+    return maxNbTilesPerPage;
+}
+
+//=============================================================================
+async function _fetchCatalogs(isCiC2SourceEnabled: boolean, isCiC3SourceEnabled: boolean, isMoobleSourceEnabled: boolean, setLoadingCatalogs: Function): Promise<Array<IPublicCatalog>> {
+    let catalogs: Array<IPublicCatalog>,
+        sources: Array<DATA_SOURCES> = [];
+
+    if (isCiC2SourceEnabled) {
+        sources.push(CiCAPI.content.constants.DATA_SOURCES.cic2);
+    }
+
+    if (isCiC3SourceEnabled) {
+        sources.push(CiCAPI.content.constants.DATA_SOURCES.cic3);
+    }
+
+    if (isMoobleSourceEnabled) {
+        sources.push(CiCAPI.content.constants.DATA_SOURCES.mooble);
+    }
+
+    if (sources.length > 0) {
+        setLoadingCatalogs(true);
+        try {
+            catalogs = await CiCAPI.content.getCatalogs({
+                sources
+            });
+            catalogs.unshift(SELECT_ALL_CATALOG);
+        } catch (e) {
+            // console.log("Fetch Catalog Aborted... ", e.message);
+            catalogs = [];
+        }
+    } else {
+        catalogs = [];
+    }
+
+
+    setLoadingCatalogs(false);
+
+    // make sure source is still enabled
+    catalogs = _assertEnabledSources(catalogs, sources, { isCiC2SourceEnabled, isMoobleSourceEnabled, isCiC3SourceEnabled });
+
+    return catalogs;
+}
+
+//=============================================================================
 function _getSearchCatalogsList(selectedCatalogs: Array<IPublicCatalog>): Array<IPublicCatalog> {
     let searchCatalogs: Array<IPublicCatalog> = [];
 
@@ -451,7 +468,7 @@ function _isSourceEnabled(src: DATA_SOURCES) {
 }
 
 //=============================================================================
-function _assertEnabledSources(catalogsToAssert: Array<IPublicCatalog>, sources: Array<string>, enabledSourceMap: IEnabledSourceMap ) {
+function _assertEnabledSources(catalogsToAssert: Array<IPublicCatalog>, sources: Array<string>, enabledSourceMap: IEnabledSourceMap) {
     let catalogs: Array<IPublicCatalog> = catalogsToAssert;
     Object.values(CiCAPI.content.constants.DATA_SOURCES)
         .forEach((value: string) => {
@@ -529,7 +546,7 @@ async function _fetchDataSourceProducts(pageOffset: number, source: DATA_SOURCES
 }
 
 //=============================================================================
-async function _fetchCatalogCategories( options: IFetchCatalogCategoriesOptions): Promise<IFetchCatalogCategoriesResults> {
+async function _fetchCatalogCategories(options: IFetchCatalogCategoriesOptions): Promise<IFetchCatalogCategoriesResults> {
     let
         { selectedCatalogs } = options,
         searchCatalogs: Array<IPublicCatalog> = _getSearchCatalogsList(selectedCatalogs),
@@ -542,11 +559,11 @@ async function _fetchCatalogCategories( options: IFetchCatalogCategoriesOptions)
             return {
                 categoryList: categoryResults
             } as IFetchCatalogCategoriesResults;
-        });  
-        } else {
+        });
+    } else {
 
-            return {
-                categoryList: categoriesMap.get(searchCatalogIds[0])
-            } as IFetchCatalogCategoriesResults;
-        }        
+        return {
+            categoryList: categoriesMap.get(searchCatalogIds[0])
+        } as IFetchCatalogCategoriesResults;
+    }
 }
