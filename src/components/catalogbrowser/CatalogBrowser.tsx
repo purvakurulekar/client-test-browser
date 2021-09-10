@@ -273,7 +273,6 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
 
         fetchCatalogFunc(); // initial fetch
 
-        
         calcOptimalTilesFunc();
         window.addEventListener("resize", calcOptimalTilesFunc);
 
