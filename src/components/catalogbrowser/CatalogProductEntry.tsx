@@ -22,8 +22,15 @@ function CatalogProductEntry(props: CatalogProductEntryProps) {
         imageContent = (<div className="catalog-product-no-image"><span>No Image</span></div>);
     }
 
+    function _handleDragStart(event: React.DragEvent<HTMLDivElement>) {
+        event.dataTransfer?.setData("text/plain", JSON.stringify({
+            event: "add-product",
+            data: props.product
+        }));
+    }
+    
     return (
-        <div className={classNames.join(" ")} onClick={() => props.onProductSelected(props.product)} onDoubleClick={() => props.onAddProduct(props.product)}>
+        <div className={classNames.join(" ")} onClick={() => props.onProductSelected(props.product)} onDoubleClick={() => props.onAddProduct(props.product)} onDragStart={_handleDragStart} >
             <div className="catalog-product-image-container">
                 {imageContent}
             </div>
