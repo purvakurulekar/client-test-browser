@@ -28,7 +28,6 @@ stages:
           inputs:
             command: 'install'
             customRegistry: useNpmrc
-            # customFeed: cicclient
         - bash: |
             echo "Listing PreBuild... $stage_env $cicapi_url"
             ls -la
@@ -43,7 +42,7 @@ stages:
             command: publish
             workingDir: dist/
             publishRegistry: useFeed
-            publishFeed: Content Platform/cicclient
+            publishFeed: Content Platform/content-platform-npm
         - bash: |
             echo "Listing PreBuild... $stage_env $cicapi_url"
             ls -la
