@@ -12,9 +12,6 @@
     "deploy": "npm run build-lib && cd dist/ && npm publish",
     "test": "jest --verbose ./unit_tests/"
   },
-  "publishConfig": {
-    "registry": "http://cic-npmregistry-dev-ci.centralus.azurecontainer.io:4873"
-  },
   "repository": {
     "type": "git",
     "url": "https://2020Development@dev.azure.com/2020Development/Content%20Platform/_git/client-catalogbrowser"

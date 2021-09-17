@@ -22,6 +22,13 @@ stages:
           inputs:
             versionSpec: "14.x"
           displayName: "Install Node.js"
+        - script: |
+            rm -v package-lock.json
+        - task: Npm@1
+          inputs:
+            command: 'install'
+            customRegistry: useNpmrc
+            # customFeed: cicclient
         - bash: |
             echo "Listing PreBuild... $stage_env $cicapi_url"
             ls -la
@@ -30,26 +37,29 @@ stages:
             stage_env: "dev"
             cicapi_url: "$(cicapi_url_dev)"
         - script: |
-            rm -v .npmrc
-            rm -v package-lock.json
-            npm config set registry http://cic-npmregistry-dev-ci.centralus.azurecontainer.io:4873/
-            npm install -D client-ui-toolkit@latest @types/client-api@latest
-            npm config delete registry
-            npm install
-            npm config set registry http://cic-npmregistry-dev-ci.centralus.azurecontainer.io:4873/
-            npm set //cic-npmregistry-dev-ci.centralus.azurecontainer.io:4873/:_authToken $(verdaccio_token)
-            npm run test && npm run deploy && npm run pipeline-setup && npm run build-dev && npm run build-prod
-            # npm run test
-            # npm run pipeline-setup
-            # npm run build-prod
-            # npm run build-dev
+            npm run build-lib
+        - task: Npm@1
+          inputs:
+            command: publish
+            workingDir: dist/
+            publishRegistry: useFeed
+            publishFeed: Content Platform/cicclient
+        - bash: |
+            echo "Listing PreBuild... $stage_env $cicapi_url"
+            ls -la
+            echo "Listing PreBuild Complete!"
+          env:
+            stage_env: "dev"
+            cicapi_url: "$(cicapi_url_dev)"
+        - script: |
+            npm run pipeline-setup && npm run build-dev && npm run build-prod
           env:
             stage_env: "dev"
             cicapi_url: "$(cicapi_url_dev)"
           displayName: "npm install, run webpack"
         - bash: |
             echo "Listing PostBuild..."
-            ls -la dist/
+            ls -la
             echo "Listing PostBuild Complete!"
         - task: AzureStaticWebApp@0
           inputs:
