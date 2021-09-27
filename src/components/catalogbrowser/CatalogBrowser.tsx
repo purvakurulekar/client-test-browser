@@ -84,6 +84,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
         [selectedProduct, setSelectedProduct] = useState(null),
         [searchQuery, setSearchQuery] = useState(""),
         [isSettingsVisible, setSettingsVisible] = useState(false),
+        [showHiddenCategories, setShowHiddenCategories] = useState(false),
 
         // sources control
         [isCiC2SourceEnabled, setCiC2SourceEnabled] = useState(false),
@@ -258,6 +259,8 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
 
                 // console.log("CONFIG CHANGED, FETCHING CATALOG: ", isFetchingCatalogs);
                 if (isFetchingCatalogs) {
+                    showHiddenCategories = _getShowHiddenCategories();
+                    setShowHiddenCategories( showHiddenCategories );
                     fetchCatalogFunc();
                 }
             };
@@ -270,6 +273,8 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
         setMoobleSourceEnabled(isMoobleSourceEnabled);
         isCiC3SourceEnabled = _isSourceEnabled(CiCAPI.content.constants.DATA_SOURCES.cic3) as boolean;
         setCiC3SourceEnabled(isCiC3SourceEnabled);
+        showHiddenCategories = _getShowHiddenCategories();
+        setShowHiddenCategories( showHiddenCategories );
 
         fetchCatalogFunc(); // initial fetch
 
@@ -334,10 +339,11 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
 
             <CategorySelector
                 categories={categories}
-                onCategorySelected={(categoryIDs: Array<string>, categoryName: string, expandedNodes: Array<string>) => { setSelectedCategoryIDs(categoryIDs as []), setSelectedCategoryName(categoryName), setExpandedCategoryNodes( expandedNodes as [] ) }}
+                onCategorySelected={(categoryIDs: Array<string>, categoryName: string, expandedNodes: Array<string>) => { setSelectedCategoryIDs(categoryIDs as []), setSelectedCategoryName(categoryName), setExpandedCategoryNodes( expandedNodes as [] ), setSearchQuery( "" ) }}
                 selectedCategoryName={selectedCategoryName}
                 selectedCategoryIDs={selectedCategoryIDs}
                 expandedCategoryNodes={expandedCategoryNodes}
+                showHiddenCategories={showHiddenCategories}
             />
 
             <CatalogSearch searchQuery={searchQuery} setSearchQuery={setSearchQuery} searchFunc={fetchProductsFunc} />
@@ -464,6 +470,16 @@ function _getSearchCatalogsList(selectedCatalogs: Array<IPublicCatalog>): Array<
 //=============================================================================
 function _isSourceEnabled(src: DATA_SOURCES) {
     return CiCAPI.getConfig(`sources.${src.toLowerCase()}_enabled`);
+}
+
+//=============================================================================
+function _getShowHiddenCategories() : boolean {
+    let status: string =  CiCAPI.getConfig("cic3.showHiddenCategories") as string, 
+    result: boolean = false;
+    if ( status === "true" ) {
+        result = true;
+    }
+    return result;
 }
 
 //=============================================================================

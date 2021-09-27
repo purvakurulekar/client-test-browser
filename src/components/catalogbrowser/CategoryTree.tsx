@@ -9,6 +9,7 @@ interface ICategoryListProps {
   categories: Array<ICommonGroup>,
   selectedCategoryIDs: Array<string>,
   expandedCategoryNodes: Array<string>,
+  showHiddenCategories: boolean,
   onCategorySelected: Function
 }
 let sendSelection: boolean = true,
@@ -93,6 +94,25 @@ const CheckNeedsSelection = ( e: KeyboardEvent ) => {
   }
 };
 
+function FilterCategories( category: ICommonGroup, props: ICategoryListProps): ICommonGroup
+{
+  let result: ICommonGroup = { name: "", code: "", groups: [], visible: false};
+  if ( ( category.visible === true ) || ( props.showHiddenCategories === true ) ) {
+    if ( Array.isArray(category.groups)) {
+      for (let loop = 0; loop < category.groups?.length; loop++) {
+        let cat = FilterCategories( category.groups[loop], props );
+        if ( ( cat.visible === true ) || ( props.showHiddenCategories === true ) ) {
+          result.groups?.push( cat );
+        }
+      }
+    }
+    result.name = category.name;
+    result.code = category.code;
+    result.visible = category.visible;
+  }
+  return result;
+};
+
 function CategoryTree( props: ICategoryListProps) {
   const classes = useStyles();
   window.addEventListener("keydown", (e)=> {
@@ -102,13 +122,14 @@ function CategoryTree( props: ICategoryListProps) {
     CheckNeedsSelection(e);
   });
   categoryProps = props;
-  let handleNodeSelect = ( event: object, nodeIds: Array<string>) => handleSelection( props, nodeIds ),
+  let handleNodeSelect = ( event: object, nodeIds: Array<string>) => handleSelection( categoryProps, nodeIds ),
   handleNodeToggle = ( event: object, nodeIds: Array<string>) => handleExpansion( nodeIds ),
-  selectAll: ICommonGroup = {code: "All Items", name: "All Items", groups: props.categories };
+  selectAll: ICommonGroup = {code: "All Items", name: "All Items", groups: categoryProps.categories as [], visible: true };
+  selectAll = FilterCategories( selectAll, categoryProps );
   const renderTree = (category: ICommonGroup) => (
     <TreeItem key={category.code} nodeId={category.code} label={category.name} onIconClick={iconSelection}
     onLabelClick={labelSelection} classes={{ label: classes.treeItem }}>
-      {Array.isArray(category.groups) ? category.groups.map((node) => renderTree(node)) : null}
+      {Array.isArray(category.groups) ? category.groups.map(( node : ICommonGroup) => renderTree(node)) : null}
     </TreeItem>
     );
 
