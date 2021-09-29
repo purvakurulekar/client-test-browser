@@ -45,7 +45,8 @@ interface IFetchDataSourceProductResults {
 }
 
 interface IFetchCatalogCategoriesOptions {
-    selectedCatalogs: Array<IPublicCatalog>
+    selectedCatalogs: Array<IPublicCatalog>,
+    showHiddenCategories: boolean
 }
 
 interface IFetchCatalogCategoriesResults {
@@ -84,6 +85,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
         [selectedProduct, setSelectedProduct] = useState(null),
         [searchQuery, setSearchQuery] = useState(""),
         [isSettingsVisible, setSettingsVisible] = useState(false),
+        [showHiddenCategories, setShowHiddenCategories] = useState(_getShowHiddenCategories()),
 
         // sources control
         [isCiC2SourceEnabled, setCiC2SourceEnabled] = useState(false),
@@ -137,7 +139,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
                 setSelectedCategoryName("");
                 setSelectedCategoryIDs([]);
                 setExpandedCategoryNodes([]);
-                let fetchCategoryOptions: IFetchCatalogCategoriesOptions = { selectedCatalogs };
+                let fetchCategoryOptions: IFetchCatalogCategoriesOptions = { selectedCatalogs, showHiddenCategories };
                 _fetchCatalogCategories(fetchCategoryOptions).then((result: IFetchCatalogCategoriesResults) => {
                     setCategories(result.categoryList as []);
                 });
@@ -258,6 +260,8 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
 
                 // console.log("CONFIG CHANGED, FETCHING CATALOG: ", isFetchingCatalogs);
                 if (isFetchingCatalogs) {
+                    setShowHiddenCategories( _getShowHiddenCategories() );
+                    categoriesMap.clear();
                     fetchCatalogFunc();
                 }
             };
@@ -334,10 +338,11 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
 
             <CategorySelector
                 categories={categories}
-                onCategorySelected={(categoryIDs: Array<string>, categoryName: string, expandedNodes: Array<string>) => { setSelectedCategoryIDs(categoryIDs as []), setSelectedCategoryName(categoryName), setExpandedCategoryNodes( expandedNodes as [] ) }}
+                onCategorySelected={(categoryIDs: Array<string>, categoryName: string, expandedNodes: Array<string>) => { setSelectedCategoryIDs(categoryIDs as []), setSelectedCategoryName(categoryName), setExpandedCategoryNodes( expandedNodes as [] ), setSearchQuery( "" ) }}
                 selectedCategoryName={selectedCategoryName}
                 selectedCategoryIDs={selectedCategoryIDs}
                 expandedCategoryNodes={expandedCategoryNodes}
+                showHiddenCategories={showHiddenCategories}
             />
 
             <CatalogSearch searchQuery={searchQuery} setSearchQuery={setSearchQuery} searchFunc={fetchProductsFunc} />
@@ -467,6 +472,11 @@ function _isSourceEnabled(src: DATA_SOURCES) {
 }
 
 //=============================================================================
+function _getShowHiddenCategories() : boolean {
+    return /true/.test(CiCAPI.getConfig("cic3.showHiddenCategories") as string);
+}
+
+//=============================================================================
 function _assertEnabledSources(catalogsToAssert: Array<IPublicCatalog>, sources: Array<string>, enabledSourceMap: IEnabledSourceMap) {
     let catalogs: Array<IPublicCatalog> = catalogsToAssert;
     Object.values(CiCAPI.content.constants.DATA_SOURCES)
@@ -549,11 +559,12 @@ async function _fetchCatalogCategories(options: IFetchCatalogCategoriesOptions):
     let
         { selectedCatalogs } = options,
         searchCatalogs: Array<IPublicCatalog> = _getSearchCatalogsList(selectedCatalogs),
-        searchCatalogIds: Array<string>;
+        searchCatalogIds: Array<string>,
+        visibleOnly: boolean = options.showHiddenCategories ? false :  true;
 
         searchCatalogIds = searchCatalogs.map((publicCatalog: IPublicCatalog) => publicCatalog.id.substr(publicCatalog.source.length+1));
         if ( !categoriesMap.has(searchCatalogIds[0]) ){
-        return CiCAPI.content.getCategoriesForCatalog(searchCatalogIds[0]).then( (categoryResults: Array<ICommonGroup> ) => {
+        return CiCAPI.content.getCategoriesForCatalog(searchCatalogIds[0], visibleOnly).then( (categoryResults: Array<ICommonGroup> ) => {
             categoriesMap.set(searchCatalogIds[0], categoryResults);
             return {
                 categoryList: categoryResults
