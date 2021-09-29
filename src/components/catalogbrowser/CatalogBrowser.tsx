@@ -134,13 +134,12 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
             updateProductsFunc();
         },
         updateCategoriesFunc = async () => {
-            let offset = pageOffset.current,
-            showHidden: boolean = showHiddenCategories as boolean;
+            let offset = pageOffset.current;
             if (isCiC3SourceEnabled && (offset < totalCiC3Results || offset === 0)) {
                 setSelectedCategoryName("");
                 setSelectedCategoryIDs([]);
                 setExpandedCategoryNodes([]);
-                let fetchCategoryOptions: IFetchCatalogCategoriesOptions = { selectedCatalogs, showHiddenCategories: showHidden };
+                let fetchCategoryOptions: IFetchCatalogCategoriesOptions = { selectedCatalogs, showHiddenCategories };
                 _fetchCatalogCategories(fetchCategoryOptions).then((result: IFetchCatalogCategoriesResults) => {
                     setCategories(result.categoryList as []);
                 });
