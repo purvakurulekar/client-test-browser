@@ -46,7 +46,7 @@ interface IFetchDataSourceProductResults {
 
 interface IFetchCatalogCategoriesOptions {
     selectedCatalogs: Array<IPublicCatalog>,
-    showHiddenCategories: boolean
+    showHiddenContent: boolean
 }
 
 interface IFetchCatalogCategoriesResults {
@@ -85,7 +85,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
         [selectedProduct, setSelectedProduct] = useState(null),
         [searchQuery, setSearchQuery] = useState(""),
         [isSettingsVisible, setSettingsVisible] = useState(false),
-        [showHiddenCategories, setShowHiddenCategories] = useState(_getShowHiddenCategories()),
+        [showHiddenContent, setShowHiddenContent] = useState(_getShowHiddenContent()),
 
         // sources control
         [isCiC2SourceEnabled, setCiC2SourceEnabled] = useState(false),
@@ -139,7 +139,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
                 setSelectedCategoryName("");
                 setSelectedCategoryIDs([]);
                 setExpandedCategoryNodes([]);
-                let fetchCategoryOptions: IFetchCatalogCategoriesOptions = { selectedCatalogs, showHiddenCategories };
+                let fetchCategoryOptions: IFetchCatalogCategoriesOptions = { selectedCatalogs, showHiddenContent };
                 _fetchCatalogCategories(fetchCategoryOptions).then((result: IFetchCatalogCategoriesResults) => {
                     setCategories(result.categoryList as []);
                 });
@@ -260,7 +260,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
 
                 // console.log("CONFIG CHANGED, FETCHING CATALOG: ", isFetchingCatalogs);
                 if (isFetchingCatalogs) {
-                    setShowHiddenCategories( _getShowHiddenCategories() );
+                    setShowHiddenContent( _getShowHiddenContent() );
                     categoriesMap.clear();
                     fetchCatalogFunc();
                 }
@@ -342,7 +342,6 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
                 selectedCategoryName={selectedCategoryName}
                 selectedCategoryIDs={selectedCategoryIDs}
                 expandedCategoryNodes={expandedCategoryNodes}
-                showHiddenCategories={showHiddenCategories}
             />
 
             <CatalogSearch searchQuery={searchQuery} setSearchQuery={setSearchQuery} searchFunc={fetchProductsFunc} />
@@ -472,8 +471,8 @@ function _isSourceEnabled(src: DATA_SOURCES) {
 }
 
 //=============================================================================
-function _getShowHiddenCategories() : boolean {
-    return /true/.test(CiCAPI.getConfig("cic3.showHiddenCategories") as string);
+function _getShowHiddenContent() : boolean {
+    return /true/.test(CiCAPI.getConfig("cic3.showHiddenContent") as string);
 }
 
 //=============================================================================
@@ -560,7 +559,7 @@ async function _fetchCatalogCategories(options: IFetchCatalogCategoriesOptions):
         { selectedCatalogs } = options,
         searchCatalogs: Array<IPublicCatalog> = _getSearchCatalogsList(selectedCatalogs),
         searchCatalogIds: Array<string>,
-        visibleOnly: boolean = options.showHiddenCategories ? false :  true;
+        visibleOnly: boolean = options.showHiddenContent ? false :  true;
 
         searchCatalogIds = searchCatalogs.map((publicCatalog: IPublicCatalog) => publicCatalog.id.substr(publicCatalog.source.length+1));
         if ( !categoriesMap.has(searchCatalogIds[0]) ){

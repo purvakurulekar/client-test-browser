@@ -9,8 +9,7 @@ interface CategorySelectorProps {
     onCategorySelected: Function,
     selectedCategoryName: string,
     selectedCategoryIDs: Array<string>,
-    expandedCategoryNodes: Array<string>,
-    showHiddenCategories: boolean
+    expandedCategoryNodes: Array<string>
 }
 
 export default function CategorySelector(props: CategorySelectorProps) {
@@ -43,7 +42,7 @@ export default function CategorySelector(props: CategorySelectorProps) {
     if (isOpened) {
         categoryTreeElement = (
             <CategoryTree {...Object.assign({}, props, props.selectedCategoryIDs, 
-                props.expandedCategoryNodes, props.showHiddenCategories, { onCategorySelected })} />
+                props.expandedCategoryNodes, { onCategorySelected })} />
         );
     }
     
