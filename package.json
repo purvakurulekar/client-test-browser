@@ -1,6 +1,6 @@
 {
   "name": "client-test-browser",
-  "version": "1.2.15",
+  "version": "1.2.16",
   "description": "Client Test Catalog Browser, catalog browser using Content Platform API",
   "main": "index.js",
   "scripts": {
@@ -59,7 +59,7 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
     "@testing-library/user-event": "^13.1.9",
-    "@types/client-api": "^0.10.20",
+    "@types/client-api": "^0.10.21",
     "@types/copy-webpack-plugin": "^8.0.0",
     "@types/jest": "^26.0.23",
     "@types/node": "^16.3.1",

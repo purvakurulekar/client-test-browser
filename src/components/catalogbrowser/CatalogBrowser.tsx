@@ -36,7 +36,8 @@ interface IFetchDataSourceProductsOptions {
     selectedCatalogs: Array<IPublicCatalog>,
     selectedCategories: Array<string>,
     productList?: Array<IPublicProduct>,
-    totalResults?: number
+    totalResults?: number,
+    showHiddenContent: boolean
 }
 
 interface IFetchDataSourceProductResults {
@@ -147,7 +148,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
         },
         updateProductsFunc = async () => {
             let searchCatalogs: Array<IPublicCatalog> | undefined = _getSearchCatalogsList(selectedCatalogs),
-                fetchProductOptions: IFetchDataSourceProductsOptions = { searchQuery, nbPerPage, selectedCatalogs, selectedCategories: selectedCategoryIDs},
+                fetchProductOptions: IFetchDataSourceProductsOptions = { searchQuery, nbPerPage, selectedCatalogs, selectedCategories: selectedCategoryIDs, showHiddenContent},
                 offset: Number = pageOffset.current;
 
             // console.log("Updating product list...");
@@ -511,16 +512,17 @@ function _assertEnabledSources(catalogsToAssert: Array<IPublicCatalog>, sources:
 //=============================================================================
 async function _fetchDataSourceProducts(pageOffset: number, source: DATA_SOURCES, options: IFetchDataSourceProductsOptions): Promise<IFetchDataSourceProductResults | undefined> {
     let
-        { searchQuery, nbPerPage, selectedCatalogs, selectedCategories, productList, totalResults } = options,
+        { searchQuery, nbPerPage, selectedCatalogs, selectedCategories, productList, totalResults, showHiddenContent } = options,
         searchCatalogs: Array<IPublicCatalog> = _getSearchCatalogsList(selectedCatalogs),
         searchCatalogIds: Array<string>,
-        catalogProductList: Array<IPublicProduct> = productList || [];
+        catalogProductList: Array<IPublicProduct> = productList || [], 
+        onlyVisible: boolean = showHiddenContent ? false :  true;;
 
     searchCatalogIds = searchCatalogs
         .filter((publicCatalog: IPublicCatalog) => publicCatalog.source === source)
         .map((publicCatalog: IPublicCatalog) => publicCatalog.id);
 
-    return CiCAPI.content.findProducts(searchQuery ?? "", searchCatalogIds, { nbPerPage, offset: pageOffset, categoryNames: selectedCategories })
+    return CiCAPI.content.findProducts(searchQuery ?? "", searchCatalogIds, { nbPerPage, offset: pageOffset, categoryNames: selectedCategories, onlyVisible })
         .then((productResults: IProductResults) => {
             let combinedProducts: Array<IPublicProduct>,
                 existingProductIds: Array<string>;
