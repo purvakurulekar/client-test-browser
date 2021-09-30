@@ -516,7 +516,7 @@ async function _fetchDataSourceProducts(pageOffset: number, source: DATA_SOURCES
         searchCatalogs: Array<IPublicCatalog> = _getSearchCatalogsList(selectedCatalogs),
         searchCatalogIds: Array<string>,
         catalogProductList: Array<IPublicProduct> = productList || [], 
-        onlyVisible: boolean = showHiddenContent ? false :  true;;
+        onlyVisible: boolean | undefined = showHiddenContent === true ? false : undefined;
 
     searchCatalogIds = searchCatalogs
         .filter((publicCatalog: IPublicCatalog) => publicCatalog.source === source)
