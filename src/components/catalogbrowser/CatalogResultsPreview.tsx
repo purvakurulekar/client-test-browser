@@ -5,10 +5,6 @@ import { faList, faThLarge } from "@fortawesome/free-solid-svg-icons";
 interface ICatalogResultsPreview {
     totalCatalogs: number,
     totalResults: number,
-    totalMoobleResults?: number,
-    totalCiC2Results?: number,
-    totalCiC3Results?: number,
-    nbActiveSources: number,
     children: any
 }
 
@@ -22,10 +18,6 @@ export default function CatalogResultsPreview(props: ICatalogResultsPreview) {
     }
 
     countSummary += ` / ${props.totalResults} results`;
-
-    if (props.nbActiveSources > 1) {
-        countSummary += ` / Mooble (${props.totalMoobleResults}) - CiC2 (${props.totalCiC2Results}) - CiC3 (${props.totalCiC3Results})`;
-    }
 
     return (
         <div className="catalog-results-preview">

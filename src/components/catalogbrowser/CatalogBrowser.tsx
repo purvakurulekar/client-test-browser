@@ -54,17 +54,12 @@ interface IFetchCatalogCategoriesResults {
     categoryList: Array<ICommonGroup>
 }
 
-interface IEnabledSourceMap {
-    [key: string]: boolean
-}
-
 export { SELECT_ALL_CATALOG };
 
 // make fetch request change the page offset ?!
 //=============================================================================
 export default function CatalogBrowser(props: ICatalogBrowserProps) {
-    let nbActiveSources: number,
-        pageOffset = useRef(0),
+    let pageOffset = useRef(0),
         domRef = useRef(null),
 
         [nbPerPage, setNbPerPage] = useState(DEFAULT_NB_PER_PAGE),
@@ -78,8 +73,6 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
         [needsCategoriesUpdate, setNeedsCategoriesUpdate] = useState(false),
 
         // product lists
-        [cic2CatalogProducts, setCiC2CatalogProducts] = useState([]),
-        [moobleCatalogProducts, setMoobleCatalogProducts] = useState([]),
         [cic3CatalogProducts, setCiC3CatalogProducts] = useState([]),
 
         [isLoadingCatalogs, setLoadingCatalogs] = useState(false),
@@ -88,18 +81,6 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
         [isSettingsVisible, setSettingsVisible] = useState(false),
         [showHiddenContent, setShowHiddenContent] = useState(_getShowHiddenContent()),
 
-        // sources control
-        [isCiC2SourceEnabled, setCiC2SourceEnabled] = useState(false),
-        [isMoobleSourceEnabled, setMoobleSourceEnabled] = useState(false),
-        [isCiC3SourceEnabled, setCiC3SourceEnabled] = useState(false),
-
-        // put in custom hook ?!
-        [totalCiC2Results, setTotalCiC2Results] = useState(0),
-        [isCiC2ProductsFetching, setCiC2ProductsFetching] = useState(false),
-
-        [totalMoobleResults, setTotalMoobleResults] = useState(0),
-        [isMoobleProductsFetching, setMoobleProductsFetching] = useState(false),
-
         [totalCiC3Results, setTotalCiC3Results] = useState(0),
         [isCiC3ProductsFetching, setCiC3ProductsFetching] = useState(false),
 
@@ -107,10 +88,6 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
         previewProps,
         resetProductsFunc = () => {
             pageOffset.current = 0;
-            setCiC2CatalogProducts([]);
-            setMoobleCatalogProducts([]);
-            setTotalCiC2Results(0);
-            setTotalMoobleResults(0);
             setCiC3CatalogProducts([]);
             setTotalCiC3Results(0);
         },
@@ -120,7 +97,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
             }
         },
         fetchProductsFunc = () => {
-            if (stateCatalogs.length > 0 || (stateCatalogs.length === 0 && (totalCiC2Results + totalMoobleResults + totalCiC3Results) > 0)) {
+            if (stateCatalogs.length > 0 || (stateCatalogs.length === 0 && totalCiC3Results > 0)) {
                 resetProductsFunc();
                 if (needsCategoriesUpdate) {
                     setNeedsCategoriesUpdate(false);
@@ -136,7 +113,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
         },
         updateCategoriesFunc = async () => {
             let offset = pageOffset.current;
-            if (isCiC3SourceEnabled && (offset < totalCiC3Results || offset === 0)) {
+            if (offset < totalCiC3Results || offset === 0) {
                 setSelectedCategoryName("");
                 setSelectedCategoryIDs([]);
                 setExpandedCategoryNodes([]);
@@ -148,39 +125,12 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
         },
         updateProductsFunc = async () => {
             let searchCatalogs: Array<IPublicCatalog> | undefined = _getSearchCatalogsList(selectedCatalogs),
-                fetchProductOptions: IFetchDataSourceProductsOptions = { searchQuery, nbPerPage, selectedCatalogs, selectedCategories: selectedCategoryIDs, showHiddenContent},
+                fetchProductOptions: IFetchDataSourceProductsOptions = { searchQuery, nbPerPage, selectedCatalogs, selectedCategories: selectedCategoryIDs, showHiddenContent },
                 offset: Number = pageOffset.current;
 
             // console.log("Updating product list...");
             if (searchCatalogs.length > 0) {
-                if (isCiC2SourceEnabled && !isCiC2ProductsFetching && (offset < totalCiC2Results || offset === 0)) {
-                    setCiC2ProductsFetching(true);
-                    fetchProductOptions.productList = cic2CatalogProducts;
-                    fetchProductOptions.totalResults = totalCiC2Results;
-                    _fetchDataSourceProducts(pageOffset.current, CiCAPI.content.constants.DATA_SOURCES.cic2, fetchProductOptions)
-                        .then((result: IFetchDataSourceProductResults | undefined) => {
-                            setCiC2ProductsFetching(false);
-                            if (result !== void (0)) {
-                                setCiC2CatalogProducts(result?.productList as []);
-                                setTotalCiC2Results(result?.totalResults);
-                            }
-                        });
-                }
-
-                if (isMoobleSourceEnabled && !isMoobleProductsFetching && (offset < totalMoobleResults || offset === 0)) {
-                    setMoobleProductsFetching(true);
-                    fetchProductOptions.productList = moobleCatalogProducts;
-                    fetchProductOptions.totalResults = totalMoobleResults;
-                    _fetchDataSourceProducts(pageOffset.current, CiCAPI.content.constants.DATA_SOURCES.mooble, fetchProductOptions)
-                        .then((result: IFetchDataSourceProductResults | undefined) => {
-                            setMoobleProductsFetching(false);
-                            if (result !== void (0)) {
-                                setMoobleCatalogProducts(result?.productList as []);
-                                setTotalMoobleResults(result?.totalResults);
-                            }
-                        });
-                }
-                if (isCiC3SourceEnabled && !isCiC3ProductsFetching && (offset < totalCiC3Results || offset === 0)) {
+                if (!isCiC3ProductsFetching && (offset < totalCiC3Results || offset === 0)) {
                     setCiC3ProductsFetching(true);
                     fetchProductOptions.productList = cic3CatalogProducts;
                     fetchProductOptions.totalResults = totalCiC3Results;
@@ -196,40 +146,25 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
             }
         };
 
-    nbActiveSources = 0;
-    if (isCiC2SourceEnabled) {
-        nbActiveSources++;
-    }
-    if (isCiC3SourceEnabled) {
-        nbActiveSources++;
-    }
-    if (isMoobleSourceEnabled) {
-        nbActiveSources++;
-    }
-    nbPerPage = Math.round(nbPerPage / nbActiveSources);
-
     previewProps = {
         totalCatalogs: selectedCatalogs.length,
         totalResults: 0,
-        totalCiC2Results: totalCiC2Results,
-        totalMoobleResults: totalMoobleResults,
-        totalCiC3Results: totalCiC3Results,
-        nbActiveSources: nbActiveSources
+        totalCiC3Results: totalCiC3Results
     };
     useEffect(() => {
         let calcOptimalTilesFunc = () => setNbPerPage(_calculateOptimalNbTiles(domRef.current! as HTMLDivElement)),
             fetchCatalogFunc = async () => {
-            let catalogs: Array<IPublicCatalog> = await _fetchCatalogs(isCiC2SourceEnabled, isCiC3SourceEnabled, isMoobleSourceEnabled, setLoadingCatalogs);
+                let catalogs: Array<IPublicCatalog> = await _fetchCatalogs(setLoadingCatalogs);
 
-            setCatalogs(catalogs as []);
-            setSelectedCatalogs(catalogs as []);
-            setSelectedCategoryName("");
-            setSelectedCategoryIDs([]);
-            setCategories([]);
-            setExpandedCategoryNodes([]);
-            pageOffset.current = 0;
-            // console.log("Catalogs Loaded!");
-        },
+                setCatalogs(catalogs as []);
+                setSelectedCatalogs(catalogs as []);
+                setSelectedCategoryName("");
+                setSelectedCategoryIDs([]);
+                setCategories([]);
+                setExpandedCategoryNodes([]);
+                pageOffset.current = 0;
+                // console.log("Catalogs Loaded!");
+            },
             onConfigChanged = (configKey: string, value: ConfigValue, oldValue: ConfigValue) => {
                 let isFetchingCatalogs: boolean = configKey === "reset" || CATALOG_CONFIG_CHANGED_RE.test(configKey); // direct config
 
@@ -244,37 +179,15 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
                     }
                 }
 
-                if (configKey.includes(CiCAPI.content.constants.DATA_SOURCES.cic2.toLocaleLowerCase())) {
-                    isCiC2SourceEnabled = value as boolean;
-                    setCiC2SourceEnabled(isCiC2SourceEnabled);
-                }
-
-                if (configKey.includes(CiCAPI.content.constants.DATA_SOURCES.mooble.toLocaleLowerCase())) {
-                    isMoobleSourceEnabled = value as boolean;
-                    setMoobleSourceEnabled(isMoobleSourceEnabled);
-                }
-
-                if (configKey.includes(CiCAPI.content.constants.DATA_SOURCES.cic3.toLocaleLowerCase())) {
-                    isCiC3SourceEnabled = value as boolean;
-                    setCiC3SourceEnabled(isCiC3SourceEnabled);
-                }
-
                 // console.log("CONFIG CHANGED, FETCHING CATALOG: ", isFetchingCatalogs);
                 if (isFetchingCatalogs) {
-                    setShowHiddenContent( _getShowHiddenContent() );
+                    setShowHiddenContent(_getShowHiddenContent());
                     categoriesMap.clear();
                     fetchCatalogFunc();
                 }
             };
 
         CiCAPI.content.registerToChanges(onConfigChanged);
-
-        isCiC2SourceEnabled = _isSourceEnabled(CiCAPI.content.constants.DATA_SOURCES.cic2) as boolean;
-        setCiC2SourceEnabled(isCiC2SourceEnabled);
-        isMoobleSourceEnabled = _isSourceEnabled(CiCAPI.content.constants.DATA_SOURCES.mooble) as boolean;
-        setMoobleSourceEnabled(isMoobleSourceEnabled);
-        isCiC3SourceEnabled = _isSourceEnabled(CiCAPI.content.constants.DATA_SOURCES.cic3) as boolean;
-        setCiC3SourceEnabled(isCiC3SourceEnabled);
 
         fetchCatalogFunc(); // initial fetch
 
@@ -290,40 +203,22 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
     // no need to wait here, if catalogs change lets update directly
     useEffect(() => { fetchProductsFunc(); }, [selectedCatalogs, searchQuery, selectedCategoryIDs]);
 
-    if (isLoadingCatalogs || isCiC2ProductsFetching || isMoobleProductsFetching || isCiC3ProductsFetching) {
+    if (isLoadingCatalogs || isCiC3ProductsFetching) {
         loader = (<Loader />);
     }
 
     if (pageOffset.current === 0) {
-        if (isCiC2ProductsFetching) {
-            previewProps.totalCiC2Results = 0;
-        }
-
-        if (isMoobleProductsFetching) {
-            previewProps.totalMoobleResults = 0;
-        }
-
         if (isCiC3ProductsFetching) {
             previewProps.totalCiC3Results = 0;
         }
 
-        if (isCiC2ProductsFetching || isMoobleProductsFetching || isCiC3ProductsFetching) {
+        if (isCiC3ProductsFetching) {
             previewProps.totalResults = 0;
         }
 
     }
     previewProps.totalResults = 0;
-    if (isCiC2SourceEnabled) {
-        previewProps.totalResults += previewProps.totalCiC2Results;
-    }
-
-    if (isMoobleSourceEnabled) {
-        previewProps.totalResults += previewProps.totalMoobleResults;
-    }
-
-    if (isCiC3SourceEnabled) {
-        previewProps.totalResults += previewProps.totalCiC3Results;
-    }
+    previewProps.totalResults += previewProps.totalCiC3Results;
 
     return (
         <div ref={domRef} className="catalog-browser">
@@ -339,7 +234,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
 
             <CategorySelector
                 categories={categories}
-                onCategorySelected={(categoryIDs: Array<string>, categoryName: string, expandedNodes: Array<string>) => { setSelectedCategoryIDs(categoryIDs as []), setSelectedCategoryName(categoryName), setExpandedCategoryNodes( expandedNodes as [] ), setSearchQuery( "" ) }}
+                onCategorySelected={(categoryIDs: Array<string>, categoryName: string, expandedNodes: Array<string>) => { setSelectedCategoryIDs(categoryIDs as []), setSelectedCategoryName(categoryName), setExpandedCategoryNodes(expandedNodes as []), setSearchQuery("") }}
                 selectedCategoryName={selectedCategoryName}
                 selectedCategoryIDs={selectedCategoryIDs}
                 expandedCategoryNodes={expandedCategoryNodes}
@@ -351,33 +246,14 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
                 {loader}
             </CatalogResultsPreview>
 
-            <CombinedCatalogProductList onFetchRequest={fetchMoreProductsRequests} isFetching={isMoobleProductsFetching || isCiC2ProductsFetching || isCiC3ProductsFetching}>
-                {isMoobleSourceEnabled &&
-                    <CatalogProductList
-                        isLoading={isMoobleProductsFetching}
-                        products={moobleCatalogProducts}
-                        selectedProduct={selectedProduct}
-                        onProductSelected={setSelectedProduct}
-                        onAddProduct={addProduct}
-                    />}
-
-                {isCiC2SourceEnabled &&
-                    <CatalogProductList
-                        isLoading={isCiC2ProductsFetching}
-                        products={cic2CatalogProducts}
-                        selectedProduct={selectedProduct}
-                        onProductSelected={setSelectedProduct}
-                        onAddProduct={addProduct}
-                    />}
-
-                {isCiC3SourceEnabled &&
-                    <CatalogProductList
-                        isLoading={isCiC3ProductsFetching}
-                        products={cic3CatalogProducts}
-                        selectedProduct={selectedProduct}
-                        onProductSelected={setSelectedProduct}
-                        onAddProduct={addProduct}
-                    />}
+            <CombinedCatalogProductList onFetchRequest={fetchMoreProductsRequests} isFetching={isCiC3ProductsFetching}>
+                <CatalogProductList
+                    isLoading={isCiC3ProductsFetching}
+                    products={cic3CatalogProducts}
+                    selectedProduct={selectedProduct}
+                    onProductSelected={setSelectedProduct}
+                    onAddProduct={addProduct}
+                />
             </CombinedCatalogProductList>
 
             <ProductInformationPanel product={selectedProduct} />
@@ -414,42 +290,19 @@ function _calculateOptimalNbTiles(rootContainer: HTMLDivElement): number {
 }
 
 //=============================================================================
-async function _fetchCatalogs(isCiC2SourceEnabled: boolean, isCiC3SourceEnabled: boolean, isMoobleSourceEnabled: boolean, setLoadingCatalogs: Function): Promise<Array<IPublicCatalog>> {
-    let catalogs: Array<IPublicCatalog>,
-        sources: Array<DATA_SOURCES> = [];
+async function _fetchCatalogs(setLoadingCatalogs: Function): Promise<Array<IPublicCatalog>> {
+    let catalogs: Array<IPublicCatalog>;
 
-    if (isCiC2SourceEnabled) {
-        sources.push(CiCAPI.content.constants.DATA_SOURCES.cic2);
-    }
-
-    if (isCiC3SourceEnabled) {
-        sources.push(CiCAPI.content.constants.DATA_SOURCES.cic3);
-    }
-
-    if (isMoobleSourceEnabled) {
-        sources.push(CiCAPI.content.constants.DATA_SOURCES.mooble);
-    }
-
-    if (sources.length > 0) {
-        setLoadingCatalogs(true);
-        try {
-            catalogs = await CiCAPI.content.getCatalogs({
-                sources
-            });
-            catalogs.unshift(SELECT_ALL_CATALOG);
-        } catch (e) {
-            // console.log("Fetch Catalog Aborted... ", e.message);
-            catalogs = [];
-        }
-    } else {
+    setLoadingCatalogs(true);
+    try {
+        catalogs = await CiCAPI.content.getCatalogs();
+        catalogs.unshift(SELECT_ALL_CATALOG);
+    } catch (e) {
+        // console.log("Fetch Catalog Aborted... ", e.message);
         catalogs = [];
     }
 
-
     setLoadingCatalogs(false);
-
-    // make sure source is still enabled
-    catalogs = _assertEnabledSources(catalogs, sources, { isCiC2SourceEnabled, isMoobleSourceEnabled, isCiC3SourceEnabled });
 
     return catalogs;
 }
@@ -465,57 +318,17 @@ function _getSearchCatalogsList(selectedCatalogs: Array<IPublicCatalog>): Array<
     return searchCatalogs;
 }
 
-// move to utils ?
 //=============================================================================
-function _isSourceEnabled(src: DATA_SOURCES) {
-    return CiCAPI.getConfig(`sources.${src.toLowerCase()}_enabled`);
-}
-
-//=============================================================================
-function _getShowHiddenContent() : boolean {
+function _getShowHiddenContent(): boolean {
     return /true/.test(CiCAPI.getConfig("cic3.showHiddenContent") as string);
 }
-
-//=============================================================================
-function _assertEnabledSources(catalogsToAssert: Array<IPublicCatalog>, sources: Array<string>, enabledSourceMap: IEnabledSourceMap) {
-    let catalogs: Array<IPublicCatalog> = catalogsToAssert;
-    Object.values(CiCAPI.content.constants.DATA_SOURCES)
-        .forEach((value: string) => {
-
-            let found: boolean = sources.find((src: string) => src === value) !== void (0),
-                isEnabled: boolean = false;
-            if (found) {
-
-                if (value === CiCAPI.content.constants.DATA_SOURCES.cic2) {
-                    isEnabled = enabledSourceMap.isCiC2SourceEnabled;
-                }
-                else if (value === CiCAPI.content.constants.DATA_SOURCES.mooble) {
-                    isEnabled = enabledSourceMap.isMoobleSourceEnabled;
-                }
-                else if (value === CiCAPI.content.constants.DATA_SOURCES.cic3) {
-                    isEnabled = enabledSourceMap.isCiC3SourceEnabled;
-                }
-
-                if (!isEnabled) {
-                    if (sources.length === 1) {
-                        catalogs = [];
-                    } else {
-                        catalogs = catalogs.filter((catalog: IPublicCatalog) => { catalog.source !== value })
-                    }
-                }
-            }
-        });
-
-    return catalogs;
-}
-
 //=============================================================================
 async function _fetchDataSourceProducts(pageOffset: number, source: DATA_SOURCES, options: IFetchDataSourceProductsOptions): Promise<IFetchDataSourceProductResults | undefined> {
     let
         { searchQuery, nbPerPage, selectedCatalogs, selectedCategories, productList, totalResults, showHiddenContent } = options,
         searchCatalogs: Array<IPublicCatalog> = _getSearchCatalogsList(selectedCatalogs),
         searchCatalogIds: Array<string>,
-        catalogProductList: Array<IPublicProduct> = productList || [], 
+        catalogProductList: Array<IPublicProduct> = productList || [],
         onlyVisible: boolean | undefined = showHiddenContent === true ? false : undefined;
 
     searchCatalogIds = searchCatalogs
@@ -561,11 +374,11 @@ async function _fetchCatalogCategories(options: IFetchCatalogCategoriesOptions):
         { selectedCatalogs } = options,
         searchCatalogs: Array<IPublicCatalog> = _getSearchCatalogsList(selectedCatalogs),
         searchCatalogIds: Array<string>,
-        visibleOnly: boolean = options.showHiddenContent ? false :  true;
+        visibleOnly: boolean = options.showHiddenContent ? false : true;
 
-        searchCatalogIds = searchCatalogs.map((publicCatalog: IPublicCatalog) => publicCatalog.id.substr(publicCatalog.source.length+1));
-        if ( !categoriesMap.has(searchCatalogIds[0]) ){
-        return CiCAPI.content.getCategoriesForCatalog(searchCatalogIds[0], visibleOnly).then( (categoryResults: Array<ICommonGroup> ) => {
+    searchCatalogIds = searchCatalogs.map((publicCatalog: IPublicCatalog) => publicCatalog.id.substr(publicCatalog.source.length + 1));
+    if (!categoriesMap.has(searchCatalogIds[0])) {
+        return CiCAPI.content.getCategoriesForCatalog(searchCatalogIds[0], visibleOnly).then((categoryResults: Array<ICommonGroup>) => {
             categoriesMap.set(searchCatalogIds[0], categoryResults);
             return {
                 categoryList: categoryResults

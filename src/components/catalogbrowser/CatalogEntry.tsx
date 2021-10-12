@@ -12,6 +12,7 @@ interface CatalogEntryProps {
 export default function CatalogEntry(props: CatalogEntryProps) {
     let [isHovered, setHovered] = useState(false),
         rootElement = useRef(null),
+        catalogLabel: string,
         onChangeFunc = (e: React.ChangeEvent<HTMLInputElement>) => props.onSelected(props.catalog, e.target.checked),
         onSelectOnly = () => props.onSelectOnly(props.catalog),
         toggleHandlers,
@@ -47,10 +48,12 @@ export default function CatalogEntry(props: CatalogEntryProps) {
         onMouseOut: _handleMouseOut
     }
 
+    catalogLabel = `${props.catalog.name} / ${props.catalog.version} (${props.catalog.status})`;
+
     return (
         <div className="catalog-entry" ref={rootElement} onMouseOver={_handleRootMouseOver} onMouseOut={_handleRootMouseOut}>
             <input id={props.catalog.id} type="checkbox" checked={props.isSelected} {...toggleHandlers} onChange={onChangeFunc} />
-            <label htmlFor={props.catalog.id as string} className="catalog-id">{props.catalog.name}</label>
+            <label htmlFor={props.catalog.id as string} className="catalog-id">{catalogLabel}</label>
             {isHovered && props.catalog.id !== SELECT_ALL_CATALOG.id && <button className="catalog-entry-select-only-btn" {...toggleHandlers} onClick={onSelectOnly} >Select Only</button>}
             <div className={`catalog-entry-source source-${props.catalog.source.toLowerCase()}`} onMouseOver={_handleMouseOver}>{props.catalog.source}</div>
         </div>
