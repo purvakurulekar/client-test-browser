@@ -37,13 +37,13 @@ async function _loadConfig() {
 //=============================================================================
 function render() {
 
-    let onProductAdd = (catalogProduct: IPublicProduct) => {
-        CiCAPI.design.addProduct(catalogProduct.id, { select: true });
+    let onItemAdd = (catalogProduct: IItem) => {
+        CiCAPI.design.addItem(catalogProduct.id, { select: true });
     };
 
     ReactDOM.render(
         <React.StrictMode>
-            <CatalogBrowser onProductAdd={onProductAdd} includeDataSourceSwitcher={true} includeSettings={true} />
+            <CatalogBrowser onItemAdd={onItemAdd} includeSettings={true} />
         </React.StrictMode>, document.getElementById("root"));
 }
 

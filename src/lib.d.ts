@@ -1,9 +1,8 @@
 export declare interface ICatalogBrowserProps {
-    onProductAdd?: Function,
-    includeDataSourceSwitcher?: boolean,
+    onItemAdd?: Function,
     includeSettings?: boolean
 }
 
-export declare const SELECT_ALL_CATALOG: IPublicCatalog;
+export declare const SELECT_ALL_CATALOG: ICatalog;
 
 export function CatalogBrowser(props: ICatalogBrowserProps): JSX.Element;

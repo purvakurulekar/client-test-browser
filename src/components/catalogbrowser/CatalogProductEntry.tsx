@@ -1,10 +1,10 @@
 import React from 'react';
 
 interface CatalogProductEntryProps {
-    product: IPublicProduct,
+    item: IItem,
     isSelected: boolean,
-    onProductSelected: Function,
-    onAddProduct: Function
+    onItemSelected: Function,
+    onAddItem: Function
 }
 
 //=============================================================================
@@ -16,8 +16,8 @@ function CatalogProductEntry(props: CatalogProductEntryProps) {
         classNames.push("catalog-product-entry-selected");
     }
 
-    if (props.product.imageURL?.trim() !== "") {
-        imageContent = (<img src={props.product.imageURL} />); // onLoad={() => setLoading(false)}
+    if (props.item.imageURL?.trim() !== "") {
+        imageContent = (<img src={props.item.imageURL} />); // onLoad={() => setLoading(false)}
     } else {
         imageContent = (<div className="catalog-product-no-image"><span>No Image</span></div>);
     }
@@ -25,19 +25,19 @@ function CatalogProductEntry(props: CatalogProductEntryProps) {
     function _handleDragStart(event: React.DragEvent<HTMLDivElement>) {
         event.dataTransfer?.setData("text/plain", JSON.stringify({
             event: "add-product",
-            data: props.product
+            data: props.item
         }));
     }
     
     return (
-        <div className={classNames.join(" ")} onClick={() => props.onProductSelected(props.product)} onDoubleClick={() => props.onAddProduct(props.product)} onDragStart={_handleDragStart} >
+        <div className={classNames.join(" ")} onClick={() => props.onItemSelected(props.item)} onDoubleClick={() => props.onAddItem(props.item)} onDragStart={_handleDragStart} >
             <div className="catalog-product-image-container">
                 {imageContent}
             </div>
             <div className="catalog-product-entry-label">
-                {props.product.name}
+                {props.item.name}
             </div>
-            <span className="catalog-product-tooltip">{props.product.name}</span>
+            <span className="catalog-product-tooltip">{props.item.name}</span>
         </div>
     );
 }

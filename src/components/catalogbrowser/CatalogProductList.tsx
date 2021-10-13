@@ -1,5 +1,5 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { Loader, Overlay } from "client-ui-toolkit";
+import React from 'react';
+import { Loader } from "client-ui-toolkit";
 
 import CatalogProductEntry from "./CatalogProductEntry";
 
@@ -7,10 +7,10 @@ import CatalogProductEntry from "./CatalogProductEntry";
 interface ICatalogProductListProps {
     className?: string,
     isLoading: boolean,
-    products: Array<IPublicProduct>,
-    selectedProduct: IPublicProduct | null,
-    onProductSelected: Function,
-    onAddProduct: Function
+    items: Array<IItem>,
+    selectedItem: IItem | null,
+    onItemSelected: Function,
+    onAddItem: Function
 }
 
 //=============================================================================
@@ -25,15 +25,15 @@ export default function CatalogProductList(props: ICatalogProductListProps) {
 
     return (
         <div className={classNames.join(" ")}>
-            {props.products.map((i_oProduct: IPublicProduct) => {
-                let key = i_oProduct.id;
+            {props.items.map((item: IItem) => {
+                let key = item.id;
 
                 return <CatalogProductEntry
                     key={key}
-                    product={i_oProduct}
-                    isSelected={i_oProduct === props.selectedProduct}
-                    onProductSelected={props.onProductSelected}
-                    onAddProduct={props.onAddProduct}
+                    item={item}
+                    isSelected={item === props.selectedItem}
+                    onItemSelected={props.onItemSelected}
+                    onAddItem={props.onAddItem}
                 />;
             })}
             {isLoading && <Loader />}

@@ -5,28 +5,28 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretRight, faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import TreeItem from '@material-ui/lab/TreeItem';
 
-interface ICategoryListProps {
-  categories: Array<ICommonGroup>,
-  selectedCategoryIDs: Array<string>,
-  expandedCategoryNodes: Array<string>,
-  showHiddenCategories: boolean,
-  onCategorySelected: Function
+interface IGroupListProps {
+  categories: Array<IGroup>,
+  selectedGroupIDs: Array<string>,
+  expandedGroupNodes: Array<string>,
+  showHiddenGroups: boolean,
+  onGroupSelected: Function
 }
 let sendSelection: boolean = true,
   expandedNodes: Array<string> = [],
   ctrlPress: boolean = false,
   needsSelection: boolean = false,
   nodesToSend: Array<string> = [],
-  categoryProps: ICategoryListProps;
+  categoryProps: IGroupListProps;
 
-function handleSelection(props: ICategoryListProps, nodeIds: Array<string>) {
+function handleSelection(props: IGroupListProps, nodeIds: Array<string>) {
   let nodeNames: Array<string> = [];
   if (sendSelection && (nodeIds.length > 0)) {
     if (nodeIds[0] !== "All Items") {
       nodeNames = nodeIds.map((id: string) => findNodeName(id, props.categories[0]));
-      props.onCategorySelected(nodeIds, nodeNames.join(","), expandedNodes);
+      props.onGroupSelected(nodeIds, nodeNames.join(","), expandedNodes);
     } else {
-      props.onCategorySelected("", "", []);
+      props.onGroupSelected("", "", []);
     }
   } else if (ctrlPress) {
     nodesToSend = nodeIds;
@@ -37,7 +37,7 @@ function handleExpansion(nodeIds: Array<string>) {
   expandedNodes = nodeIds;
 };
 
-function findNodeName(nodeId: string, category: ICommonGroup): string {
+function findNodeName(nodeId: string, category: IGroup): string {
   let nodeName: string = "";
   if (category.code === nodeId) {
     nodeName = category.name;
@@ -92,7 +92,7 @@ const CheckNeedsSelection = (e: KeyboardEvent) => {
 };
 
 
-function CategoryTree(props: ICategoryListProps) {
+function GroupTree(props: IGroupListProps) {
   const classes = useStyles();
   window.addEventListener("keydown", (e) => {
     CheckCtrlPressed(e);
@@ -103,11 +103,11 @@ function CategoryTree(props: ICategoryListProps) {
   categoryProps = props;
   let handleNodeSelect = (event: object, nodeIds: Array<string>) => handleSelection(categoryProps, nodeIds),
     handleNodeToggle = (event: object, nodeIds: Array<string>) => handleExpansion(nodeIds),
-    selectAll: ICommonGroup = { code: "All Items", name: "All Items", groups: categoryProps.categories as [], visible: true };
-    const renderTree = (category: ICommonGroup) => (
+    selectAll: IGroup = { code: "All Items", name: "All Items", groups: categoryProps.categories as [], visible: true };
+  const renderTree = (category: IGroup) => (
     <TreeItem key={category.code} nodeId={category.code} label={category.name} onIconClick={iconSelection}
       onLabelClick={labelSelection} classes={{ label: classes.treeItem }}>
-      {Array.isArray(category.groups) ? category.groups.map((node: ICommonGroup) => renderTree(node)) : null}
+      {Array.isArray(category.groups) ? category.groups.map((node: IGroup) => renderTree(node)) : null}
     </TreeItem>
   );
 
@@ -116,8 +116,8 @@ function CategoryTree(props: ICategoryListProps) {
       className="catalog-categories-tree-list"
       defaultCollapseIcon={<FontAwesomeIcon icon={faCaretDown} />}
       defaultExpandIcon={<FontAwesomeIcon icon={faCaretRight} />}
-      defaultExpanded={props.expandedCategoryNodes}
-      defaultSelected={props.selectedCategoryIDs}
+      defaultExpanded={props.expandedGroupNodes}
+      defaultSelected={props.selectedGroupIDs}
       onNodeSelect={handleNodeSelect}
       onNodeToggle={handleNodeToggle}
       multiSelect={true}
@@ -126,4 +126,4 @@ function CategoryTree(props: ICategoryListProps) {
     </TreeView>
   );
 }
-export default CategoryTree;
+export default GroupTree;
