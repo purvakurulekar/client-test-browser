@@ -55,7 +55,6 @@ export default function CatalogEntry(props: CatalogEntryProps) {
             <input id={props.catalog.id} type="checkbox" checked={props.isSelected} {...toggleHandlers} onChange={onChangeFunc} />
             <label htmlFor={props.catalog.id as string} className="catalog-id">{catalogLabel}</label>
             {isHovered && props.catalog.id !== SELECT_ALL_CATALOG.id && <button className="catalog-entry-select-only-btn" {...toggleHandlers} onClick={onSelectOnly} >Select Only</button>}
-            <div className={`catalog-entry-source source-${props.catalog.source.toLowerCase()}`} onMouseOver={_handleMouseOver}>{props.catalog.source}</div>
         </div>
     );
 }

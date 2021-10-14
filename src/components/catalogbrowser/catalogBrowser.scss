@@ -276,17 +276,6 @@
     background-color: #ffc379;
 }
 
-.catalog-entry-source {
-    position: absolute;
-    right: 10px;
-    border-radius: 10px;
-    width: 60px;
-    color: #fff;
-    background-color: #a3a3a3;
-    font-weight: bold;
-    text-align: center;
-}
-
 .catalog-results-preview {
     display: flex;
     flex-flow: row;
@@ -486,9 +475,6 @@
     margin-top: 3px;
     // margin-right: 3px;
 
-    .footer-data-source {
-        float: left;
-    }
 
     .catalog-action-btn:disabled {
         background-color: #c7c7c7;
