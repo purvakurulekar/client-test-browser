@@ -18,10 +18,7 @@ let groupsMap: Map<string, Array<IGroup>> = new Map();
 
 const
     DEFAULT_NB_PER_PAGE = 50,
-    MIN_NB_TILES_PER_PAGE = 10,
-    CATALOG_CONFIG_CHANGED_RE = /region|contextCode|catalogs?ApiUrl/i,
-    SOURCES_CONFIG_PREFIX = "sources.",
-    KEYS_TO_CHECK: Array<string> = ["client", "partnership", "region", "contextCode", "catalogsApiUrl"];
+    MIN_NB_TILES_PER_PAGE = 10;
 
 interface ICatalogBrowserProps {
     onItemAdd?: Function,
@@ -161,33 +158,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
                 setExpandedGroupNodes([]);
                 pageOffset.current = 0;
                 // console.log("Catalogs Loaded!");
-            },
-            onConfigChanged = (configKey: string, value: ConfigValue, oldValue: ConfigValue) => {
-                let isFetchingCatalogs: boolean = configKey === "reset" || CATALOG_CONFIG_CHANGED_RE.test(configKey); // direct config
-
-                if (!isFetchingCatalogs) {
-                    if (configKey.startsWith(SOURCES_CONFIG_PREFIX)) {
-                        isFetchingCatalogs = true;
-                    } else {
-                        KEYS_TO_CHECK.every((key: string) => {
-                            if (configKey.includes(key)) {
-                                isFetchingCatalogs = value != oldValue;
-                            }
-
-                            return !isFetchingCatalogs;
-                        });
-                    }
-                }
-
-                // console.log("CONFIG CHANGED, FETCHING CATALOG: ", isFetchingCatalogs);
-                if (isFetchingCatalogs) {
-                    setShowHiddenContent(_getShowHiddenContent());
-                    groupsMap.clear();
-                    fetchCatalogFunc();
-                }
             };
-
-        CiCAPI.content.registerToChanges(onConfigChanged);
 
         fetchCatalogFunc(); // initial fetch
 
@@ -195,7 +166,6 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
         window.addEventListener("resize", calcOptimalTilesFunc);
 
         return () => {
-            CiCAPI.content.unregisterToChanges(onConfigChanged);
             window.removeEventListener("resize", calcOptimalTilesFunc);
         };
     }, []);
@@ -353,7 +323,7 @@ async function _fetchCatalogGroups(options: IFetchCatalogGroupOptions): Promise<
         searchCatalogIds: Array<string>,
         visibleOnly: boolean = options.showHiddenContent ? false : true;
 
-    searchCatalogIds = searchCatalogs.map((publicCatalog: ICatalog) => publicCatalog.id.substr(publicCatalog.source.length + 1));
+    searchCatalogIds = searchCatalogs.map((publicCatalog: ICatalog) => publicCatalog.id);
     if (!groupsMap.has(searchCatalogIds[0])) {
         return CiCAPI.content.getGroupsForCatalog(searchCatalogIds[0], visibleOnly).then((categoryResults: Array<IGroup>) => {
             groupsMap.set(searchCatalogIds[0], categoryResults);
