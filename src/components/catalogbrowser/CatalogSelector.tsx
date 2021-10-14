@@ -5,8 +5,8 @@ import CatalogList from './CatalogList';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
 interface Props {
-    catalogs: Array<IPublicCatalog>,
-    selectedCatalogs: Array<IPublicCatalog>,
+    catalogs: Array<ICatalog>,
+    selectedCatalogs: Array<ICatalog>,
     onCatalogSelected: Function,
     onSelectOnlyCatalogSelected: Function
 }
@@ -18,7 +18,7 @@ function CatalogSelector(props: Props) {
         selectorIcon,
         catalogListElement,
         label: string,
-        onSelectOnlyCatalogSelected = (catalog: IPublicCatalog) => {
+        onSelectOnlyCatalogSelected = (catalog: ICatalog) => {
             setOpened(false);
             props.onSelectOnlyCatalogSelected(catalog);
         }
@@ -51,7 +51,7 @@ function CatalogSelector(props: Props) {
         if (props.selectedCatalogs.length > 4) {
             label = `${props.selectedCatalogs.length} / ${props.catalogs.length} catalogs`;
         } else {
-            label = `${props.selectedCatalogs.map((i_oCatalog: IPublicCatalog) => i_oCatalog.name).join(",")}`;
+            label = `${props.selectedCatalogs.map((i_oCatalog: ICatalog) => i_oCatalog.name).join(",")}`;
         }
     }
 
