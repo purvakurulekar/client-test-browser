@@ -310,7 +310,7 @@ function _getSearchCatalogsList(selectedCatalogs: Array<ICatalog>): Array<ICatal
 
 //=============================================================================
 function _getShowHiddenContent(): boolean {
-    return /true/.test(CiCAPI.getConfig("cic3.showHiddenContent") as string);
+    return /true/.test(CiCAPI.getConfig("contentPlatform.showHiddenContent") as string);
 }
 //=============================================================================
 async function _fetchCatalogItems(pageOffset: number, options: IFetchCatalogItemsOptions): Promise<IFetchItemResults | undefined> {
