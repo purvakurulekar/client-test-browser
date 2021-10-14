@@ -170,7 +170,10 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
                         isFetchingCatalogs = true;
                     } else {
                         KEYS_TO_CHECK.every((key: string) => {
-                            isFetchingCatalogs = (value as ConfigMap).get(key) != (oldValue as ConfigMap).get(key);
+                            if (configKey.includes(key)) {
+                                isFetchingCatalogs = value != oldValue;
+                            }
+
                             return !isFetchingCatalogs;
                         });
                     }
