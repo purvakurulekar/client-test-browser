@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { SELECT_ALL_CATALOG } from "../../interfaces/IPublicAPIInterfaces";
 
 interface CatalogEntryProps {
-    catalog: IPublicCatalog,
+    catalog: ICatalog,
     isSelected: boolean,
     onSelected: Function,
     onSelectOnly: Function
@@ -16,6 +16,7 @@ export default function CatalogEntry(props: CatalogEntryProps) {
         onChangeFunc = (e: React.ChangeEvent<HTMLInputElement>) => props.onSelected(props.catalog, e.target.checked),
         onSelectOnly = () => props.onSelectOnly(props.catalog),
         toggleHandlers,
+        classNames: Array<string> = ["catalog-id"],
         timeoutHandle: any; // number
 
     function _hideBtn() {
@@ -48,12 +49,21 @@ export default function CatalogEntry(props: CatalogEntryProps) {
         onMouseOut: _handleMouseOut
     }
 
-    catalogLabel = `${props.catalog.name} / ${props.catalog.version} (${props.catalog.status})`;
+    catalogLabel = `${props.catalog.name} / ${props.catalog.version}`;
+
+
+    if (props.catalog && props.catalog.status) {
+        catalogLabel += `(${props.catalog.status})`;
+        
+        if (props.catalog.status.toLowerCase() === "activated") {
+            classNames.push("catalog-activated");
+        }
+    }
 
     return (
-        <div className="catalog-entry" ref={rootElement} onMouseOver={_handleRootMouseOver} onMouseOut={_handleRootMouseOut}>
+        <div className={"catalog-entry"} ref={rootElement} onMouseOver={_handleRootMouseOver} onMouseOut={_handleRootMouseOut}>
             <input id={props.catalog.id} type="checkbox" checked={props.isSelected} {...toggleHandlers} onChange={onChangeFunc} />
-            <label htmlFor={props.catalog.id as string} className="catalog-id">{catalogLabel}</label>
+            <label htmlFor={props.catalog.id as string} className={classNames.join(" ")}>{catalogLabel}</label>
             {isHovered && props.catalog.id !== SELECT_ALL_CATALOG.id && <button className="catalog-entry-select-only-btn" {...toggleHandlers} onClick={onSelectOnly} >Select Only</button>}
         </div>
     );
