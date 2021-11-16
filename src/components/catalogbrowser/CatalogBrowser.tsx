@@ -74,7 +74,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
         [selectedItem, setSelectedItem] = useState(null),
         [searchQuery, setSearchQuery] = useState(""),
         [isSettingsVisible, setSettingsVisible] = useState(false),
-        [showHiddenContent, setShowHiddenContent] = useState(_getShowHiddenContent()),
+        [showHiddenContent, setShowHiddenContent] = useState(true),
 
         [totalResults, setTotalResults] = useState(0),
         [isFetchingCatalogItems, setFetchingCatalogItems] = useState(false),
@@ -158,15 +158,23 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
                 setExpandedGroupNodes([]);
                 pageOffset.current = 0;
                 // console.log("Catalogs Loaded!");
+            },
+            onConfigChanged = (configPath: string, valueToSet: ConfigValue, oldValue: ConfigValue) => {
+                if(configPath.includes("showHiddenContent") || configPath.includes("root") || configPath.includes("reset")) {
+                    setShowHiddenContent(/true/.test(CiCAPI.getConfig("contentPlatform.showHiddenContent") as string));
+                }
             };
 
         fetchCatalogFunc(); // initial fetch
+        onConfigChanged("reset");
 
         calcOptimalTilesFunc();
         window.addEventListener("resize", calcOptimalTilesFunc);
+        CiCAPI.content.registerToChanges(onConfigChanged);
 
         return () => {
             window.removeEventListener("resize", calcOptimalTilesFunc);
+            CiCAPI.content.unregisterToChanges(onConfigChanged);
         };
     }, []);
 
@@ -281,10 +289,6 @@ function _getSearchCatalogsList(selectedCatalogs: Array<ICatalog>): Array<ICatal
     return searchCatalogs;
 }
 
-//=============================================================================
-function _getShowHiddenContent(): boolean {
-    return /true/.test(CiCAPI.getConfig("contentPlatform.showHiddenContent") as string);
-}
 //=============================================================================
 async function _fetchCatalogItems(pageOffset: number, options: IFetchCatalogItemsOptions): Promise<IFetchItemResults | undefined> {
     let
