@@ -120,7 +120,8 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
         },
         updateProductsFunc = async () => {
             let searchCatalogs: Array<ICatalog> | undefined = _getSearchCatalogsList(selectedCatalogs),
-                fetchProductOptions: IFetchCatalogItemsOptions = { searchQuery, nbPerPage, selectedCatalogs, selectedGroups: selectedGroupIds, showHiddenContent },
+                catalogsToSearch: Array<ICatalog> = selectedCatalogs.length === stateCatalogs.length ? [] : selectedCatalogs,
+                fetchProductOptions: IFetchCatalogItemsOptions = { searchQuery, nbPerPage, selectedCatalogs: catalogsToSearch, selectedGroups: selectedGroupIds, showHiddenContent },
                 offset: Number = pageOffset.current;
 
             // console.log("Updating product list...");
@@ -301,7 +302,7 @@ async function _fetchCatalogItems(pageOffset: number, options: IFetchCatalogItem
     searchCatalogIds = searchCatalogs
         .map((publicCatalog: ICatalog) => publicCatalog.id);
 
-    return CiCAPI.content.getItems(searchQuery ?? "", searchCatalogIds, { nbPerPage, offset: pageOffset, groupNames: selectedGroups, onlyVisible })
+    return CiCAPI.content.getItems(searchQuery ?? "", searchCatalogIds.length > 0 ? searchCatalogIds : "", { nbPerPage, offset: pageOffset, groupNames: selectedGroups, onlyVisible })
         .then((productResults: IItemResults) => {
             let combinedProducts: Array<IItem>;
 
