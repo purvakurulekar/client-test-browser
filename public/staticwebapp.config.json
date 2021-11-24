@@ -1,0 +1,19 @@
+{
+	"routes": [
+	],
+	"navigationFallback": {
+		"rewrite": "index.html",
+		"exclude": []
+	},
+	"responseOverrides": {
+	},
+	"globalHeaders": {
+		"content-security-policy": "default-src https: 'unsafe-eval' 'unsafe-inline'; object-src 'none'; worker-src blob:",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "OPTIONS, GET, HEAD",
+        "Access-Control-Allow-Headers": "*",
+        "Access-Control-Max-Age": "3600"
+	},
+	"mimeTypes": {
+	}
+}
