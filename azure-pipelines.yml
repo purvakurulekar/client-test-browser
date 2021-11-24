@@ -40,7 +40,7 @@ stages:
         - task: Npm@1
           inputs:
             command: publish
-            workingDir: dist/
+            workingDir: dist/lib/
             publishRegistry: useFeed
             publishFeed: Content Platform/content-platform-npm
         - bash: |

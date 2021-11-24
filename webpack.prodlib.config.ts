@@ -3,7 +3,7 @@ import path from "path";
 import CopyWebpackPlugin from "copy-webpack-plugin";
 import { CleanWebpackPlugin } from "clean-webpack-plugin";
 
-const BUILD_DIR = path.resolve(__dirname, "dist/");
+const BUILD_DIR = path.resolve(__dirname, "dist/lib/");
 
 module.exports = {
     mode: "production",

@@ -2,7 +2,7 @@ import path from "path";
 import webpack from "webpack";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import CopyWebpackPlugin from "copy-webpack-plugin";
-import { CleanWebpackPlugin } from "clean-webpack-plugin";
+// import { CleanWebpackPlugin } from "clean-webpack-plugin";
 
 const BUILD_DIR = path.resolve(__dirname, "dist/debug/");
 
@@ -85,9 +85,9 @@ export default {
             template: "src/template.html",
             filename: "index.html"
         }),
-        new CleanWebpackPlugin({
-            verbose: true
-        }),
+        // new CleanWebpackPlugin({
+        //     verbose: true
+        // }),
         new CopyWebpackPlugin({
             patterns: [
             {
