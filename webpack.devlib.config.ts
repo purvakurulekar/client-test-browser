@@ -3,11 +3,10 @@ import path from "path";
 import CopyWebpackPlugin from "copy-webpack-plugin";
 import { CleanWebpackPlugin } from "clean-webpack-plugin";
 
-const BUILD_DIR = path.resolve(__dirname, "dist/lib/");
+const BUILD_DIR = path.resolve(__dirname, "dist/lib/debug/");
 
 module.exports = {
-    mode: "production",
-    // mode: "development",
+    mode: "development",
     target: ["web", "es2020"],
     output: {
         path: BUILD_DIR,
@@ -88,7 +87,7 @@ module.exports = {
         ],
         extensions: [".tsx", ".ts", ".js"],
     },
-    devtool: "source-map",
+    devtool: "eval-source-map",
     plugins: [
         new CleanWebpackPlugin({
             verbose: true

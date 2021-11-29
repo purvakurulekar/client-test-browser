@@ -1,6 +1,6 @@
 {
   "name": "client-test-browser",
-  "version": "1.3.5",
+  "version": "1.3.6",
   "description": "Client Test Catalog Browser, catalog browser using Content Platform API",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "build-prod": "webpack --progress --config webpack.prod.config.ts",
     "build-watch": "webpack watch --config webpack.dev.config.ts",
     "build-dev": "webpack --progress --config webpack.dev.config.ts",
-    "build-lib": "webpack --progress --config webpack.prodlib.config.ts",
+    "build-lib": "webpack --progress --config webpack.prodlib.config.ts && webpack --progress --config webpack.devlib.config.ts",
     "deploy": "npm run build-lib && cd dist/ && npm publish",
     "test": "jest --verbose ./unit_tests/"
   },
@@ -28,18 +28,11 @@
   "license": "ISC",
   "babel": {
     "presets": [
-      "@babel/preset-env",
       "@babel/preset-react",
       "@babel/preset-typescript"
     ],
     "plugins": [
-      "@babel/plugin-proposal-class-properties",
-      [
-        "@babel/plugin-transform-runtime",
-        {
-          "regenerator": true
-        }
-      ]
+      "@babel/plugin-proposal-class-properties"
     ]
   },
   "devDependencies": {
