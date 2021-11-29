@@ -1,6 +1,8 @@
 export declare interface ICatalogBrowserProps {
     onItemAdd?: Function,
-    includeSettings?: boolean
+    includeSettings?: boolean,
+    width?: number,
+    height?: number
 }
 
 export declare const SELECT_ALL_CATALOG: ICatalog;

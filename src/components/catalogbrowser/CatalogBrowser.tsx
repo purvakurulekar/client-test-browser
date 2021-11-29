@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState, useLayoutEffect } from 'react';
 import { SELECT_ALL_CATALOG } from "../../interfaces/IPublicAPIInterfaces";
 import "./catalogBrowser.scss";
 import { SettingsPanel } from "client-ui-toolkit";
@@ -22,7 +22,9 @@ const
 
 interface ICatalogBrowserProps {
     onItemAdd?: Function,
-    includeSettings?: boolean
+    includeSettings?: boolean,
+    width?: number,
+    height?: number
 }
 
 interface IFetchCatalogItemsOptions {
@@ -49,14 +51,22 @@ interface IFetchCatalogGroupResults {
     categoryList: Array<IGroup>
 }
 
+interface IDOMDimensions {
+    width: number,
+    height: number
+}
+
 export { SELECT_ALL_CATALOG };
 
 // make fetch request change the page offset ?!
 //=============================================================================
 export default function CatalogBrowser(props: ICatalogBrowserProps) {
     let pageOffset = useRef(0),
-        domRef = useRef(null),
-
+        domRef: React.MutableRefObject<HTMLDivElement | null> = useRef(null),
+        dimensionRef: React.MutableRefObject<IDOMDimensions> = useRef<IDOMDimensions>({
+            width: 0,
+            height: 0
+        }),
         [nbPerPage, setNbPerPage] = useState(DEFAULT_NB_PER_PAGE),
         // 
         [stateCatalogs, setCatalogs] = useState([]),
@@ -146,8 +156,16 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
         totalCatalogs: selectedCatalogs.length,
         totalResults: totalResults || 0
     };
+
     useEffect(() => {
-        let calcOptimalTilesFunc = () => setNbPerPage(_calculateOptimalNbTiles(domRef.current! as HTMLDivElement)),
+        if (domRef.current) {
+            setNbPerPage(_calculateOptimalNbTiles(domRef.current! as HTMLDivElement));
+        }
+    }, [props.width, props.height]);
+
+    useEffect(() => {
+        let containerBounds: DOMRect,
+            calcOptimalTilesFunc = () => setNbPerPage(_calculateOptimalNbTiles(domRef.current! as HTMLDivElement)),
             fetchCatalogFunc = async () => {
                 let catalogs: Array<ICatalog> = await _fetchCatalogs(setLoadingCatalogs);
 
@@ -161,10 +179,14 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
                 // console.log("Catalogs Loaded!");
             },
             onConfigChanged = (configPath: string, valueToSet: ConfigValue, oldValue: ConfigValue) => {
-                if(configPath.includes("showHiddenContent") || configPath.includes("root") || configPath.includes("reset")) {
+                if (configPath.includes("showHiddenContent") || configPath.includes("root") || configPath.includes("reset")) {
                     setShowHiddenContent(/true/.test(CiCAPI.getConfig("contentPlatform.showHiddenContent") as string));
                 }
             };
+
+        containerBounds = domRef.current!.getBoundingClientRect();
+        dimensionRef.current.width = containerBounds.width;
+        dimensionRef.current.height = containerBounds.height;
 
         fetchCatalogFunc(); // initial fetch
         onConfigChanged("reset");
@@ -180,7 +202,17 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
     }, []);
 
     // no need to wait here, if catalogs change lets update directly
-    useEffect(() => { fetchItemsFunc(); }, [selectedCatalogs, searchQuery, selectedGroupIds]);
+    useEffect(() => { fetchItemsFunc(); }, [selectedCatalogs, searchQuery, selectedGroupIds, nbPerPage]);
+
+    useLayoutEffect(() => {
+        let containerBounds: DOMRect = domRef.current!.getBoundingClientRect();
+
+        if (containerBounds.width !== dimensionRef.current.width || containerBounds.height !== dimensionRef.current.height) {
+            dimensionRef.current.width = containerBounds.width;
+            dimensionRef.current.height = containerBounds.height;
+            setNbPerPage(_calculateOptimalNbTiles(domRef.current! as HTMLDivElement));
+        }
+    });
 
     if (isLoadingCatalogs || isFetchingCatalogItems) {
         loader = (<Loader />);
