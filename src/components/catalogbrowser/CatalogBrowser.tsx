@@ -306,6 +306,8 @@ async function _fetchCatalogs(setLoadingCatalogs: Function): Promise<Array<ICata
         catalogs = [];
     }
 
+    catalogs = catalogs.filter((catalog: ICatalog) => {catalog.status === "Deleted"});
+
     setLoadingCatalogs(false);
 
     return catalogs;
