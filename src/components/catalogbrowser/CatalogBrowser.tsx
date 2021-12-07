@@ -21,7 +21,7 @@ const
     MIN_NB_TILES_PER_PAGE = 10;
 
 interface ICatalogBrowserProps {
-    onItemAdd?: Function,
+    handleItemAdd?: Function,
     includeSettings?: boolean,
     width?: number,
     height?: number
@@ -97,8 +97,8 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
             setTotalResults(0);
         },
         addItem = (item: IItem | null) => {
-            if (item !== null && props.onItemAdd) {
-                props.onItemAdd(item);
+            if (item !== null && props.handleItemAdd) {
+                props.handleItemAdd(item);
             }
         },
         fetchItemsFunc = () => {
