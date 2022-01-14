@@ -21,18 +21,9 @@ export default function CatalogResultsPreview(props: ICatalogResultsPreview) {
 
     return (
         <div className="catalog-results-preview">
-            <div className="catalog-results-nb-per-page catalog-results-preview-btn">
-                <span className="catalog-results-preview-nb-per-page-btn">All</span>
-            </div>
             <div className="catalog-results-count">
                 <span>{countSummary}</span>
                 {props.children}
-            </div>
-            <div className="catalog-results-preview-btn">
-                <FontAwesomeIcon icon={faThLarge} />
-            </div>
-            <div className="catalog-results-preview-btn">
-                <FontAwesomeIcon icon={faList} />
             </div>
         </div>
     );

@@ -216,8 +216,8 @@
     outline: none;
 }
 
-.catalog-selector-toggle-btn ,
-.catalog-categories-selector-toggle-btn{
+.catalog-selector-toggle-btn,
+.catalog-categories-selector-toggle-btn {
     width: 24px;
     border: none;
     text-align: center;
@@ -248,8 +248,48 @@
 .catalog-entry {
     position: relative;
     display: flex;
-    flex-flow: row;
+    flex-flow: column;
+}
+
+.catalog-entry-uom-imperial {
+    color: #6d98ad;
+}
+
+.catalog-entry-uom-metric {
+    color: #3aa13a;
+}
+
+.catalog-entry-odd-row {
+    background-color: #f8f8f8;
+}
+
+.catalog-entry-selector {
+    display: grid;
+    grid-template-columns: 20px auto 20px;
     align-items: center;
+}
+
+.catalog-entry-details {
+    font-size: 10px;
+    display: grid;
+    grid-template-columns: 40px auto 60px;
+    margin-left: 20px;
+    margin-right: 4px;
+}
+
+.catalog-entry-timestamp {
+    display: flex;
+    flex-flow: row;
+    margin-left: 20px;
+    font-size: 10px;
+}
+
+.catalog-entry-details-label {
+    font-weight: bold;
+}
+
+.catalog-status {
+    text-align: right;
 }
 
 .catalog-activated {
@@ -267,6 +307,7 @@
     color: #fff;
     background-color: #f8971d;
     position: absolute;
+    top: 14px;
     right: 80px;
     border: 0;
     outline: 0;
@@ -274,6 +315,16 @@
     font-weight: bold;
     border-radius: 10px;
     height: 14px;
+}
+
+.catalog-list-company {
+    font-size: 14px;
+    background-color: #ebebeb;
+    color: #444;
+    padding: 2px;
+    padding-left: 10px;
+    border-radius: 4px;
+    margin: 4px;
 }
 
 .catalog-entry-select-only-btn:active {

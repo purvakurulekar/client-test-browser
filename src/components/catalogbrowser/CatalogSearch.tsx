@@ -31,8 +31,6 @@ export default function CatalogSearch(props: Props) {
 
     return (
         <div className="catalog-search-container">
-            <button className="catalog-search-settings-btn"><FontAwesomeIcon icon={faSlidersH} /></button>
-
             <input
                 className="catalog-search-input"
                 type="text"

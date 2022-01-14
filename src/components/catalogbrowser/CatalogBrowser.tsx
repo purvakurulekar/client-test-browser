@@ -14,7 +14,7 @@ import CatalogProductList from './CatalogProductList';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog } from "@fortawesome/free-solid-svg-icons";
 
-let groupsMap: Map<string, Array<IGroup>> = new Map();
+let groupsMap: Map<string, Array<ICatalogGroup>> = new Map();
 
 const
     DEFAULT_NB_PER_PAGE = 50,
@@ -48,7 +48,7 @@ interface IFetchCatalogGroupOptions {
 }
 
 interface IFetchCatalogGroupResults {
-    categoryList: Array<IGroup>
+    categoryList: Array<ICatalogGroup>
 }
 
 interface IDOMDimensions {
@@ -336,7 +336,7 @@ async function _fetchCatalogItems(pageOffset: number, options: IFetchCatalogItem
     searchCatalogIds = searchCatalogs
         .map((publicCatalog: ICatalog) => publicCatalog.id);
 
-    return CiCAPI.content.getItems(searchQuery ?? "", searchCatalogIds.length > 0 ? searchCatalogIds : "", { nbPerPage, offset: pageOffset, groupNames: selectedGroups, onlyVisible })
+    return CiCAPI.content.searchItems(searchQuery ?? "", searchCatalogIds.length > 0 ? searchCatalogIds : "", { nbPerPage, offset: pageOffset, groupNames: selectedGroups, onlyVisible })
         .then((productResults: IItemResults) => {
             let combinedProducts: Array<IItem>;
 
@@ -364,7 +364,7 @@ async function _fetchCatalogGroups(options: IFetchCatalogGroupOptions): Promise<
 
     searchCatalogIds = searchCatalogs.map((publicCatalog: ICatalog) => publicCatalog.id);
     if (!groupsMap.has(searchCatalogIds[0])) {
-        return CiCAPI.content.getGroupsForCatalog(searchCatalogIds[0], visibleOnly).then((categoryResults: Array<IGroup>) => {
+        return CiCAPI.content.getCatalogGroups(searchCatalogIds[0], {visibleOnly}).then((categoryResults: Array<ICatalogGroup>) => {
             groupsMap.set(searchCatalogIds[0], categoryResults);
             return {
                 categoryList: categoryResults
