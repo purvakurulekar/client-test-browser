@@ -5,7 +5,7 @@ import { faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
 interface GroupSelectorProps {
-    categories: Array<IGroup>,
+    categories: Array<ICatalogGroup>,
     onGroupSelected: Function,
     selectedGroupName: string,
     selectedGroupIds: Array<string>,
