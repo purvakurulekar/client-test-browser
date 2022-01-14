@@ -6,7 +6,7 @@ import { faCaretRight, faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import TreeItem from '@material-ui/lab/TreeItem';
 
 interface IGroupListProps {
-  categories: Array<IGroup>,
+  categories: Array<ICatalogGroup>,
   selectedGroupIDs: Array<string>,
   expandedGroupNodes: Array<string>,
   showHiddenGroups: boolean,
@@ -37,7 +37,7 @@ function handleExpansion(nodeIds: Array<string>) {
   expandedNodes = nodeIds;
 };
 
-function findNodeName(nodeId: string, category: IGroup): string {
+function findNodeName(nodeId: string, category: ICatalogGroup): string {
   let nodeName: string = "";
   if (category.code === nodeId) {
     nodeName = category.name;
@@ -103,11 +103,11 @@ function GroupTree(props: IGroupListProps) {
   categoryProps = props;
   let handleNodeSelect = (event: object, nodeIds: Array<string>) => handleSelection(categoryProps, nodeIds),
     handleNodeToggle = (event: object, nodeIds: Array<string>) => handleExpansion(nodeIds),
-    selectAll: IGroup = { code: "All Items", name: "All Items", groups: categoryProps.categories as [], visible: true };
-  const renderTree = (category: IGroup) => (
+    selectAll: ICatalogGroup = { code: "All Items", name: "All Items", groups: categoryProps.categories as [], visible: true };
+  const renderTree = (category: ICatalogGroup) => (
     <TreeItem key={category.code} nodeId={category.code} label={category.name} onIconClick={iconSelection}
       onLabelClick={labelSelection} classes={{ label: classes.treeItem }}>
-      {Array.isArray(category.groups) ? category.groups.map((node: IGroup) => renderTree(node)) : null}
+      {Array.isArray(category.groups) ? category.groups.map((node: ICatalogGroup) => renderTree(node)) : null}
     </TreeItem>
   );
 
