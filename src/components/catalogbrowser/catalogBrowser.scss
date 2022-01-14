@@ -329,6 +329,46 @@
     background-color: #fff;
 }
 
+.catalog-product-variants-btn {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    color: #28ad4b;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border: 1px SOLID #d3d3d3;
+    padding: 1px;
+    border-radius: 3px;
+}
+
+.catalog-product-variants-list {
+    position: absolute;
+    width: 200px;
+    max-height: 140px;
+    overflow: auto;
+    display: flex;
+    flex-flow: column;
+    padding: 4px;
+    background-color: #fff;
+    border: 2px SOLID #d3d3d3;
+    z-index: 2;
+}
+
+.catalog-product-variant-entry {
+    font-size: 10px;
+    border: 1px SOLID #d3d3d3;
+    border-radius: 2px;
+    margin-bottom: 4px;
+    background-color: #fff;
+    padding: 2px;
+}
+
+.catalog-product-variant-entry:hover {
+    background-color: #a3a3a3;
+    color: #f3f3f3;
+}
+
 .catalog-product-image-container {
     width: 105px;
     height: 105px;
