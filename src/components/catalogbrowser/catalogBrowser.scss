@@ -26,10 +26,16 @@
     }
 }
 
+.catalog-browser-header {
+    display: grid;
+    grid-template-columns: 40% auto;
+}
+
 .catalog-selector {
     position: relative;
     display: flex;
     flex-flow: row;
+    min-width: 100px;
 }
 
 .product-configuration {
@@ -87,7 +93,7 @@
 .catalog-categories-tree-list {
     position: absolute;
     top: 24px;
-    min-width: 200px;
+    min-width: 320px;
     width: calc(100% - 2px);
     height: 300px;
     font-size: 12px;

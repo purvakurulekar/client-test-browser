@@ -134,8 +134,8 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
             }
         },
         handleGroupsSelected = (group: ICatalogGroup, isSelected: boolean) => {
-            if(isSelected) {
-                if(!selectedGroups.includes(group)) {
+            if (isSelected) {
+                if (!selectedGroups.includes(group)) {
                     selectedGroups.push(group);
                 }
             } else {
@@ -143,7 +143,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
                 selectedGroups.splice(idx, 1);
             }
 
-            setSelectedGroups(selectedGroups.flat());   
+            setSelectedGroups(selectedGroups.flat());
         }
 
     previewProps = {
@@ -223,14 +223,16 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
             {
                 isSettingsVisible && <SettingsPanel onClose={() => setSettingsVisible(false)} />
             }
-            <CatalogSelector
-                catalogs={stateCatalogs}
-                selectedCatalogs={selectedCatalogs}
-                onCatalogSelected={setSelectedCatalogs}
-                onSelectOnlyCatalogSelected={(catalog: ICatalog) => { setSelectedCatalogs(([catalog] as Array<ICatalog>) as []) }}
-            />
+            <div className="catalog-browser-header">
+                <CatalogSelector
+                    catalogs={stateCatalogs}
+                    selectedCatalogs={selectedCatalogs}
+                    onCatalogSelected={setSelectedCatalogs}
+                    onSelectOnlyCatalogSelected={(catalog: ICatalog) => { setSelectedCatalogs(([catalog] as Array<ICatalog>) as []) }}
+                />
 
-            <CatalogSearch searchQuery={searchQuery} setSearchQuery={setSearchQuery} searchFunc={fetchItemsFunc} />
+                <CatalogSearch searchQuery={searchQuery} setSearchQuery={setSearchQuery} searchFunc={fetchItemsFunc} />
+            </div>
 
             <div className="catalog-browser-results-container">
                 <SlidingPanel
