@@ -1,7 +1,7 @@
 .catalog-browser {
     // max-width: 800px;
     // max-width: 480px;
-    min-width: 240px;
+    // min-width: 240px;
     display: flex;
     flex-flow: column;
     padding: 4px;
@@ -322,14 +322,45 @@
     background-color: #ebebeb;
     color: #444;
     padding: 2px;
-    padding-left: 10px;
     border-radius: 4px;
     margin: 4px;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+}
+
+.catalog-list-company-container {
+    .catalog-entry {
+        margin-left: 10px;
+    }
 }
 
 .catalog-entry-select-only-btn:active {
     background-color: #ffc379;
 }
+
+.catalog-browser-results-container {
+    flex: 1 1;
+    display: flex;
+    flex-flow: row;
+    overflow: hidden;
+}
+
+// slider content
+.catalog-browser-groups-section {
+    // min-width: 100px;
+    max-width: 80%;
+    min-width: 140px;
+    display: flex;
+}
+
+.catalog-browser-results-section {
+    flex: 1 1;
+    overflow: hidden;
+    display: flex;
+    flex-flow: column;
+}
+
 
 .catalog-results-preview {
     display: flex;

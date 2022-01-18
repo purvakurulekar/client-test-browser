@@ -74,7 +74,7 @@ export default function CatalogEntry(props: CatalogEntryProps) {
             <div className="catalog-entry-selector">
                 <input id={props.catalog.id} type="checkbox" checked={props.isSelected} {...toggleHandlers} onChange={onChangeFunc} />
                 <label htmlFor={props.catalog.id as string} className={classNames.join(" ")}>{props.catalog.name}</label>
-                {uomIcon && <span className={uomClassName}><FontAwesomeIcon title={props.catalog.UOM} icon={uomIcon} /></span>}
+                {uomIcon && <span className={uomClassName}><FontAwesomeIcon title={props.catalog.measurementSystem} icon={uomIcon} /></span>}
             </div>
             {
                 props.catalog.id !== SELECT_ALL_CATALOG.id &&

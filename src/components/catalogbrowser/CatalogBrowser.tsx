@@ -1,20 +1,19 @@
 import React, { useRef, useEffect, useState, useLayoutEffect } from 'react';
 import { SELECT_ALL_CATALOG } from "../../interfaces/IPublicAPIInterfaces";
 import "./catalogBrowser.scss";
-import { SettingsPanel } from "client-ui-toolkit";
+import { SettingsPanel, SlidingPanel, SLIDER_DIRECTION } from "client-ui-toolkit";
 import CatalogSelector from './CatalogSelector';
 import CombinedCatalogProductList from './CombinedCatalogProductList';
 import ProductInformationPanel from './ProductInformationPanel';
 import CatalogSearch from './CatalogSearch';
 import { Loader } from "client-ui-toolkit";
-import GroupSelector from './GroupSelector';
 import CatalogResultsPreview from './CatalogResultsPreview';
 import CatalogProductList from './CatalogProductList';
+import GroupsBrowser from 'components/groupsBrowser/GroupsBrowser';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog } from "@fortawesome/free-solid-svg-icons";
 
-let groupsMap: Map<string, Array<ICatalogGroup>> = new Map();
 
 const
     DEFAULT_NB_PER_PAGE = 50,
@@ -47,10 +46,6 @@ interface IFetchCatalogGroupOptions {
     showHiddenContent: boolean
 }
 
-interface IFetchCatalogGroupResults {
-    categoryList: Array<ICatalogGroup>
-}
-
 interface IDOMDimensions {
     width: number,
     height: number
@@ -69,13 +64,10 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
         }),
         [nbPerPage, setNbPerPage] = useState(DEFAULT_NB_PER_PAGE),
         // 
-        [stateCatalogs, setCatalogs] = useState([]),
-        [selectedCatalogs, setSelectedCatalogs] = useState([]),
-        [categories, setCategories] = useState([]),
-        [selectedGroupIds, setSelectedGroupIds] = useState([]),
-        [selectedGroupName, setSelectedGroupName] = useState(""),
-        [expandedGroupNodes, setExpandedGroupNodes] = useState([]),
-        [needsGroupsUpdate, setNeedsGroupsUpdate] = useState(false),
+        [stateCatalogs, setCatalogs] = useState<Array<ICatalog>>([]),
+        [selectedCatalogs, setSelectedCatalogs] = useState<Array<ICatalog>>([]),
+
+        [selectedGroups, setSelectedGroups] = useState<Array<ICatalogGroup>>([]),
 
         // item lists
         [catalogItems, setCatalogItems] = useState([]),
@@ -104,10 +96,6 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
         fetchItemsFunc = () => {
             if (stateCatalogs.length > 0 || (stateCatalogs.length === 0 && totalResults > 0)) {
                 resetProductsFunc();
-                if (needsGroupsUpdate) {
-                    setNeedsGroupsUpdate(false);
-                    updateGroupsFunc();
-                }
                 updateProductsFunc();
             }
 
@@ -116,22 +104,16 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
             pageOffset.current += nbPerPage;
             updateProductsFunc();
         },
-        updateGroupsFunc = async () => {
-            let offset = pageOffset.current;
-            if (offset < totalResults || offset === 0) {
-                setSelectedGroupName("");
-                setSelectedGroupIds([]);
-                setExpandedGroupNodes([]);
-                let fetchGroupOptions: IFetchCatalogGroupOptions = { selectedCatalogs, showHiddenContent };
-                _fetchCatalogGroups(fetchGroupOptions).then((result: IFetchCatalogGroupResults) => {
-                    setCategories(result.categoryList as []);
-                });
-            }
-        },
         updateProductsFunc = async () => {
             let searchCatalogs: Array<ICatalog> | undefined = _getSearchCatalogsList(selectedCatalogs),
                 catalogsToSearch: Array<ICatalog> = selectedCatalogs.length === stateCatalogs.length ? [] : selectedCatalogs,
-                fetchProductOptions: IFetchCatalogItemsOptions = { searchQuery, nbPerPage, selectedCatalogs: catalogsToSearch, selectedGroups: selectedGroupIds, showHiddenContent },
+                fetchProductOptions: IFetchCatalogItemsOptions = {
+                    searchQuery,
+                    nbPerPage,
+                    selectedCatalogs: catalogsToSearch,
+                    selectedGroups: selectedGroups.map((group: ICatalogGroup) => group.code),
+                    showHiddenContent
+                },
                 offset: Number = pageOffset.current;
 
             // console.log("Updating product list...");
@@ -150,7 +132,19 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
                         });
                 }
             }
-        };
+        },
+        handleGroupsSelected = (group: ICatalogGroup, isSelected: boolean) => {
+            if(isSelected) {
+                if(!selectedGroups.includes(group)) {
+                    selectedGroups.push(group);
+                }
+            } else {
+                let idx: number = selectedGroups.indexOf(group);
+                selectedGroups.splice(idx, 1);
+            }
+
+            setSelectedGroups(selectedGroups.flat());   
+        }
 
     previewProps = {
         totalCatalogs: selectedCatalogs.length,
@@ -169,12 +163,9 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
             fetchCatalogFunc = async () => {
                 let catalogs: Array<ICatalog> = await _fetchCatalogs(setLoadingCatalogs);
 
-                setCatalogs(catalogs as []);
-                setSelectedCatalogs(catalogs as []);
-                setSelectedGroupName("");
-                setSelectedGroupIds([]);
-                setCategories([]);
-                setExpandedGroupNodes([]);
+                setCatalogs(catalogs);
+                setSelectedCatalogs(catalogs);
+
                 pageOffset.current = 0;
                 // console.log("Catalogs Loaded!");
             },
@@ -202,7 +193,9 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
     }, []);
 
     // no need to wait here, if catalogs change lets update directly
-    useEffect(() => { fetchItemsFunc(); }, [selectedCatalogs, searchQuery, selectedGroupIds, nbPerPage]);
+    useEffect(() => {
+        fetchItemsFunc();
+    }, [selectedCatalogs, searchQuery, selectedGroups, nbPerPage]);
 
     useLayoutEffect(() => {
         let containerBounds: DOMRect = domRef.current!.getBoundingClientRect();
@@ -234,32 +227,43 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
                 catalogs={stateCatalogs}
                 selectedCatalogs={selectedCatalogs}
                 onCatalogSelected={setSelectedCatalogs}
-                onSelectOnlyCatalogSelected={(catalog: ICatalog) => { setSelectedCatalogs(([catalog] as Array<ICatalog>) as []), setNeedsGroupsUpdate(true) }}
-            />
-
-            <GroupSelector
-                categories={categories}
-                onGroupSelected={(categoryIds: Array<string>, categoryName: string, expandedNodes: Array<string>) => { setSelectedGroupIds(categoryIds as []), setSelectedGroupName(categoryName), setExpandedGroupNodes(expandedNodes as []), setSearchQuery("") }}
-                selectedGroupName={selectedGroupName}
-                selectedGroupIds={selectedGroupIds}
-                expandedGroupNodes={expandedGroupNodes}
+                onSelectOnlyCatalogSelected={(catalog: ICatalog) => { setSelectedCatalogs(([catalog] as Array<ICatalog>) as []) }}
             />
 
             <CatalogSearch searchQuery={searchQuery} setSearchQuery={setSearchQuery} searchFunc={fetchItemsFunc} />
 
-            <CatalogResultsPreview {...previewProps} >
-                {loader}
-            </CatalogResultsPreview>
+            <div className="catalog-browser-results-container">
+                <SlidingPanel
+                    className="catalog-browser-groups-section"
+                    initialDimension={200}
+                    direction={SLIDER_DIRECTION.horizontal}
+                    isCollapsable={true}
+                    isCollapsed={true}
+                    onCollapseToggle={(isCollapsing: boolean) => console.log("Collapse Toggled! ", isCollapsing)}
+                >
+                    <GroupsBrowser
+                        catalogs={selectedCatalogs.length !== stateCatalogs.length ? selectedCatalogs : []}
+                        selectedGroups={selectedGroups}
+                        onGroupsSelected={handleGroupsSelected}
+                    />
+                </SlidingPanel>
 
-            <CombinedCatalogProductList onFetchRequest={fetchMoreProductsRequests} isFetching={isFetchingCatalogItems}>
-                <CatalogProductList
-                    isLoading={isFetchingCatalogItems}
-                    items={catalogItems}
-                    selectedItem={selectedItem}
-                    onItemSelected={setSelectedItem}
-                    onAddItem={addItem}
-                />
-            </CombinedCatalogProductList>
+                <div className="catalog-browser-results-section">
+                    <CatalogResultsPreview {...previewProps} >
+                        {loader}
+                    </CatalogResultsPreview>
+
+                    <CombinedCatalogProductList onFetchRequest={fetchMoreProductsRequests} isFetching={isFetchingCatalogItems}>
+                        <CatalogProductList
+                            isLoading={isFetchingCatalogItems}
+                            items={catalogItems}
+                            selectedItem={selectedItem}
+                            onItemSelected={setSelectedItem}
+                            onAddItem={addItem}
+                        />
+                    </CombinedCatalogProductList>
+                </div>
+            </div>
 
             <ProductInformationPanel product={selectedItem} />
 
@@ -352,28 +356,4 @@ async function _fetchCatalogItems(pageOffset: number, options: IFetchCatalogItem
                 itemList: combinedProducts
             } as IFetchItemResults;
         });
-}
-
-//=============================================================================
-async function _fetchCatalogGroups(options: IFetchCatalogGroupOptions): Promise<IFetchCatalogGroupResults> {
-    let
-        { selectedCatalogs } = options,
-        searchCatalogs: Array<ICatalog> = _getSearchCatalogsList(selectedCatalogs),
-        searchCatalogIds: Array<string>,
-        visibleOnly: boolean = options.showHiddenContent ? false : true;
-
-    searchCatalogIds = searchCatalogs.map((publicCatalog: ICatalog) => publicCatalog.id);
-    if (!groupsMap.has(searchCatalogIds[0])) {
-        return CiCAPI.content.getCatalogGroups(searchCatalogIds[0], {visibleOnly}).then((categoryResults: Array<ICatalogGroup>) => {
-            groupsMap.set(searchCatalogIds[0], categoryResults);
-            return {
-                categoryList: categoryResults
-            } as IFetchCatalogGroupResults;
-        });
-    } else {
-
-        return {
-            categoryList: groupsMap.get(searchCatalogIds[0])
-        } as IFetchCatalogGroupResults;
-    }
 }

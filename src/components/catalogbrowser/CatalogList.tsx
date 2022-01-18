@@ -3,10 +3,11 @@ import CatalogEntry from './CatalogEntry';
 import { SELECT_ALL_CATALOG } from "../../interfaces/IPublicAPIInterfaces";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import CatalogCompanyEntry from "./CatalogCompanyEntry";
 
 type CatalogList = Array<ICatalog>;
 
-interface ICatalogListProps {
+export interface ICatalogListProps {
     catalogs: Array<ICatalog>,
     selectedCatalogs: Array<ICatalog>,
     onCatalogSelected: Function
@@ -17,7 +18,6 @@ interface ICatalogListProps {
 export default function CatalogList(props: ICatalogListProps) {
     let catalogsList: CatalogList = props.catalogs,
         [catalogFilter, setcatalogFilter] = useState(""),
-        onCatalogSelectedFunc = _onCatalogSelected.bind(null, props),
         groupedCatalogs: Map<string, Array<ICatalog>> = new Map();
 
     catalogFilter = catalogFilter.trim().toLowerCase();
@@ -48,24 +48,50 @@ export default function CatalogList(props: ICatalogListProps) {
             </div>
             <div className="catalog-list" >
                 {Array.from(groupedCatalogs.entries())
-                    .map((entry: Array<string | Array<ICatalog>>) => {
+                    .map(([companyName, companyCatalogs]) => { // entry: Array<string | Array<ICatalog>>
                         let rendered: JSX.Element | Array<JSX.Element>;
-                        if (!entry[0]) {
-                            rendered = (entry[1] as Array<ICatalog>).map(_renderCatalogEntry.bind(null, props, onCatalogSelectedFunc));
+                        if (!companyName) {
+                            rendered = (companyCatalogs as Array<ICatalog>).map(renderCatalogEntry.bind(null, props));
                         } else {
                             rendered = (
-                                <div key={entry[0]} className="catalog-list-company-container">
-                                    <div className="catalog-list-company">{entry[0]}</div>
-                                    {(entry[1] as Array<ICatalog>).map(_renderCatalogEntry.bind(null, props, onCatalogSelectedFunc))}
-                                </div>
+                                <CatalogCompanyEntry
+                                    key={`cie-${companyName}`}
+                                    companyName={companyName as string}
+                                    catalogs={companyCatalogs as Array<ICatalog>}
+                                    selectedCatalogs={props.selectedCatalogs}
+                                    onCatalogSelected={_onCatalogSelected.bind(null, props)}
+                                    onCompanySelected={_onCompanySelected.bind(null, props.selectedCatalogs, companyCatalogs, props.onCatalogSelected)}
+                                    onSelectOnlyCatalogSelected={props.onSelectOnlyCatalogSelected}
+                                />
                             );
                         }
                         return rendered;
                     })}
-
             </div>
         </div>
     );
+}
+
+//=============================================================================
+function _onCompanySelected(allSelectedCatalogs: Array<ICatalog>, companyCatalogs: Array<ICatalog>, onCatalogsSelected: Function, isSelected: boolean) {
+    let catalogSelection: Array<ICatalog> = allSelectedCatalogs.flat();
+
+    // make sure all catalogs from company are in the selection
+    companyCatalogs.forEach((cieCatalog: ICatalog) => {
+        let idx: number = catalogSelection.indexOf(cieCatalog);
+
+        if (isSelected) {
+            if (idx < 0) {
+                catalogSelection.push(cieCatalog);
+            }
+        } else {
+            if (idx > -1) {
+                catalogSelection.splice(idx, 1);
+            }
+        }
+    });
+
+    onCatalogsSelected(catalogSelection);
 }
 
 //=============================================================================
@@ -86,7 +112,10 @@ function _onCatalogSelected(props: ICatalogListProps, catalog: ICatalog, isSelec
             l_aSelectedCatalogs = [] as CatalogList;
         } else {
             l_nCatalogIndex = l_aSelectedCatalogs.indexOf(catalog);
-            l_aSelectedCatalogs.splice(l_nCatalogIndex, 1);
+            if (l_nCatalogIndex > -1) {
+                l_aSelectedCatalogs.splice(l_nCatalogIndex, 1);
+            }
+
         }
     }
 
@@ -94,7 +123,7 @@ function _onCatalogSelected(props: ICatalogListProps, catalog: ICatalog, isSelec
 }
 
 //=============================================================================
-function _renderCatalogEntry(props: ICatalogListProps, onCatalogSelectedFunc: Function, catalog: ICatalog, idx: number): ReactElement {
+export function renderCatalogEntry(props: ICatalogListProps, catalog: ICatalog, idx: number): ReactElement {
     let isSelected: boolean,
         entryClassName: string = "";
 
@@ -114,7 +143,7 @@ function _renderCatalogEntry(props: ICatalogListProps, onCatalogSelectedFunc: Fu
             className={entryClassName}
             catalog={catalog}
             isSelected={isSelected}
-            onSelected={onCatalogSelectedFunc}
+            onSelected={_onCatalogSelected.bind(null, props)}
             onSelectOnly={props.onSelectOnlyCatalogSelected}
         />
     );
