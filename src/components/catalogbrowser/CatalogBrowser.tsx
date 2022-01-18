@@ -239,7 +239,6 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
                     direction={SLIDER_DIRECTION.horizontal}
                     isCollapsable={true}
                     isCollapsed={true}
-                    onCollapseToggle={(isCollapsing: boolean) => console.log("Collapse Toggled! ", isCollapsing)}
                 >
                     <GroupsBrowser
                         catalogs={selectedCatalogs.length !== stateCatalogs.length ? selectedCatalogs : []}

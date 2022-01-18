@@ -14,7 +14,6 @@ interface ICatalogCompanyEntryProps {
 export default function CatalogCompanyEntry(props: ICatalogCompanyEntryProps) {
 
     function handleCompanyCheckbox(e: React.ChangeEvent<HTMLInputElement>) {
-        console.log("Checkbox Changed!");
         props.onCompanySelected(e.target.checked);
     }
     

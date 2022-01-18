@@ -127,9 +127,12 @@
     justify-content: center;
 
     .loader {
-        position: inherit !important;
-        justify-self: center;
-        align-self: center;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        left: 0;
+        right: 0;
     }
 }
 
