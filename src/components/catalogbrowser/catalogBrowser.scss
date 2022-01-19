@@ -26,11 +26,6 @@
     }
 }
 
-.catalog-browser-header {
-    display: grid;
-    grid-template-columns: 40% auto;
-}
-
 .catalog-selector {
     position: relative;
     display: flex;
@@ -356,11 +351,21 @@
 }
 
 // slider content
-.catalog-browser-groups-section {
+.catalog-browser-slider-section {
     // min-width: 100px;
     max-width: 80%;
     min-width: 140px;
     display: flex;
+}
+
+.catalog-browser-slider-content {
+    display: flex;
+    flex-flow: column;
+    flex: 1 1;
+    border-right: 1px SOLID #f3f3f3;
+    padding: 4px;
+    margin-right: 5px;
+    padding-left: 0;
 }
 
 .catalog-browser-results-section {

@@ -21,7 +21,6 @@ export default function GroupNode(props: IGroupNodeProps) {
     let [isOpened, setOpened] = useState(false),
         [isSelected, setSelected] = useState(false),
         icon: IconDefinition,
-        visibilityIcon: IconDefinition,
         headerClassNames: Array<string> = ["group-node-header"],
         hasGroups: boolean = Array.isArray(props.group.groups) && props.group.groups.length > 0;
 
@@ -50,12 +49,6 @@ export default function GroupNode(props: IGroupNodeProps) {
         icon = faCaretRight;
     }
 
-    if (props.group.visible) {
-        visibilityIcon = faEye;
-    } else {
-        visibilityIcon = faEyeSlash
-    }
-
     if (hasGroups) {
         headerClassNames.push("group-node-header-wchildren");
     } else {
@@ -73,7 +66,7 @@ export default function GroupNode(props: IGroupNodeProps) {
                     <button className="group-node-collapse-btn" onClick={handleExpandClick}><FontAwesomeIcon icon={icon} /></button>
                 }
                 <div className="group-node-name" onClick={handleGroupSelected}>{props.group.name}</div>
-                <FontAwesomeIcon icon={visibilityIcon} />
+                {!props.group.visible && <FontAwesomeIcon icon={faEyeSlash} />}
             </div>
             {props.isChild && hasGroups && <div className="group-node-linenotch-cube"></div>}
             {isOpened && hasGroups && <div className="group-node-linedown-cube"></div>}

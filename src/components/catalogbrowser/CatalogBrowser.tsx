@@ -58,6 +58,7 @@ export { SELECT_ALL_CATALOG };
 export default function CatalogBrowser(props: ICatalogBrowserProps) {
     let pageOffset = useRef(0),
         domRef: React.MutableRefObject<HTMLDivElement | null> = useRef(null),
+        ctrlKeyRef: React.MutableRefObject<boolean> = useRef(false),
         dimensionRef: React.MutableRefObject<IDOMDimensions> = useRef<IDOMDimensions>({
             width: 0,
             height: 0
@@ -134,16 +135,28 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
             }
         },
         handleGroupsSelected = (group: ICatalogGroup, isSelected: boolean) => {
-            if (isSelected) {
-                if (!selectedGroups.includes(group)) {
-                    selectedGroups.push(group);
+            let groupsToSelect: Array<ICatalogGroup>;
+
+            if (ctrlKeyRef.current) {
+                if (isSelected) {
+                    if (!selectedGroups.includes(group)) {
+                        selectedGroups.push(group);
+                    }
+                } else {
+                    let idx: number = selectedGroups.indexOf(group);
+                    selectedGroups.splice(idx, 1);
                 }
+
+                groupsToSelect = selectedGroups.flat();
             } else {
-                let idx: number = selectedGroups.indexOf(group);
-                selectedGroups.splice(idx, 1);
+                if (isSelected) {
+                    groupsToSelect = [group];
+                } else {
+                    groupsToSelect = [];
+                }
             }
 
-            setSelectedGroups(selectedGroups.flat());
+            setSelectedGroups(groupsToSelect);
         }
 
     previewProps = {
@@ -173,7 +186,17 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
                 if (configPath.includes("showHiddenContent") || configPath.includes("root") || configPath.includes("reset")) {
                     setShowHiddenContent(/true/.test(CiCAPI.getConfig("contentPlatform.showHiddenContent") as string));
                 }
-            };
+            },
+            checkForControlKey = (e: KeyboardEvent) => {
+                if (e.ctrlKey) {
+                    ctrlKeyRef.current = true;
+                }
+            },
+            releaseCtrlKey = (e: KeyboardEvent) => {
+                if (!e.ctrlKey) {
+                    ctrlKeyRef.current = false;
+                }
+            }
 
         containerBounds = domRef.current!.getBoundingClientRect();
         dimensionRef.current.width = containerBounds.width;
@@ -184,10 +207,14 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
 
         calcOptimalTilesFunc();
         window.addEventListener("resize", calcOptimalTilesFunc);
+        window.addEventListener("keydown", checkForControlKey);
+        window.addEventListener("keyup", releaseCtrlKey);
         CiCAPI.content.registerToChanges(onConfigChanged);
 
         return () => {
             window.removeEventListener("resize", calcOptimalTilesFunc);
+            window.removeEventListener("keydown", checkForControlKey);
+            window.removeEventListener("keyup", releaseCtrlKey);
             CiCAPI.content.unregisterToChanges(onConfigChanged);
         };
     }, []);
@@ -223,30 +250,30 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
             {
                 isSettingsVisible && <SettingsPanel onClose={() => setSettingsVisible(false)} />
             }
-            <div className="catalog-browser-header">
-                <CatalogSelector
-                    catalogs={stateCatalogs}
-                    selectedCatalogs={selectedCatalogs}
-                    onCatalogSelected={setSelectedCatalogs}
-                    onSelectOnlyCatalogSelected={(catalog: ICatalog) => { setSelectedCatalogs(([catalog] as Array<ICatalog>) as []) }}
-                />
 
-                <CatalogSearch searchQuery={searchQuery} setSearchQuery={setSearchQuery} searchFunc={fetchItemsFunc} />
-            </div>
+            <CatalogSearch searchQuery={searchQuery} setSearchQuery={setSearchQuery} searchFunc={fetchItemsFunc} />
 
             <div className="catalog-browser-results-container">
                 <SlidingPanel
-                    className="catalog-browser-groups-section"
-                    initialDimension={200}
+                    className="catalog-browser-slider-section"
+                    initialDimension={210}
                     direction={SLIDER_DIRECTION.horizontal}
                     isCollapsable={true}
                     isCollapsed={true}
                 >
-                    <GroupsBrowser
-                        catalogs={selectedCatalogs.length !== stateCatalogs.length ? selectedCatalogs : []}
-                        selectedGroups={selectedGroups}
-                        onGroupsSelected={handleGroupsSelected}
-                    />
+                    <div className="catalog-browser-slider-content">
+                        <CatalogSelector
+                            catalogs={stateCatalogs}
+                            selectedCatalogs={selectedCatalogs}
+                            onCatalogSelected={setSelectedCatalogs}
+                            onSelectOnlyCatalogSelected={(catalog: ICatalog) => { setSelectedCatalogs(([catalog] as Array<ICatalog>) as []) }}
+                        />
+                        <GroupsBrowser
+                            catalogs={selectedCatalogs.length !== stateCatalogs.length ? selectedCatalogs : []}
+                            selectedGroups={selectedGroups}
+                            onGroupsSelected={handleGroupsSelected}
+                        />
+                    </div>
                 </SlidingPanel>
 
                 <div className="catalog-browser-results-section">
