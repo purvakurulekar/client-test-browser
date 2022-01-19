@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState, useLayoutEffect } from 'react';
 import { SELECT_ALL_CATALOG } from "../../interfaces/IPublicAPIInterfaces";
 import "./catalogBrowser.scss";
-import { SettingsPanel, SlidingPanel, SLIDER_DIRECTION } from "client-ui-toolkit";
+import { SettingsPanel, SlidingPanel, SLIDER_DIRECTION, ISlidingPanelProps } from "client-ui-toolkit";
 import CatalogSelector from './CatalogSelector';
 import CombinedCatalogProductList from './CombinedCatalogProductList';
 import ProductInformationPanel from './ProductInformationPanel';
@@ -64,10 +64,10 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
             height: 0
         }),
         [nbPerPage, setNbPerPage] = useState(DEFAULT_NB_PER_PAGE),
+        [isSliderClosed, setSliderClosed] = useState(true),
         // 
         [stateCatalogs, setCatalogs] = useState<Array<ICatalog>>([]),
         [selectedCatalogs, setSelectedCatalogs] = useState<Array<ICatalog>>([]),
-
         [selectedGroups, setSelectedGroups] = useState<Array<ICatalogGroup>>([]),
 
         // item lists
@@ -84,6 +84,9 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
 
         loader,
         previewProps,
+        sliderProps: ISlidingPanelProps,
+        slidingPanelClassNames: Array<string>,
+        isSizeRestricted: boolean = props.width! <= 320,
         resetProductsFunc = () => {
             pageOffset.current = 0;
             setCatalogItems([]);
@@ -157,82 +160,82 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
             }
 
             setSelectedGroups(groupsToSelect);
-        }
+            if (isSizeRestricted) {
+                setSliderClosed(!isSliderClosed);
+            }
+        },
+        handleShellDimensionChanged = () => {
+            if (domRef.current) {
+                setNbPerPage(_calculateOptimalNbTiles(domRef.current! as HTMLDivElement));
+            }
+        },
+        onComponentMount = () => {
+            let containerBounds: DOMRect,
+                calcOptimalTilesFunc = () => setNbPerPage(_calculateOptimalNbTiles(domRef.current! as HTMLDivElement)),
+                fetchCatalogFunc = async () => {
+                    let catalogs: Array<ICatalog> = await _fetchCatalogs(setLoadingCatalogs);
+
+                    setCatalogs(catalogs);
+                    setSelectedCatalogs(catalogs);
+
+                    pageOffset.current = 0;
+                    // console.log("Catalogs Loaded!");
+                },
+                onConfigChanged = (configPath: string, valueToSet: ConfigValue, oldValue: ConfigValue) => {
+                    if (configPath.includes("showHiddenContent") || configPath.includes("root") || configPath.includes("reset")) {
+                        setShowHiddenContent(/true/.test(CiCAPI.getConfig("contentPlatform.showHiddenContent") as string));
+                    }
+                },
+                checkForControlKey = (e: KeyboardEvent) => {
+                    if (e.ctrlKey) {
+                        ctrlKeyRef.current = true;
+                    }
+                },
+                releaseCtrlKey = (e: KeyboardEvent) => {
+                    if (!e.ctrlKey) {
+                        ctrlKeyRef.current = false;
+                    }
+                }
+
+            containerBounds = domRef.current!.getBoundingClientRect();
+            dimensionRef.current.width = containerBounds.width;
+            dimensionRef.current.height = containerBounds.height;
+
+            fetchCatalogFunc(); // initial fetch
+            onConfigChanged("reset");
+
+            calcOptimalTilesFunc();
+            window.addEventListener("resize", calcOptimalTilesFunc);
+            window.addEventListener("keydown", checkForControlKey);
+            window.addEventListener("keyup", releaseCtrlKey);
+            CiCAPI.content.registerToChanges(onConfigChanged);
+
+            return () => {
+                window.removeEventListener("resize", calcOptimalTilesFunc);
+                window.removeEventListener("keydown", checkForControlKey);
+                window.removeEventListener("keyup", releaseCtrlKey);
+                CiCAPI.content.unregisterToChanges(onConfigChanged);
+            };
+        },
+        onRenderComplete = () => {
+            let containerBounds: DOMRect = domRef.current!.getBoundingClientRect();
+
+            if (containerBounds.width !== dimensionRef.current.width || containerBounds.height !== dimensionRef.current.height) {
+                dimensionRef.current.width = containerBounds.width;
+                dimensionRef.current.height = containerBounds.height;
+                setNbPerPage(_calculateOptimalNbTiles(domRef.current! as HTMLDivElement));
+            }
+        };
 
     previewProps = {
         totalCatalogs: selectedCatalogs.length,
         totalResults: totalResults || 0
     };
 
-    useEffect(() => {
-        if (domRef.current) {
-            setNbPerPage(_calculateOptimalNbTiles(domRef.current! as HTMLDivElement));
-        }
-    }, [props.width, props.height]);
-
-    useEffect(() => {
-        let containerBounds: DOMRect,
-            calcOptimalTilesFunc = () => setNbPerPage(_calculateOptimalNbTiles(domRef.current! as HTMLDivElement)),
-            fetchCatalogFunc = async () => {
-                let catalogs: Array<ICatalog> = await _fetchCatalogs(setLoadingCatalogs);
-
-                setCatalogs(catalogs);
-                setSelectedCatalogs(catalogs);
-
-                pageOffset.current = 0;
-                // console.log("Catalogs Loaded!");
-            },
-            onConfigChanged = (configPath: string, valueToSet: ConfigValue, oldValue: ConfigValue) => {
-                if (configPath.includes("showHiddenContent") || configPath.includes("root") || configPath.includes("reset")) {
-                    setShowHiddenContent(/true/.test(CiCAPI.getConfig("contentPlatform.showHiddenContent") as string));
-                }
-            },
-            checkForControlKey = (e: KeyboardEvent) => {
-                if (e.ctrlKey) {
-                    ctrlKeyRef.current = true;
-                }
-            },
-            releaseCtrlKey = (e: KeyboardEvent) => {
-                if (!e.ctrlKey) {
-                    ctrlKeyRef.current = false;
-                }
-            }
-
-        containerBounds = domRef.current!.getBoundingClientRect();
-        dimensionRef.current.width = containerBounds.width;
-        dimensionRef.current.height = containerBounds.height;
-
-        fetchCatalogFunc(); // initial fetch
-        onConfigChanged("reset");
-
-        calcOptimalTilesFunc();
-        window.addEventListener("resize", calcOptimalTilesFunc);
-        window.addEventListener("keydown", checkForControlKey);
-        window.addEventListener("keyup", releaseCtrlKey);
-        CiCAPI.content.registerToChanges(onConfigChanged);
-
-        return () => {
-            window.removeEventListener("resize", calcOptimalTilesFunc);
-            window.removeEventListener("keydown", checkForControlKey);
-            window.removeEventListener("keyup", releaseCtrlKey);
-            CiCAPI.content.unregisterToChanges(onConfigChanged);
-        };
-    }, []);
-
-    // no need to wait here, if catalogs change lets update directly
-    useEffect(() => {
-        fetchItemsFunc();
-    }, [selectedCatalogs, searchQuery, selectedGroups, nbPerPage]);
-
-    useLayoutEffect(() => {
-        let containerBounds: DOMRect = domRef.current!.getBoundingClientRect();
-
-        if (containerBounds.width !== dimensionRef.current.width || containerBounds.height !== dimensionRef.current.height) {
-            dimensionRef.current.width = containerBounds.width;
-            dimensionRef.current.height = containerBounds.height;
-            setNbPerPage(_calculateOptimalNbTiles(domRef.current! as HTMLDivElement));
-        }
-    });
+    useEffect(handleShellDimensionChanged, [props.width, props.height]);
+    useEffect(onComponentMount, []);
+    useEffect(fetchItemsFunc, [selectedCatalogs, searchQuery, selectedGroups, nbPerPage]);// no need to wait here, if catalogs change lets update directly
+    useLayoutEffect(onRenderComplete);
 
     if (isLoadingCatalogs || isFetchingCatalogItems) {
         loader = (<Loader />);
@@ -245,22 +248,34 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
     }
     previewProps.totalResults += previewProps.totalResults;
 
+    slidingPanelClassNames = ["catalog-browser-slider-section"];
+    sliderProps = {
+        direction: SLIDER_DIRECTION.horizontal,
+        isCollapsable: true,
+        isCollapsed: true,
+        initialDimension: 210
+    }
+
+    if (isSizeRestricted) {
+        slidingPanelClassNames.push("catalog-browser-slider-section-overlay");
+        sliderProps.initialDimension = props.width!;
+        sliderProps.isResizable = false;
+        sliderProps.isCollapsed = isSliderClosed;
+        sliderProps.onCollapseToggle = () => setSliderClosed(!isSliderClosed);
+    } else {
+        slidingPanelClassNames.push("catalog-browser-slider-section-resizable");
+    }
+
+    sliderProps.className = slidingPanelClassNames.join(" ");
+
     return (
         <div ref={domRef} className="catalog-browser">
             {
                 isSettingsVisible && <SettingsPanel onClose={() => setSettingsVisible(false)} />
             }
 
-            <CatalogSearch searchQuery={searchQuery} setSearchQuery={setSearchQuery} searchFunc={fetchItemsFunc} />
-
             <div className="catalog-browser-results-container">
-                <SlidingPanel
-                    className="catalog-browser-slider-section"
-                    initialDimension={210}
-                    direction={SLIDER_DIRECTION.horizontal}
-                    isCollapsable={true}
-                    isCollapsed={true}
-                >
+                <SlidingPanel {...sliderProps}>
                     <div className="catalog-browser-slider-content">
                         <CatalogSelector
                             catalogs={stateCatalogs}
@@ -277,6 +292,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
                 </SlidingPanel>
 
                 <div className="catalog-browser-results-section">
+                    <CatalogSearch searchQuery={searchQuery} setSearchQuery={setSearchQuery} searchFunc={fetchItemsFunc} />
                     <CatalogResultsPreview {...previewProps} >
                         {loader}
                     </CatalogResultsPreview>
