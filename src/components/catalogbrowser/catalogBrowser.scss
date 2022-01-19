@@ -277,14 +277,16 @@
 .catalog-entry-details {
     font-size: 10px;
     display: grid;
-    grid-template-columns: 40px auto 60px;
+    grid-template-columns: 40px auto;
     margin-left: 20px;
     margin-right: 4px;
 }
 
 .catalog-entry-timestamp {
-    display: flex;
-    flex-flow: row;
+    // display: flex;
+    // flex-flow: row;
+    display: grid;
+    grid-template-columns: 42px 120px auto;
     margin-left: 20px;
     font-size: 10px;
 }
@@ -295,6 +297,7 @@
 
 .catalog-status {
     text-align: right;
+    font-weight: bold;
 }
 
 .catalog-activated {
@@ -375,7 +378,8 @@
 }
 
 
-.sliding-panel-closed.sliding-panel-fixed, .catalog-browser-slider-section-resizable.sliding-panel-closed {
+.sliding-panel-closed.sliding-panel-fixed,
+.catalog-browser-slider-section-resizable.sliding-panel-closed {
     .sliding-panel-collapse-btn {
         right: -12px !important;
         height: 27px;
@@ -391,6 +395,7 @@
     padding: 4px;
     margin-right: 5px;
     padding-left: 0;
+    overflow: hidden;
 }
 
 .catalog-browser-results-section {

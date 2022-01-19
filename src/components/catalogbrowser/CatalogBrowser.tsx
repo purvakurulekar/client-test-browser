@@ -17,7 +17,8 @@ import { faCog } from "@fortawesome/free-solid-svg-icons";
 
 const
     DEFAULT_NB_PER_PAGE = 50,
-    MIN_NB_TILES_PER_PAGE = 10;
+    MIN_NB_TILES_PER_PAGE = 10,
+    STORAGE_SELECTED_CATALOGS_KEY = "ctb-sel-catalog-ids";
 
 interface ICatalogBrowserProps {
     handleItemAdd?: Function,
@@ -173,10 +174,23 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
             let containerBounds: DOMRect,
                 calcOptimalTilesFunc = () => setNbPerPage(_calculateOptimalNbTiles(domRef.current! as HTMLDivElement)),
                 fetchCatalogFunc = async () => {
-                    let catalogs: Array<ICatalog> = await _fetchCatalogs(setLoadingCatalogs);
+                    let catalogs: Array<ICatalog> = await _fetchCatalogs(setLoadingCatalogs),
+                        catalogsToSelect: Array<ICatalog> = catalogs,
+                        storedCatalogIds: Array<string>;
+
+                    try {
+                        let rawStoredIds: string | null = localStorage.getItem(STORAGE_SELECTED_CATALOGS_KEY);
+
+                        if (rawStoredIds) {
+                            storedCatalogIds = JSON.parse(rawStoredIds);
+                            catalogsToSelect = catalogs.filter((catalog: ICatalog) => storedCatalogIds.includes(catalog.id));
+                        }
+                    } catch (e) {
+                        // graceful fallback
+                    }
 
                     setCatalogs(catalogs);
-                    setSelectedCatalogs(catalogs);
+                    handleSetCatalogSelection(catalogsToSelect);
 
                     pageOffset.current = 0;
                     // console.log("Catalogs Loaded!");
@@ -225,7 +239,11 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
                 dimensionRef.current.height = containerBounds.height;
                 setNbPerPage(_calculateOptimalNbTiles(domRef.current! as HTMLDivElement));
             }
-        };
+        },
+        handleSetCatalogSelection = (catalogsToSelect: Array<ICatalog>) => {
+            setSelectedCatalogs(catalogsToSelect);
+            localStorage.setItem(STORAGE_SELECTED_CATALOGS_KEY, JSON.stringify(catalogsToSelect.map((catalog: ICatalog) => catalog.id)));
+        }
 
     previewProps = {
         totalCatalogs: selectedCatalogs.length,
@@ -280,8 +298,8 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
                         <CatalogSelector
                             catalogs={stateCatalogs}
                             selectedCatalogs={selectedCatalogs}
-                            onCatalogSelected={setSelectedCatalogs}
-                            onSelectOnlyCatalogSelected={(catalog: ICatalog) => { setSelectedCatalogs(([catalog] as Array<ICatalog>) as []) }}
+                            onCatalogSelected={handleSetCatalogSelection}
+                            onSelectOnlyCatalogSelected={(catalog: ICatalog) => { handleSetCatalogSelection([catalog]) }}
                         />
                         <GroupsBrowser
                             catalogs={selectedCatalogs.length !== stateCatalogs.length ? selectedCatalogs : []}

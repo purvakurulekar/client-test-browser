@@ -87,14 +87,14 @@ export default function CatalogEntry(props: CatalogEntryProps) {
                         <span className="catalog-entry-details-label">version:</span>
                         <span>{props.catalog.version}</span>
                     </div>
-                    <span className="catalog-status">{props.catalog.status}</span>
                 </div>
             }
 
             {props.catalog.id !== SELECT_ALL_CATALOG.id &&
                 <div className="catalog-entry-timestamp">
                     <span className="catalog-entry-details-label">updated:</span>
-                    <span>{props.catalog.updatedDate.replace(/T|\.\d+$/, " ").trim()}</span>
+                    <span>{props.catalog.updatedDate.replace(/T|\.\d+$/g, " ").trim()}</span>
+                    <span className="catalog-status">{props.catalog.status}</span>
                 </div>
             }
 

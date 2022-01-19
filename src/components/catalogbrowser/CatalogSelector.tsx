@@ -59,7 +59,7 @@ function CatalogSelector(props: Props) {
         <ClickAwayListener onClickAway={handleClickAway}>
         <div className="catalog-selector">
             <button className="catalog-selector-toggle" onClick={handleClick}  disabled={props.catalogs.length === 0}>
-                <div className="catalog-selector-toggle-label">{label}</div>
+                <div className="catalog-selector-toggle-label truncatable-text">{label}</div>
                 <div className="catalog-selector-toggle-btn"><FontAwesomeIcon icon={selectorIcon} /></div>
             </button>
             {catalogListElement}
