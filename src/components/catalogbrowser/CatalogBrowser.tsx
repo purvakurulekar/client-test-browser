@@ -13,6 +13,7 @@ import GroupsBrowser from 'components/groupsBrowser/GroupsBrowser';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog } from "@fortawesome/free-solid-svg-icons";
+import CatalogItemDetails from './CatalogItemDetails';
 
 
 const
@@ -72,6 +73,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
         [stateCatalogs, setCatalogs] = useState<Array<ICatalog>>([]),
         [selectedCatalogs, setSelectedCatalogs] = useState<Array<ICatalog>>([]),
         [selectedGroups, setSelectedGroups] = useState<Array<ICatalogGroup>>([]),
+        [itemDetails, setItemDetails] = useState<IItem | null>(null),
 
         // item lists
         [catalogItems, setCatalogItems] = useState([]),
@@ -171,6 +173,10 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
             if (domRef.current) {
                 setNbPerPage(_calculateOptimalNbTiles(domRef.current! as HTMLDivElement));
             }
+        },
+        handleShowItemDetails = (catalogItem: IItem) => {
+            console.log("Showing Catalog Item: ", catalogItem);
+            setItemDetails(catalogItem);
         },
         onComponentMount = () => {
             let containerBounds: DOMRect,
@@ -291,9 +297,8 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
 
     return (
         <div ref={domRef} className="catalog-browser">
-            {
-                isSettingsVisible && <SettingsPanel onClose={() => setSettingsVisible(false)} />
-            }
+            {isSettingsVisible && <SettingsPanel onClose={() => setSettingsVisible(false)} />}
+            {itemDetails && <CatalogItemDetails item={itemDetails} onCloseClicked={() => setItemDetails(null)} />}
 
             <div className="catalog-browser-results-container">
                 <SlidingPanel {...sliderProps}>
@@ -326,6 +331,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
                             selectedItem={selectedItem}
                             onItemSelected={setSelectedItem}
                             onAddItem={addItem}
+                            onShowItemDetails={handleShowItemDetails}
                         />
                     </CombinedCatalogProductList>
                 </div>

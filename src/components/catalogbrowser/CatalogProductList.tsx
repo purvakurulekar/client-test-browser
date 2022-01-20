@@ -10,7 +10,8 @@ interface ICatalogProductListProps {
     items: Array<IItem>,
     selectedItem: IItem | null,
     onItemSelected: Function,
-    onAddItem: Function
+    onAddItem(catalogItem: IItem): void,
+    onShowItemDetails(ctalogItem: IItem): void
 }
 
 //=============================================================================
@@ -34,6 +35,7 @@ export default function CatalogProductList(props: ICatalogProductListProps) {
                     isSelected={item === props.selectedItem}
                     onItemSelected={props.onItemSelected}
                     onAddItem={props.onAddItem}
+                    onShowItemDetails={props.onShowItemDetails}
                 />;
             })}
             {isLoading && <Loader />}

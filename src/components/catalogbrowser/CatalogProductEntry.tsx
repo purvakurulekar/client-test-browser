@@ -1,12 +1,14 @@
 import React, { LegacyRef, useLayoutEffect, useRef, useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faListAlt } from "@fortawesome/free-regular-svg-icons";
+import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 
 interface CatalogProductEntryProps {
     item: IItem,
     isSelected: boolean,
     onItemSelected: Function,
-    onAddItem(catalogItem: IItem): void
+    onAddItem(catalogItem: IItem): void,
+    onShowItemDetails(ctalogItem: IItem): void
 }
 
 //=============================================================================
@@ -50,15 +52,18 @@ function CatalogProductEntry(props: CatalogProductEntryProps) {
         <div className={classNames.join(" ")} onClick={() => props.onItemSelected(props.item)} onDoubleClick={() => props.onAddItem(props.item)} onDragStart={_handleDragStart} >
             {variantBtn}
             {
-                isShowingVariantsList && 
-                <VariantsList 
-                list={props.item.proposedVariants!} 
-                onVariantClicked={props.onAddItem}
-                onClose={() => setShowingVariantsList(false)} />
+                isShowingVariantsList &&
+                <VariantsList
+                    list={props.item.proposedVariants!}
+                    onVariantClicked={props.onAddItem}
+                    onClose={() => setShowingVariantsList(false)} />
 
             }
             <div className="catalog-product-image-container">
                 {imageContent}
+                <button className="catalog-product-info-btn" onClick={() => props.onShowItemDetails(props.item)}>
+                    <FontAwesomeIcon icon={faInfoCircle} />
+                </button>
             </div>
             <div className="catalog-product-entry-label">
                 {props.item.name}
@@ -88,7 +93,7 @@ function VariantsList(props: IVariantsListProps) {
             offset = parentContainerRect.width - (listRect.x + listRect.width);
             listRef.current!.style.left = `${offset}px`;
         }
-        
+
         // setTimeout(() => {
         listRefRect.current = listRef.current!.getBoundingClientRect();
         // });
@@ -123,8 +128,8 @@ function VariantsList(props: IVariantsListProps) {
     return (
         <div className="catalog-product-variants-list" ref={listRef as LegacyRef<HTMLDivElement>}>
             {props.list.map((variantItem: IItem, idx: number) =>
-                <div 
-                    key={`${variantItem.id}-${idx}`} 
+                <div
+                    key={`${variantItem.id}-${idx}`}
                     onClick={() => props.onVariantClicked(variantItem)}
                     className="catalog-product-variant-entry">{variantItem.name}</div>
             )}
