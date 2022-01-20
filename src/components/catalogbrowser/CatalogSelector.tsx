@@ -5,6 +5,7 @@ import CatalogList from './CatalogList';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
 interface Props {
+    isOpened?: boolean,
     catalogs: Array<ICatalog>,
     selectedCatalogs: Array<ICatalog>,
     onCatalogSelected: Function,
@@ -14,7 +15,7 @@ interface Props {
 // use context for selected catalogs ?
 //=============================================================================
 function CatalogSelector(props: Props) {
-    let [isOpened, setOpened] = useState(false),
+    let [isOpened, setOpened] = useState(Boolean(props.isOpened)),
         selectorIcon,
         catalogListElement,
         label: string,
@@ -46,7 +47,7 @@ function CatalogSelector(props: Props) {
     if (props.catalogs.length === 0) {
         label = `No Catalogs Loaded.`;
     } else if (props.catalogs.length === props.selectedCatalogs.length) {
-        label = `All Selected`;
+        label = `All Catalogs Selected`;
     } else {
         if (props.selectedCatalogs.length > 4) {
             label = `${props.selectedCatalogs.length} / ${props.catalogs.length} catalogs`;

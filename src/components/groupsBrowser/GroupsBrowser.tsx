@@ -13,13 +13,15 @@ export default function GroupsBrowser(props: IGroupsBrowserProps) {
     return (
         <div className="groups-browser-root">
             {props.catalogs.length === 0 && <span className="groups-browser-root-no-catalogs">No Catalogs / all catalogs specified.</span>}
-            {props.catalogs.map((catalog: ICatalog) =>
-                <GroupEntry
-                    key={catalog.id}
-                    catalog={catalog}
-                    selectedGroups={props.selectedGroups}
-                    onGroupsSelected={props.onGroupsSelected}
-                />)}
+            {props.catalogs
+                .filter((catalog: ICatalog) => catalog.version)
+                .map((catalog: ICatalog) =>
+                    <GroupEntry
+                        key={catalog.id}
+                        catalog={catalog}
+                        selectedGroups={props.selectedGroups}
+                        onGroupsSelected={props.onGroupsSelected}
+                    />)}
         </div>
     );
 }

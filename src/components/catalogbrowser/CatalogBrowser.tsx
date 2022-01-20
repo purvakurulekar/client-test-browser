@@ -18,7 +18,8 @@ import { faCog } from "@fortawesome/free-solid-svg-icons";
 const
     DEFAULT_NB_PER_PAGE = 50,
     MIN_NB_TILES_PER_PAGE = 10,
-    MIN_WIDTH_RESTRICTED = 360,
+    MAX_NB_TILES_PER_PAGE = 100,
+    MIN_WIDTH_RESTRICTED = 520,
     STORAGE_SELECTED_CATALOGS_KEY = "ctb-sel-catalog-ids";
 
 interface ICatalogBrowserProps {
@@ -243,6 +244,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
         },
         handleSetCatalogSelection = (catalogsToSelect: Array<ICatalog>) => {
             setSelectedCatalogs(catalogsToSelect);
+            setSelectedGroups([]);
             localStorage.setItem(STORAGE_SELECTED_CATALOGS_KEY, JSON.stringify(catalogsToSelect.map((catalog: ICatalog) => catalog.id)));
         }
 
@@ -297,6 +299,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
                 <SlidingPanel {...sliderProps}>
                     <div className="catalog-browser-slider-content">
                         <CatalogSelector
+                            isOpened={isSizeRestricted && selectedCatalogs.length === stateCatalogs.length}
                             catalogs={stateCatalogs}
                             selectedCatalogs={selectedCatalogs}
                             onCatalogSelected={handleSetCatalogSelection}
@@ -356,6 +359,7 @@ function _calculateOptimalNbTiles(rootContainer: HTMLDivElement): number {
     maxNbTilesPerPage += Math.ceil(workWidth / prodSquareSize) * Math.ceil(workHeight / prodSquareSize); // we want a bit of overflow
 
     maxNbTilesPerPage = Math.max(maxNbTilesPerPage, MIN_NB_TILES_PER_PAGE);
+    maxNbTilesPerPage = Math.min(maxNbTilesPerPage, MAX_NB_TILES_PER_PAGE);
 
     return maxNbTilesPerPage;
 }
