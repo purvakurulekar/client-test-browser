@@ -18,6 +18,7 @@ import { faCog } from "@fortawesome/free-solid-svg-icons";
 const
     DEFAULT_NB_PER_PAGE = 50,
     MIN_NB_TILES_PER_PAGE = 10,
+    MIN_WIDTH_RESTRICTED = 360,
     STORAGE_SELECTED_CATALOGS_KEY = "ctb-sel-catalog-ids";
 
 interface ICatalogBrowserProps {
@@ -87,7 +88,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
         previewProps,
         sliderProps: ISlidingPanelProps,
         slidingPanelClassNames: Array<string>,
-        isSizeRestricted: boolean = props.width! <= 320,
+        isSizeRestricted: boolean = props.width! <= MIN_WIDTH_RESTRICTED,
         resetProductsFunc = () => {
             pageOffset.current = 0;
             setCatalogItems([]);
@@ -271,7 +272,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
         direction: SLIDER_DIRECTION.horizontal,
         isCollapsable: true,
         isCollapsed: true,
-        initialDimension: 210
+        initialDimension: 260
     }
 
     if (isSizeRestricted) {

@@ -23,7 +23,22 @@ export default function CatalogList(props: ICatalogListProps) {
     catalogFilter = catalogFilter.trim().toLowerCase();
 
     if (catalogFilter.length > 0) {
-        catalogsList = catalogsList.filter((catalog: ICatalog) => catalog.name.toLowerCase().includes(catalogFilter));
+        catalogsList = catalogsList.filter((catalog: ICatalog) => {
+            let isValid: boolean;
+
+            isValid = catalog.name.toLowerCase().includes(catalogFilter);
+            if (!isValid) {
+                isValid = catalog.id.includes(catalogFilter);
+            }
+            if (!isValid) {
+                isValid = Boolean(catalog.version && catalog.version.includes(catalogFilter));
+            }
+            if (!isValid) {
+                isValid = Boolean(catalog.updatedDate && catalog.updatedDate.includes(catalogFilter));
+            }
+
+            return isValid;
+        });
     }
 
     catalogsList.forEach((catalog: ICatalog) => {
