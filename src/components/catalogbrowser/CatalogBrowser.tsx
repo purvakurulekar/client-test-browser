@@ -175,7 +175,6 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
             }
         },
         handleShowItemDetails = (catalogItem: IItem) => {
-            console.log("Showing Catalog Item: ", catalogItem);
             setItemDetails(catalogItem);
         },
         onComponentMount = () => {

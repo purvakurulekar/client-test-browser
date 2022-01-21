@@ -48,6 +48,10 @@ function CatalogProductEntry(props: CatalogProductEntryProps) {
         );
     }
 
+    //     <button className="catalog-product-info-btn" onClick={() => props.onShowItemDetails(props.item)}>
+    //     <FontAwesomeIcon icon={faInfoCircle} />
+    // </button>
+
     return (
         <div className={classNames.join(" ")} onClick={() => props.onItemSelected(props.item)} onDoubleClick={() => props.onAddItem(props.item)} onDragStart={_handleDragStart} >
             {variantBtn}
@@ -61,14 +65,48 @@ function CatalogProductEntry(props: CatalogProductEntryProps) {
             }
             <div className="catalog-product-image-container">
                 {imageContent}
-                <button className="catalog-product-info-btn" onClick={() => props.onShowItemDetails(props.item)}>
-                    <FontAwesomeIcon icon={faInfoCircle} />
-                </button>
+
             </div>
             <div className="catalog-product-entry-label">
                 {props.item.name}
             </div>
             <span className="catalog-product-tooltip">{props.item.name}</span>
+            <div className="catalog-item-details-small">
+                <div className="catalog-item-details-entry">
+                    <div className="catalog-item-details-entry-name">id:</div>
+                    <div className="catalog-item-details-entry-value">{props.item.id}</div>
+                </div>
+                <div className="catalog-item-details-entry">
+                    <div className="catalog-item-details-entry-name">description:</div>
+                    <div className="catalog-item-details-entry-value wrap-text">{props.item.description}</div>
+                </div>
+                <div className="catalog-item-details-entry">
+                    <div className="catalog-item-details-entry-name">Order code:</div>
+                    <div className="catalog-item-details-entry-value">{props.item.orderCode}</div>
+                </div>
+                <div className="catalog-item-details-entry">
+                    <div className="catalog-item-details-entry-name">legacyItemType:</div>
+                    <div className="catalog-item-details-entry-value wrap-text">{props.item.legacyItemType}</div>
+                </div>
+                <div className="catalog-item-details-entry">
+                    <div className="catalog-item-details-entry-name">dimensions:</div>
+                    <ul>
+                        {Array.from(Object.entries(props.item.dimensions || {}))
+                            .map(([propName, propVal]) => (
+                                <li key={propName}>
+                                    <span>{propName}: </span>
+                                    <span>{propVal}</span>
+                                </li>
+                            ))}
+                    </ul>
+                </div>
+                <div className="catalog-item-details-entry">
+                    <div className="catalog-item-details-entry-name">groupCodes:</div>
+                    <ul>
+                        {props.item.groupCodes?.map((code: string, idx: number) => <li key={code + idx}>{code}</li>)}
+                    </ul>
+                </div>
+            </div>
         </div>
     );
 }
