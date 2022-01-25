@@ -24,6 +24,7 @@ const
     STORAGE_SELECTED_CATALOGS_KEY = "ctb-sel-catalog-ids";
 
 interface ICatalogBrowserProps {
+    itemContextList: Array<IItemElement>,
     handleItemAdd?: Function,
     handleGetComponentState?: Function,
     handleItemReplace?: Function,
@@ -93,6 +94,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
         loader,
         previewProps,
         sliderProps: ISlidingPanelProps,
+        hasSingleItemSelected: boolean = props.itemContextList && props.itemContextList.filter((itemElement: IItemElement) => itemElement.selected).length === 1,
         slidingPanelClassNames: Array<string>,
         isSizeRestricted: boolean = props.width! <= MIN_WIDTH_RESTRICTED,
         resetProductsFunc = () => {
@@ -103,6 +105,11 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
         addItem = (item: IItem | null) => {
             if (item !== null && props.handleItemAdd) {
                 props.handleItemAdd(item);
+            }
+        },
+        replaceItem = (item: IItem | null) => {
+            if (item !== null && props.handleItemReplace) {
+                props.handleItemReplace(item);
             }
         },
         fetchItemsFunc = () => {
@@ -360,8 +367,16 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
             <div className="catalog-browser-action-btn-container">
                 {props.includeSettings && <button className="settings-btn" onClick={() => setSettingsVisible(true)}><FontAwesomeIcon icon={faCog} /></button>}
 
-                <button className="catalog-action-btn" disabled={true}>Replace</button>
-                <button className="catalog-action-btn" disabled={selectedItem === null} onClick={() => addItem(selectedItem)}>Add</button>
+                <button
+                    className="catalog-action-btn"
+                    disabled={!hasSingleItemSelected || selectedItem === null}
+                    onClick={() => replaceItem(selectedItem)}
+                >Replace</button>
+                <button
+                    className="catalog-action-btn"
+                    disabled={selectedItem === null}
+                    onClick={() => addItem(selectedItem)}
+                >Add</button>
             </div>
         </div>
     );
