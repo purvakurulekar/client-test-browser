@@ -25,6 +25,8 @@ const
 
 interface ICatalogBrowserProps {
     handleItemAdd?: Function,
+    handleGetComponentState?: Function,
+    handleItemReplace?: Function,
     includeSettings?: boolean,
     width?: number,
     height?: number
@@ -62,6 +64,7 @@ export { SELECT_ALL_CATALOG };
 export default function CatalogBrowser(props: ICatalogBrowserProps) {
     let pageOffset = useRef(0),
         domRef: React.MutableRefObject<HTMLDivElement | null> = useRef(null),
+        focusedItemRef: React.MutableRefObject<IItem | null> = useRef(null),
         ctrlKeyRef: React.MutableRefObject<boolean> = useRef(false),
         dimensionRef: React.MutableRefObject<IDOMDimensions> = useRef<IDOMDimensions>({
             width: 0,
@@ -79,7 +82,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
         [catalogItems, setCatalogItems] = useState([]),
 
         [isLoadingCatalogs, setLoadingCatalogs] = useState(false),
-        [selectedItem, setSelectedItem] = useState(null),
+        [selectedItem, setSelectedItem] = useState<IItem | null>(null),
         [searchQuery, setSearchQuery] = useState(""),
         [isSettingsVisible, setSettingsVisible] = useState(false),
         [showHiddenContent, setShowHiddenContent] = useState(true),
@@ -177,6 +180,10 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
         handleShowItemDetails = (catalogItem: IItem) => {
             setItemDetails(catalogItem);
         },
+        handleItemSelected = (catalogItem: IItem) => {
+            setSelectedItem(catalogItem);
+            focusedItemRef.current = catalogItem;
+        },
         onComponentMount = () => {
             let containerBounds: DOMRect,
                 calcOptimalTilesFunc = () => setNbPerPage(_calculateOptimalNbTiles(domRef.current! as HTMLDivElement)),
@@ -216,9 +223,19 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
                     if (!e.ctrlKey) {
                         ctrlKeyRef.current = false;
                     }
-                }
+                },
+                onWindowMsgReceived = (ev: MessageEvent) => {
+                    if (ev.data === "getComponentState") {
+                        if (props.handleGetComponentState) {
+                            props.handleGetComponentState({
+                                focusedItems: [focusedItemRef.current]
+                            });
+                        }
+                    }
+                };
 
             containerBounds = domRef.current!.getBoundingClientRect();
+
             dimensionRef.current.width = containerBounds.width;
             dimensionRef.current.height = containerBounds.height;
 
@@ -226,12 +243,14 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
             onConfigChanged("reset");
 
             calcOptimalTilesFunc();
+            window.addEventListener("message", onWindowMsgReceived);
             window.addEventListener("resize", calcOptimalTilesFunc);
             window.addEventListener("keydown", checkForControlKey);
             window.addEventListener("keyup", releaseCtrlKey);
             CiCAPI.content.registerToChanges(onConfigChanged);
 
             return () => {
+                window.removeEventListener("message", onWindowMsgReceived);
                 window.removeEventListener("resize", calcOptimalTilesFunc);
                 window.removeEventListener("keydown", checkForControlKey);
                 window.removeEventListener("keyup", releaseCtrlKey);
@@ -328,7 +347,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
                             isLoading={isFetchingCatalogItems}
                             items={catalogItems}
                             selectedItem={selectedItem}
-                            onItemSelected={setSelectedItem}
+                            onItemSelected={handleItemSelected}
                             onAddItem={addItem}
                             onShowItemDetails={handleShowItemDetails}
                         />
