@@ -49,11 +49,10 @@ export default function GroupEntry(props: IGroupEntryProps) {
 
     return (
         <div className="group-entry">
-            <div className="group-entry-catalog-name">
-                <span>{props.catalog.name} v{props.catalog.version.replace(/\.(\d{2}).*/, ".$1")} {props.catalog.updatedDate.replace(/T.*/, "")}</span>
-                <button className="group-collapse-btn" onClick={() => setCollapsed(!isCollapsed)}>
-                    <FontAwesomeIcon icon={collapseIcon} />
-                </button>
+            <div className="group-entry-catalog-name-container" onClick={() => setCollapsed(!isCollapsed)}>
+                <span className="group-entry-catalog-name">{props.catalog.name}</span>
+                <span className="group-entry-catalog-info"> v{props.catalog.version.replace(/\.(\d{2}).*/, ".$1")} {props.catalog.updatedDate.replace(/T.*/, "")}</span>
+                <FontAwesomeIcon className="group-collapse-btn" icon={collapseIcon} />
             </div>
             {loading && <Loader />}
             {!isCollapsed &&
