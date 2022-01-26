@@ -85,6 +85,18 @@
 
 .group-node-name {}
 
+.group-collapse-btn {
+    position: absolute;
+    font-size: 12px;
+    right: 8px;
+    top: 5px;
+    border: none;
+    outline: none;
+    background: none;
+    margin: 0;
+    padding: 0;
+}
+
 .group-node-collapse-btn {
     border: none;
     outline: none;
@@ -97,4 +109,9 @@
     border: 1px SOLID #d3d3d3;
     // border-radius: 4px;
     margin: 4px;
+
+    span {
+        max-width: calc(100% - 10px);
+        display: inline-block;
+    }
 }

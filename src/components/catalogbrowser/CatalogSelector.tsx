@@ -52,7 +52,10 @@ function CatalogSelector(props: Props) {
         if (props.selectedCatalogs.length > 4) {
             label = `${props.selectedCatalogs.length} / ${props.catalogs.length} catalogs`;
         } else {
-            label = `${props.selectedCatalogs.map((i_oCatalog: ICatalog) => i_oCatalog.name).join(",")}`;
+            label = props
+            .selectedCatalogs
+            .map((i_oCatalog: ICatalog) => `${i_oCatalog.name} v${i_oCatalog.version.replace(/\.(\d{2}).*/, ".$1")} ${i_oCatalog.updatedDate.replace(/T.*/, "")}`)
+            .join(",");
         }
     }
 

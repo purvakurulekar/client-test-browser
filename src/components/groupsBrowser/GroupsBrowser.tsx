@@ -21,6 +21,7 @@ export default function GroupsBrowser(props: IGroupsBrowserProps) {
                         catalog={catalog}
                         selectedGroups={props.selectedGroups}
                         onGroupsSelected={props.onGroupsSelected}
+                        isCollapsed={props.catalogs.length > 1}
                     />)}
         </div>
     );
