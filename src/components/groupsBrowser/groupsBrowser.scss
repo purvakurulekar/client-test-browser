@@ -3,6 +3,32 @@
     display: flex;
     flex-flow: column;
     font-size: 12px;
+    overflow: hidden;
+    flex: 1 1;
+
+
+    .catalog-list-filter {
+        margin-right: 10px;
+    }
+}
+
+.groups-browser-select-all-container {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 4px;
+    margin: 2px;
+    background-color: #f3f3f3;
+    border: 1px SOLID #d3d3d3;
+}
+
+.groups-browser-catalogs-list {
+    position: relative;
+    display: flex;
+    flex-flow: column;
+    font-size: 12px;
     overflow: auto;
     flex: 1 1;
 }
@@ -21,7 +47,7 @@
 .group-entry {
     .loader {
         top: 5px;
-        right: 4px;
+        right: 24px;
     }
 }
 
@@ -89,7 +115,7 @@
     position: absolute;
     font-size: 12px;
     right: 8px;
-    top: 5px;
+    top: 8px;
     border: none;
     outline: none;
     background: none;
@@ -110,6 +136,7 @@
     margin: 4px;
     display: flex;
     flex-flow: row;
+    align-items: center;
 
     .group-entry-catalog-name {
         font-weight: bold;

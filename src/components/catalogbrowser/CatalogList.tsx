@@ -1,9 +1,8 @@
-import React, { useState, ReactElement } from 'react';
+import React, { useState, ReactElement, useEffect } from 'react';
 import CatalogEntry from './CatalogEntry';
 import { SELECT_ALL_CATALOG } from "../../interfaces/IPublicAPIInterfaces";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import CatalogCompanyEntry from "./CatalogCompanyEntry";
+import CatalogListFilter from 'components/catalogListFilter/CatalogListFilter';
 
 type CatalogList = Array<ICatalog>;
 
@@ -16,32 +15,22 @@ export interface ICatalogListProps {
 
 //=============================================================================
 export default function CatalogList(props: ICatalogListProps) {
-    let catalogsList: CatalogList = props.catalogs,
-        [catalogFilter, setcatalogFilter] = useState(""),
+    // let catalogsList: CatalogList = props.catalogs,
+    let [catalogsList, setCatalogsList] = useState<Array<ICatalog>>([]),
+        [filteredCatalogsList, setFilteredCatalogsList] = useState<Array<ICatalog>>([]),
         groupedCatalogs: Map<string, Array<ICatalog>> = new Map();
 
-    catalogFilter = catalogFilter.trim().toLowerCase();
+    useEffect(() => {
+        // catalogsList: CatalogList = props.catalogs,
+        setCatalogsList(props.catalogs);
+        setFilteredCatalogsList(props.catalogs); // all present on mount
+    }, []);
 
-    if (catalogFilter.length > 0) {
-        catalogsList = catalogsList.filter((catalog: ICatalog) => {
-            let isValid: boolean;
-
-            isValid = catalog.name.toLowerCase().includes(catalogFilter);
-            if (!isValid) {
-                isValid = catalog.id.includes(catalogFilter);
-            }
-            if (!isValid) {
-                isValid = Boolean(catalog.version && catalog.version.includes(catalogFilter));
-            }
-            if (!isValid) {
-                isValid = Boolean(catalog.updatedDate && catalog.updatedDate.includes(catalogFilter));
-            }
-
-            return isValid;
-        });
+    function handleFilteredCatalogs(filteredList: Array<ICatalog>) {
+        setFilteredCatalogsList(filteredList);
     }
 
-    catalogsList.forEach((catalog: ICatalog) => {
+    filteredCatalogsList.forEach((catalog: ICatalog) => {
         let listByCompany: Array<ICatalog>;
 
         if (groupedCatalogs.has(catalog.companyRefCode)) {
@@ -57,10 +46,7 @@ export default function CatalogList(props: ICatalogListProps) {
 
     return (
         <div className="catalog-list-root">
-            <div className="catalog-list-filter">
-                <input type="text" placeholder="Filter catalogs..." onChange={e => setcatalogFilter(e.target.value)} value={catalogFilter} />
-                <FontAwesomeIcon icon={faSearch} />
-            </div>
+            <CatalogListFilter catalogsList={catalogsList} onFiltered={handleFilteredCatalogs} />
             <div className="catalog-list" >
                 {Array.from(groupedCatalogs.entries())
                     .map(([companyName, companyCatalogs]) => { // entry: Array<string | Array<ICatalog>>
@@ -163,3 +149,4 @@ export function renderCatalogEntry(props: ICatalogListProps, catalog: ICatalog, 
         />
     );
 }
+

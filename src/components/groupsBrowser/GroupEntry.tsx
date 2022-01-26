@@ -7,8 +7,10 @@ import GroupNode from "./GroupNode";
 interface IGroupEntryProps {
     catalog: ICatalog,
     isCollapsed?: boolean,
+    isSelected: boolean,
     selectedGroups: Array<ICatalogGroup>,
-    onGroupsSelected: Function
+    onGroupsSelected: Function,
+    onSelectionChanged: Function
 }
 
 export default function GroupEntry(props: IGroupEntryProps) {
@@ -16,6 +18,10 @@ export default function GroupEntry(props: IGroupEntryProps) {
         [isCollapsed, setCollapsed] = useState(true),
         [groups, setGroups] = useState<Array<ICatalogGroup>>([]),
         collapseIcon: IconDefinition;
+
+    function handleCheckboxChanged(ev: React.ChangeEvent<HTMLInputElement>) {
+        props.onSelectionChanged(props.catalog, ev.target.checked);
+    }
 
     useEffect(() => {
         let fetchGroups = async () => {
@@ -30,16 +36,19 @@ export default function GroupEntry(props: IGroupEntryProps) {
                 groups = [];
             }
 
-            if (props.isCollapsed !== undefined) {
-                setCollapsed(props.isCollapsed);
-            }
-
             setLoading(false);
             setGroups(groups);
         }
 
-        fetchGroups();
-    }, []);
+        if (isCollapsed !== undefined) {
+            setCollapsed(isCollapsed);
+        }
+
+        if (!isCollapsed) {
+            fetchGroups();
+        }
+
+    }, [isCollapsed]);
 
     if (isCollapsed) {
         collapseIcon = faPlusSquare;
@@ -49,10 +58,13 @@ export default function GroupEntry(props: IGroupEntryProps) {
 
     return (
         <div className="group-entry">
-            <div className="group-entry-catalog-name-container" onClick={() => setCollapsed(!isCollapsed)}>
+            <div className="group-entry-catalog-name-container">
+                <input type="checkbox" checked={props.isSelected} onChange={handleCheckboxChanged} />
                 <span className="group-entry-catalog-name">{props.catalog.name}</span>
                 <span className="group-entry-catalog-info"> v{props.catalog.version.replace(/\.(\d{2}).*/, ".$1")} {props.catalog.updatedDate.replace(/T.*/, "")}</span>
-                <FontAwesomeIcon className="group-collapse-btn" icon={collapseIcon} />
+                <button className="group-collapse-btn" onClick={() => setCollapsed(!isCollapsed)}>
+                    <FontAwesomeIcon icon={collapseIcon} />
+                </button>
             </div>
             {loading && <Loader />}
             {!isCollapsed &&

@@ -320,6 +320,14 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
 
     sliderProps.className = slidingPanelClassNames.join(" ");
 
+//     <CatalogSelector
+//     isOpened={isSizeRestricted && selectedCatalogs.length === stateCatalogs.length}
+//     catalogs={stateCatalogs}
+//     selectedCatalogs={selectedCatalogs}
+//     onCatalogSelected={handleSetCatalogSelection}
+//     onSelectOnlyCatalogSelected={(catalog: ICatalog) => { handleSetCatalogSelection([catalog]) }}
+// />
+
     return (
         <div ref={domRef} className="catalog-browser">
             {isSettingsVisible && <SettingsPanel onClose={() => setSettingsVisible(false)} />}
@@ -328,17 +336,12 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
             <div className="catalog-browser-results-container">
                 <SlidingPanel {...sliderProps}>
                     <div className="catalog-browser-slider-content">
-                        <CatalogSelector
-                            isOpened={isSizeRestricted && selectedCatalogs.length === stateCatalogs.length}
-                            catalogs={stateCatalogs}
-                            selectedCatalogs={selectedCatalogs}
-                            onCatalogSelected={handleSetCatalogSelection}
-                            onSelectOnlyCatalogSelected={(catalog: ICatalog) => { handleSetCatalogSelection([catalog]) }}
-                        />
                         <GroupsBrowser
-                            catalogs={selectedCatalogs.length !== stateCatalogs.length ? selectedCatalogs : []}
+                            catalogs={stateCatalogs.filter((catalog: ICatalog) => catalog.version)}
+                            selectedCatalogs={selectedCatalogs}
                             selectedGroups={selectedGroups}
                             onGroupsSelected={handleGroupsSelected}
+                            onCatalogSelected={handleSetCatalogSelection}
                         />
                     </div>
                 </SlidingPanel>
@@ -410,7 +413,7 @@ async function _fetchCatalogs(setLoadingCatalogs: Function): Promise<Array<ICata
     setLoadingCatalogs(true);
     try {
         catalogs = await CiCAPI.content.getCatalogs();
-        catalogs.unshift(SELECT_ALL_CATALOG);
+        // catalogs.unshift(SELECT_ALL_CATALOG);
     } catch (e) {
         // console.log("Fetch Catalog Aborted... ", e.message);
         catalogs = [];
