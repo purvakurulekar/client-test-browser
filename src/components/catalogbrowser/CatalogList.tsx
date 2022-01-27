@@ -3,6 +3,7 @@ import CatalogEntry from './CatalogEntry';
 import { SELECT_ALL_CATALOG } from "../../interfaces/IPublicAPIInterfaces";
 import CatalogCompanyEntry from "./CatalogCompanyEntry";
 import CatalogListFilter from 'components/catalogListFilter/CatalogListFilter';
+import { IRefinedFilter } from 'components/catalogListFilter/RefinedFilter';
 
 type CatalogList = Array<ICatalog>;
 
@@ -46,7 +47,7 @@ export default function CatalogList(props: ICatalogListProps) {
 
     return (
         <div className="catalog-list-root">
-            <CatalogListFilter catalogsList={catalogsList} onFiltered={handleFilteredCatalogs} />
+            <CatalogListFilter catalogsList={catalogsList} onRefinedFilterChanged={() => {}} refinedFilters={{} as IRefinedFilter} onFiltered={handleFilteredCatalogs} />
             <div className="catalog-list" >
                 {Array.from(groupedCatalogs.entries())
                     .map(([companyName, companyCatalogs]) => { // entry: Array<string | Array<ICatalog>>

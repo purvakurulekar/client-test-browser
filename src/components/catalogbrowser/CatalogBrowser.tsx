@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState, useLayoutEffect } from 'react';
 import { SELECT_ALL_CATALOG } from "../../interfaces/IPublicAPIInterfaces";
 import "./catalogBrowser.scss";
 import { SettingsPanel, SlidingPanel, SLIDER_DIRECTION, ISlidingPanelProps } from "client-ui-toolkit";
-import CatalogSelector from './CatalogSelector';
+// import CatalogSelector from './CatalogSelector';
 import CombinedCatalogProductList from './CombinedCatalogProductList';
 import ProductInformationPanel from './ProductInformationPanel';
 import CatalogSearch from './CatalogSearch';
@@ -152,7 +152,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
                 }
             }
         },
-        handleGroupsSelected = (group: ICatalogGroup, isSelected: boolean) => {
+        handleGroupsSelected = (catalog: ICatalog, group: ICatalogGroup, isSelected: boolean) => {
             let groupsToSelect: Array<ICatalogGroup>;
 
             if (ctrlKeyRef.current) {
@@ -172,6 +172,10 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
                 } else {
                     groupsToSelect = [];
                 }
+            }
+
+            if (!selectedCatalogs.includes(catalog)) {
+                selectedCatalogs.push(catalog);
             }
 
             setSelectedGroups(groupsToSelect);
@@ -320,13 +324,13 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
 
     sliderProps.className = slidingPanelClassNames.join(" ");
 
-//     <CatalogSelector
-//     isOpened={isSizeRestricted && selectedCatalogs.length === stateCatalogs.length}
-//     catalogs={stateCatalogs}
-//     selectedCatalogs={selectedCatalogs}
-//     onCatalogSelected={handleSetCatalogSelection}
-//     onSelectOnlyCatalogSelected={(catalog: ICatalog) => { handleSetCatalogSelection([catalog]) }}
-// />
+    //     <CatalogSelector
+    //     isOpened={isSizeRestricted && selectedCatalogs.length === stateCatalogs.length}
+    //     catalogs={stateCatalogs}
+    //     selectedCatalogs={selectedCatalogs}
+    //     onCatalogSelected={handleSetCatalogSelection}
+    //     onSelectOnlyCatalogSelected={(catalog: ICatalog) => { handleSetCatalogSelection([catalog]) }}
+    // />
 
     return (
         <div ref={domRef} className="catalog-browser">
@@ -342,6 +346,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
                             selectedGroups={selectedGroups}
                             onGroupsSelected={handleGroupsSelected}
                             onCatalogSelected={handleSetCatalogSelection}
+                            onSelectOnlyCatalogSelected={(catalog: ICatalog) => { handleSetCatalogSelection([catalog]) }}
                         />
                     </div>
                 </SlidingPanel>
@@ -354,6 +359,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
 
                     <CombinedCatalogProductList onFetchRequest={fetchMoreProductsRequests} isFetching={isFetchingCatalogItems}>
                         <CatalogProductList
+                            searchQuery={searchQuery}
                             isLoading={isFetchingCatalogItems}
                             items={catalogItems}
                             selectedItem={selectedItem}

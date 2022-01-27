@@ -6,6 +6,7 @@ import CatalogProductEntry from "./CatalogProductEntry";
 //=============================================================================
 interface ICatalogProductListProps {
     className?: string,
+    searchQuery?: string, 
     isLoading: boolean,
     items: Array<IItem>,
     selectedItem: IItem | null,
@@ -26,6 +27,7 @@ export default function CatalogProductList(props: ICatalogProductListProps) {
 
     return (
         <div className={classNames.join(" ")}>
+            {props.items.length === 0 && props.searchQuery && <div className="catalog-product-list-empty">No Items found for {props.searchQuery}.</div>}
             {props.items.map((item: IItem) => {
                 let key = item.id;
 

@@ -40,7 +40,7 @@ export default function GroupNode(props: IGroupNodeProps) {
     }
 
     function handleGroupSelected() {
-        props.onGroupsSelected(props.group, !isSelected);
+        props.onGroupsSelected(props.catalog, props.group, !isSelected);
     }
 
     if (isOpened) {
