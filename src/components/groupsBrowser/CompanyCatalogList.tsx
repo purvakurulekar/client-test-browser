@@ -26,8 +26,11 @@ export default function CompanyCatalogList(props: ICompanyCatalogsList) {
     return (
         <div className="company-catalog-list-root">
             {
-                Array.from(companyCatalogs.entries())
-                    .map(([companyRefCode, catalogList]) => {
+                Array.from(companyCatalogs.keys())
+                    .sort()
+                    .map((companyRefCode: string) => {
+                        let catalogList: Array<ICatalog> = companyCatalogs.get(companyRefCode)!;
+
                         return <CompanyCatalogListEntry
                             key={companyRefCode}
                             companyCode={companyRefCode}
