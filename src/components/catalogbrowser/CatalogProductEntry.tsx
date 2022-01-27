@@ -127,7 +127,7 @@ function VariantsList(props: IVariantsListProps) {
             offset: number;
 
 
-        if (listRect.x + listRect.width > parentContainerRect.width) {
+        if (listRect.width < parentContainerRect.width && listRect.x + listRect.width > parentContainerRect.x + parentContainerRect.width) {
             offset = parentContainerRect.width - (listRect.x + listRect.width);
             listRef.current!.style.left = `${offset}px`;
         }

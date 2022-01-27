@@ -674,6 +674,10 @@
     margin-top: 3px;
     // margin-right: 3px;
 
+    .catalog-action-itemid-input {
+        outline: none;
+        flex: 1 1;
+    }
 
     .catalog-action-btn:disabled {
         background-color: #c7c7c7;
@@ -738,7 +742,7 @@
     display: grid;
     grid-template-columns: 80px auto;
     margin-bottom: 2px;
-    // padding: 2px;
+    word-break: break-all;
 }
 
 .catalog-item-details-close-btn {

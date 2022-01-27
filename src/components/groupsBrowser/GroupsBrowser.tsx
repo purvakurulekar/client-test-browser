@@ -167,9 +167,13 @@ export default function GroupsBrowser(props: IGroupsBrowserProps) {
 
     filteredCatalogs = filteredCatalogs
         .filter((catalog: ICatalog) => {
-            let isValid: boolean = false;
+            let isValid: boolean = true;
 
-            if (refinedFilters.filterLatestVersionOnly) {
+            if (refinedFilters.filterSelectedOnly) {
+                isValid = props.selectedCatalogs.includes(catalog);
+            }
+
+            if (isValid && refinedFilters.filterLatestVersionOnly) {
                 if (companyCatalogsByVersions.has(catalog.companyRefCode)) {
                     let sortedList: Array<ICatalog> = companyCatalogsByVersions.get(catalog.companyRefCode) as Array<ICatalog>;
                     if (sortedList.length > 0) {
@@ -178,21 +182,20 @@ export default function GroupsBrowser(props: IGroupsBrowserProps) {
                 }
             }
 
-            if (!isValid && refinedFilters.filterActive) {
-                isValid = catalog.status === CiCAPI.content.constants.CATALOG_STATUS.ACTIVATED;
+            if (isValid) {
+                if (refinedFilters.filterActive) {
+                    isValid = catalog.status === CiCAPI.content.constants.CATALOG_STATUS.ACTIVATED;
+                }
+
+                if (!isValid && refinedFilters.filterInProgress) {
+                    isValid = catalog.status === CiCAPI.content.constants.CATALOG_STATUS.INPROGRESS;
+                }
+
+                if (!isValid && refinedFilters.filterDeactivated) {
+                    isValid = catalog.status === CiCAPI.content.constants.CATALOG_STATUS.DEACTIVATED;
+                }
             }
 
-            if (!isValid && refinedFilters.filterInProgress) {
-                isValid = catalog.status === CiCAPI.content.constants.CATALOG_STATUS.INPROGRESS;
-            }
-
-            if (!isValid && refinedFilters.filterDeactivated) {
-                isValid = catalog.status === CiCAPI.content.constants.CATALOG_STATUS.DEACTIVATED;
-            }
-
-            if (refinedFilters.filterSelectedOnly) {
-                isValid = props.selectedCatalogs.includes(catalog);
-            }
 
             return isValid;
         });

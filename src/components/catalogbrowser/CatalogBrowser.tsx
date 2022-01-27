@@ -87,6 +87,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
         [searchQuery, setSearchQuery] = useState(""),
         [isSettingsVisible, setSettingsVisible] = useState(false),
         [showHiddenContent, setShowHiddenContent] = useState(true),
+        [itemIdInput, setItemIdInput] = useState(""),
 
         [totalResults, setTotalResults] = useState(0),
         [isFetchingCatalogItems, setFetchingCatalogItems] = useState(false),
@@ -102,10 +103,27 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
             setCatalogItems([]);
             setTotalResults(0);
         },
-        addItem = (item: IItem | null) => {
+        addItem = async () => {
+            let item: IItem | null,
+                itemElement: IItemElement | void;
+
+            if (itemIdInput.trim() !== "") {
+                itemElement = await CiCAPI.content.getItem(itemIdInput);
+
+                if (itemElement) {
+                    item = itemElement.item;
+                } else {
+                    item = null;
+                }
+            } else {
+                item = selectedItem;
+            }
+
             if (item !== null && props.handleItemAdd) {
                 props.handleItemAdd(item);
             }
+
+            setItemIdInput("");
         },
         replaceItem = (item: IItem | null) => {
             if (item !== null && props.handleItemReplace) {
@@ -194,6 +212,14 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
         handleItemSelected = (catalogItem: IItem) => {
             setSelectedItem(catalogItem);
             focusedItemRef.current = catalogItem;
+        },
+        handleDirectItemIdInputChanged = (ev: React.ChangeEvent<HTMLInputElement>) => {
+            setItemIdInput(ev.target.value);
+        },
+        handleDirectItemIdInputKeydown = (ev: React.KeyboardEvent) => {
+            if (ev.key === "Enter") {
+                addItem();
+            }
         },
         onComponentMount = () => {
             let containerBounds: DOMRect,
@@ -375,7 +401,14 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
 
             <div className="catalog-browser-action-btn-container">
                 {props.includeSettings && <button className="settings-btn" onClick={() => setSettingsVisible(true)}><FontAwesomeIcon icon={faCog} /></button>}
-
+                <input
+                    className="catalog-action-itemid-input"
+                    type="text"
+                    placeholder="Enter item id here..."
+                    value={itemIdInput}
+                    onKeyDown={handleDirectItemIdInputKeydown}
+                    onChange={handleDirectItemIdInputChanged}
+                />
                 <button
                     className="catalog-action-btn"
                     disabled={!hasSingleItemSelected || selectedItem === null}
@@ -383,8 +416,8 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
                 >Replace</button>
                 <button
                     className="catalog-action-btn"
-                    disabled={selectedItem === null}
-                    onClick={() => addItem(selectedItem)}
+                    disabled={selectedItem === null && itemIdInput.trim() === ""}
+                    onClick={addItem}
                 >Add</button>
             </div>
         </div>
