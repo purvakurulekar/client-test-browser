@@ -183,19 +183,12 @@ export default function GroupsBrowser(props: IGroupsBrowserProps) {
             }
 
             if (isValid) {
-                if (refinedFilters.filterActive) {
-                    isValid = catalog.status === CiCAPI.content.constants.CATALOG_STATUS.ACTIVATED;
-                }
-
-                if (!isValid && refinedFilters.filterInProgress) {
-                    isValid = catalog.status === CiCAPI.content.constants.CATALOG_STATUS.INPROGRESS;
-                }
-
-                if (!isValid && refinedFilters.filterDeactivated) {
-                    isValid = catalog.status === CiCAPI.content.constants.CATALOG_STATUS.DEACTIVATED;
-                }
+                isValid = (
+                    (catalog.status === CiCAPI.content.constants.CATALOG_STATUS.ACTIVATED && refinedFilters.filterActive) ||
+                    (catalog.status === CiCAPI.content.constants.CATALOG_STATUS.INPROGRESS && refinedFilters.filterInProgress) ||
+                    (catalog.status === CiCAPI.content.constants.CATALOG_STATUS.DEACTIVATED && refinedFilters.filterDeactivated)
+                );
             }
-
 
             return isValid;
         });
