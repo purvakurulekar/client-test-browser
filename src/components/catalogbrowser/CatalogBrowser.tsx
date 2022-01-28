@@ -357,6 +357,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
     //     onCatalogSelected={handleSetCatalogSelection}
     //     onSelectOnlyCatalogSelected={(catalog: ICatalog) => { handleSetCatalogSelection([catalog]) }}
     // />
+    // <ProductInformationPanel product={selectedItem} />
 
     return (
         <div ref={domRef} className="catalog-browser">
@@ -396,8 +397,6 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
                     </CombinedCatalogProductList>
                 </div>
             </div>
-
-            <ProductInformationPanel product={selectedItem} />
 
             <div className="catalog-browser-action-btn-container">
                 {props.includeSettings && <button className="settings-btn" onClick={() => setSettingsVisible(true)}><FontAwesomeIcon icon={faCog} /></button>}
