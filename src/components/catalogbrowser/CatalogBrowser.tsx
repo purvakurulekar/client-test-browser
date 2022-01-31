@@ -2,9 +2,7 @@ import React, { useRef, useEffect, useState, useLayoutEffect } from 'react';
 import { SELECT_ALL_CATALOG } from "../../interfaces/IPublicAPIInterfaces";
 import "./catalogBrowser.scss";
 import { SettingsPanel, SlidingPanel, SLIDER_DIRECTION, ISlidingPanelProps } from "client-ui-toolkit";
-// import CatalogSelector from './CatalogSelector';
 import CombinedCatalogProductList from './CombinedCatalogProductList';
-import ProductInformationPanel from './ProductInformationPanel';
 import CatalogSearch from './CatalogSearch';
 import { Loader } from "client-ui-toolkit";
 import CatalogResultsPreview from './CatalogResultsPreview';
@@ -21,7 +19,10 @@ const
     MIN_NB_TILES_PER_PAGE = 10,
     MAX_NB_TILES_PER_PAGE = 100,
     MIN_WIDTH_RESTRICTED = 520,
-    STORAGE_SELECTED_CATALOGS_KEY = "ctb-sel-catalog-ids";
+    STORAGE_SELECTED_CATALOGS_KEY = "ctb-sel-catalog-ids",
+    SLIDER_STORAGE_KEY = "ctb-slider";
+    // ,
+    // SLIDER_COLLAPSED_KEY = "ctb-slider-collapsed";
 
 interface ICatalogBrowserProps {
     itemContextList: Array<IItemElement>,
@@ -286,6 +287,11 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
             window.addEventListener("keyup", releaseCtrlKey);
             CiCAPI.content.registerToChanges(onConfigChanged);
 
+            // let storedCollapseState: string | null = localStorage.getItem(SLIDER_COLLAPSED_KEY);
+            // if (storedCollapseState !== null) {
+            //     setSliderClosed(/true/i.test(storedCollapseState));
+            // }
+
             return () => {
                 window.removeEventListener("message", onWindowMsgReceived);
                 window.removeEventListener("resize", calcOptimalTilesFunc);
@@ -334,16 +340,20 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
     sliderProps = {
         direction: SLIDER_DIRECTION.horizontal,
         isCollapsable: true,
-        isCollapsed: true,
-        initialDimension: 260
+        isCollapsed: isSliderClosed,
+        configKey: SLIDER_STORAGE_KEY,
+        initialDimension: 260,
+        onCollapseToggle: (isCollapsed: boolean) => {
+            setSliderClosed(isCollapsed);
+        }
     }
+
 
     if (isSizeRestricted) {
         slidingPanelClassNames.push("catalog-browser-slider-section-overlay");
         sliderProps.initialDimension = props.width!;
         sliderProps.isResizable = false;
         sliderProps.isCollapsed = isSliderClosed;
-        sliderProps.onCollapseToggle = () => setSliderClosed(!isSliderClosed);
     } else {
         slidingPanelClassNames.push("catalog-browser-slider-section-resizable");
     }

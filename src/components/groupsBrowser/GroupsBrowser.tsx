@@ -8,7 +8,8 @@ import { IRefinedFilter } from "components/catalogListFilter/RefinedFilter";
 
 export const
     LARGE_MODE_MIN_WIDTH: number = 285,
-    RESIZE_CHECK_INTERVAL_TIME = 500;
+    RESIZE_CHECK_INTERVAL_TIME = 500,
+    LOCALSTORAGE_KEY = "groups-filter-options"
 
 interface IGroupsBrowserProps {
     catalogs: Array<ICatalog>,
@@ -41,6 +42,7 @@ export default function GroupsBrowser(props: IGroupsBrowserProps) {
     function handleRefineFilterChangedCatalog(updatedRefinedFilter: IRefinedFilter) {
         if (Object.entries(updatedRefinedFilter).some(([propName, propVal]) => refinedFilters[propName as keyof IRefinedFilter] !== propVal)) {
             setRefinedFilters(updatedRefinedFilter);
+            localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(updatedRefinedFilter));
         }
     }
 
@@ -129,6 +131,17 @@ export default function GroupsBrowser(props: IGroupsBrowserProps) {
             }
         }
 
+        try {
+            let rawStoredFilters: string | null = localStorage.getItem(LOCALSTORAGE_KEY),
+                storedFilters: IRefinedFilter;
+
+            if (rawStoredFilters) {
+                storedFilters = JSON.parse(rawStoredFilters);
+                setRefinedFilters(storedFilters);
+            }
+        } catch (e) {
+        }
+
         setFilteredCatalogs(props.catalogs);
 
         intervalHandle = setInterval(checkForResize, RESIZE_CHECK_INTERVAL_TIME);
@@ -144,6 +157,12 @@ export default function GroupsBrowser(props: IGroupsBrowserProps) {
             setBrowserWidth(prevDOMRect.current.width);
         }
     }, []);
+
+    useEffect(() => {
+        if (filteredCatalogs.length === 0) {
+            setFilteredCatalogs(props.catalogs);
+        }
+    }, [props.catalogs]);
 
 
     isAllCatalogsSelected = props.catalogs.length === props.selectedCatalogs.length;
