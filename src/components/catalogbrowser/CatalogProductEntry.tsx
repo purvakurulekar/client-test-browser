@@ -23,8 +23,8 @@ function CatalogProductEntry(props: CatalogProductEntryProps) {
         classNames.push("catalog-product-entry-selected");
     }
 
-    if (props.item.image.uri?.trim() !== "") {
-        imageContent = (<img src={props.item.image.uri} />); // onLoad={() => setLoading(false)}
+    if (props.item.image!.uri?.trim() !== "") {
+        imageContent = (<img src={props.item.image!.uri || ""} />); // onLoad={() => setLoading(false)}
     } else {
         imageContent = (<div className="catalog-product-no-image"><span>No Image</span></div>);
     }
@@ -78,11 +78,11 @@ function CatalogProductEntry(props: CatalogProductEntryProps) {
                 </div>
                 <div className="catalog-item-details-entry">
                     <div className="catalog-item-details-entry-name">description:</div>
-                    <div className="catalog-item-details-entry-value wrap-text">{props.item.descriptions.short}</div>
+                    <div className="catalog-item-details-entry-value wrap-text">{props.item.descriptions!.short || ""}</div>
                 </div>
                 <div className="catalog-item-details-entry">
                     <div className="catalog-item-details-entry-name">Order code:</div>
-                    <div className="catalog-item-details-entry-value">{props.item.refCodes["sku"]}</div>
+                    <div className="catalog-item-details-entry-value">{props.item.refCodes!["sku"] ||""}</div>
                 </div>
                 <div className="catalog-item-details-entry">
                     <div className="catalog-item-details-entry-name">legacyItemType:</div>

@@ -25,7 +25,7 @@ export default function CatalogItemDetails(props: ICatalogItemDetailsProps) {
     return (
         <div className="catalog-item-details">
             <button className="catalog-item-details-close-btn" onClick={props.onCloseClicked as any}><FontAwesomeIcon icon={faTimesCircle} /></button>
-            <img className="catalog-item-details-image" src={props.item.image.uri} />
+            <img className="catalog-item-details-image" src={props.item.image!.uri || ""} />
             <div className="catalog-item-details-entry">
                 <div className="catalog-item-details-entry-name">id:</div>
                 <div className="catalog-item-details-entry-value">{props.item.id}</div>
@@ -36,11 +36,11 @@ export default function CatalogItemDetails(props: ICatalogItemDetailsProps) {
             </div>
             <div className="catalog-item-details-entry">
                 <div className="catalog-item-details-entry-name">description:</div>
-                <div className="catalog-item-details-entry-value truncatable-text">{props.item.descriptions.short}</div>
+                <div className="catalog-item-details-entry-value truncatable-text">{props.item.descriptions!.short || ""}</div>
             </div>
             <div className="catalog-item-details-entry">
                 <div className="catalog-item-details-entry-name">Order code:</div>
-                <div className="catalog-item-details-entry-value">{props.item.refCodes["sku"]}</div>
+                <div className="catalog-item-details-entry-value">{props.item.refCodes!["sku"] || ""}</div>
             </div>
             <div className="catalog-item-details-entry">
                 <div className="catalog-item-details-entry-name">legacyItemType:</div>
