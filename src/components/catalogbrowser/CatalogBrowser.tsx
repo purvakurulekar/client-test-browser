@@ -25,7 +25,7 @@ const
     // SLIDER_COLLAPSED_KEY = "ctb-slider-collapsed";
 
 interface ICatalogBrowserProps {
-    itemContextList: Array<IItemElement>,
+    itemContextList: Array<IItemVariant>,
     handleItemAdd?: Function,
     handleGetComponentState?: Function,
     handleItemReplace?: Function,
@@ -96,7 +96,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
         loader,
         previewProps,
         sliderProps: ISlidingPanelProps,
-        hasSingleItemSelected: boolean = props.itemContextList && props.itemContextList.filter((itemElement: IItemElement) => itemElement.selected).length === 1,
+        hasSingleItemSelected: boolean = props.itemContextList && props.itemContextList.filter((itemVariant: IItemVariant) => itemVariant.selected).length === 1,
         slidingPanelClassNames: Array<string>,
         isSizeRestricted: boolean = props.width! <= MIN_WIDTH_RESTRICTED,
         resetProductsFunc = () => {
@@ -106,13 +106,13 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
         },
         addItem = async () => {
             let item: IItem | null,
-                itemElement: IItemElement | void;
+            itemVariant: IItemVariant | void;
 
             if (itemIdInput.trim() !== "") {
-                itemElement = await CiCAPI.content.getItem(itemIdInput);
+                itemVariant = await CiCAPI.content.getItemVariant(itemIdInput);
 
-                if (itemElement) {
-                    item = itemElement.item;
+                if (itemVariant) {
+                    item = itemVariant;
                 } else {
                     item = null;
                 }
@@ -497,8 +497,8 @@ async function _fetchCatalogItems(pageOffset: number, options: IFetchCatalogItem
     searchCatalogIds = searchCatalogs
         .map((publicCatalog: ICatalog) => publicCatalog.id);
 
-    return CiCAPI.content.searchItems(searchQuery ?? "", searchCatalogIds.length > 0 ? searchCatalogIds : "", { nbPerPage, offset: pageOffset, groupNames: selectedGroups, onlyVisible })
-        .then((productResults: IItemResults) => {
+    return CiCAPI.content.searchItems(searchQuery ?? "",{ catalogIds: searchCatalogIds.length > 0 ? searchCatalogIds : [], nbPerPage, offset: pageOffset, groupIds: selectedGroups, visibleOnly: onlyVisible })
+        .then((productResults: ISearchItemResults) => {
             let combinedProducts: Array<IItem>;
 
             if (pageOffset > 0) {
