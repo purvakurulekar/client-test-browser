@@ -16,15 +16,15 @@ function CatalogProductEntry(props: CatalogProductEntryProps) {
     let [isShowingVariantsList, setShowingVariantsList] = useState(false),
         classNames = ["catalog-product-entry"],
         imageContent,
-        hasVariants: boolean = Boolean(props.item.proposedVariants && props.item.proposedVariants.length > 0),
+        hasVariants: boolean = Boolean(props.item.variantProposals && props.item.variantProposals.length > 0),
         variantBtn: JSX.Element | undefined;
 
     if (props.isSelected) {
         classNames.push("catalog-product-entry-selected");
     }
 
-    if (props.item.imageURL?.trim() !== "") {
-        imageContent = (<img src={props.item.imageURL} />); // onLoad={() => setLoading(false)}
+    if (props.item.image.uri?.trim() !== "") {
+        imageContent = (<img src={props.item.image.uri} />); // onLoad={() => setLoading(false)}
     } else {
         imageContent = (<div className="catalog-product-no-image"><span>No Image</span></div>);
     }
@@ -58,7 +58,7 @@ function CatalogProductEntry(props: CatalogProductEntryProps) {
             {
                 isShowingVariantsList &&
                 <VariantsList
-                    list={props.item.proposedVariants!}
+                    list={props.item.variantProposals!}
                     onVariantClicked={props.onAddItem}
                     onClose={() => setShowingVariantsList(false)} />
 
@@ -78,15 +78,15 @@ function CatalogProductEntry(props: CatalogProductEntryProps) {
                 </div>
                 <div className="catalog-item-details-entry">
                     <div className="catalog-item-details-entry-name">description:</div>
-                    <div className="catalog-item-details-entry-value wrap-text">{props.item.description}</div>
+                    <div className="catalog-item-details-entry-value wrap-text">{props.item.descriptions.short}</div>
                 </div>
                 <div className="catalog-item-details-entry">
                     <div className="catalog-item-details-entry-name">Order code:</div>
-                    <div className="catalog-item-details-entry-value">{props.item.orderCode}</div>
+                    <div className="catalog-item-details-entry-value">{props.item.refCodes["sku"]}</div>
                 </div>
                 <div className="catalog-item-details-entry">
                     <div className="catalog-item-details-entry-name">legacyItemType:</div>
-                    <div className="catalog-item-details-entry-value wrap-text">{props.item.legacyItemType}</div>
+                    <div className="catalog-item-details-entry-value wrap-text">{props.item.classification?.legacyItemType}</div>
                 </div>
                 <div className="catalog-item-details-entry">
                     <div className="catalog-item-details-entry-name">dimensions:</div>
@@ -103,7 +103,7 @@ function CatalogProductEntry(props: CatalogProductEntryProps) {
                 <div className="catalog-item-details-entry">
                     <div className="catalog-item-details-entry-name">groupCodes:</div>
                     <ul>
-                        {props.item.groupCodes?.map((code: string, idx: number) => <li key={code + idx}>{code}</li>)}
+                        {props.item.groupRefs?.map((code: string, idx: number) => <li key={code + idx}>{code}</li>)}
                     </ul>
                 </div>
             </div>
