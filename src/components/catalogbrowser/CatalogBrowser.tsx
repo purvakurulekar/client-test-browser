@@ -497,7 +497,7 @@ async function _fetchCatalogItems(pageOffset: number, options: IFetchCatalogItem
     searchCatalogIds = searchCatalogs
         .map((publicCatalog: ICatalog) => publicCatalog.id);
 
-    return CiCAPI.content.searchItems(searchQuery ?? "",{ catalogIds: searchCatalogIds.length > 0 ? searchCatalogIds : [], nbPerPage, offset: pageOffset, groupIds: selectedGroups, visibleOnly: onlyVisible })
+    return CiCAPI.content.searchItems(searchQuery ?? "",{ catalogIds: searchCatalogIds.length > 0 ? searchCatalogIds : [], nbPerPage, offset: pageOffset, groupRefs: selectedGroups, visibleOnly: onlyVisible })
         .then((productResults: ISearchItemResults) => {
             let combinedProducts: Array<IItem>;
 

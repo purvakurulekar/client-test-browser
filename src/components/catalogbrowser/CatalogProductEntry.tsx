@@ -78,7 +78,7 @@ function CatalogProductEntry(props: CatalogProductEntryProps) {
                 </div>
                 <div className="catalog-item-details-entry">
                     <div className="catalog-item-details-entry-name">description:</div>
-                    <div className="catalog-item-details-entry-value wrap-text">{props.item.descriptions!.short || ""}</div>
+                    <div className="catalog-item-details-entry-value wrap-text">{props.item.descriptions!?.short || ""}</div>
                 </div>
                 <div className="catalog-item-details-entry">
                     <div className="catalog-item-details-entry-name">Order code:</div>
