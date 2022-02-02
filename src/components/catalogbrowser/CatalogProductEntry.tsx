@@ -23,8 +23,8 @@ function CatalogProductEntry(props: CatalogProductEntryProps) {
         classNames.push("catalog-product-entry-selected");
     }
 
-    if (props.item.image!.uri?.trim() !== "") {
-        imageContent = (<img src={props.item.image!.uri || ""} />); // onLoad={() => setLoading(false)}
+    if (props.item.image!?.uri?.trim() !== "") {
+        imageContent = (<img src={props.item.image!?.uri || ""} />); // onLoad={() => setLoading(false)}
     } else {
         imageContent = (<div className="catalog-product-no-image"><span>No Image</span></div>);
     }
