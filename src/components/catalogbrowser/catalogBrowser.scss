@@ -468,6 +468,7 @@
     background-color: #fff;
     display: flex;
     flex-flow: row;
+    padding: 2px;
 }
 
 .catalog-product-variants-btn {
@@ -513,13 +514,14 @@
 }
 
 .catalog-product-image-container {
-    position: relative;
-    width: 105px;
-    height: 105px;
+    position: absolute;
+    width: 65px;
+    height: 65px;
+    right: 14px;
 
     img {
-        width: 103px;
-        height: 103px;
+        width: 63px;
+        height: 63px;
     }
 }
 

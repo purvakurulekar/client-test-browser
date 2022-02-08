@@ -21,8 +21,8 @@ const
     MIN_WIDTH_RESTRICTED = 520,
     STORAGE_SELECTED_CATALOGS_KEY = "ctb-sel-catalog-ids",
     SLIDER_STORAGE_KEY = "ctb-slider";
-    // ,
-    // SLIDER_COLLAPSED_KEY = "ctb-slider-collapsed";
+// ,
+// SLIDER_COLLAPSED_KEY = "ctb-slider-collapsed";
 
 interface ICatalogBrowserProps {
     itemContextList: Array<IItemVariant>,
@@ -60,6 +60,8 @@ interface IDOMDimensions {
 }
 
 export { SELECT_ALL_CATALOG };
+// @ts-ignore
+export const APIHandle: ICiCAPI = CiCAPI.getAPIHandle("test-browser");
 
 // make fetch request change the page offset ?!
 //=============================================================================
@@ -106,10 +108,10 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
         },
         addItem = async () => {
             let item: IItem | null,
-            itemVariant: IItemVariant | void;
+                itemVariant: IItemVariant | void;
 
             if (itemIdInput.trim() !== "") {
-                itemVariant = await CiCAPI.content.getItemVariant(itemIdInput);
+                itemVariant = await APIHandle.content.getItemVariant(itemIdInput);
 
                 if (itemVariant) {
                     item = itemVariant;
@@ -249,7 +251,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
                 },
                 onConfigChanged = (configPath: string, valueToSet: ConfigValue, oldValue: ConfigValue) => {
                     if (configPath.includes("showHiddenContent") || configPath.includes("root") || configPath.includes("reset")) {
-                        setShowHiddenContent(/true/.test(CiCAPI.getConfig("contentPlatform.showHiddenContent") as string));
+                        setShowHiddenContent(/true/.test(APIHandle.getConfig("contentPlatform.showHiddenContent") as string));
                     }
                 },
                 checkForControlKey = (e: KeyboardEvent) => {
@@ -285,7 +287,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
             window.addEventListener("resize", calcOptimalTilesFunc);
             window.addEventListener("keydown", checkForControlKey);
             window.addEventListener("keyup", releaseCtrlKey);
-            CiCAPI.content.registerToChanges(onConfigChanged);
+            APIHandle.content.registerToChanges(onConfigChanged);
 
             // let storedCollapseState: string | null = localStorage.getItem(SLIDER_COLLAPSED_KEY);
             // if (storedCollapseState !== null) {
@@ -297,7 +299,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
                 window.removeEventListener("resize", calcOptimalTilesFunc);
                 window.removeEventListener("keydown", checkForControlKey);
                 window.removeEventListener("keyup", releaseCtrlKey);
-                CiCAPI.content.unregisterToChanges(onConfigChanged);
+                APIHandle.content.unregisterToChanges(onConfigChanged);
             };
         },
         onRenderComplete = () => {
@@ -460,7 +462,7 @@ async function _fetchCatalogs(setLoadingCatalogs: Function): Promise<Array<ICata
 
     setLoadingCatalogs(true);
     try {
-        catalogs = await CiCAPI.content.getCatalogs();
+        catalogs = await APIHandle.content.getCatalogs();
         // catalogs.unshift(SELECT_ALL_CATALOG);
     } catch (e) {
         // console.log("Fetch Catalog Aborted... ", e.message);
@@ -497,7 +499,7 @@ async function _fetchCatalogItems(pageOffset: number, options: IFetchCatalogItem
     searchCatalogIds = searchCatalogs
         .map((publicCatalog: ICatalog) => publicCatalog.id);
 
-    return CiCAPI.content.searchItems(searchQuery ?? "",{ catalogIds: searchCatalogIds.length > 0 ? searchCatalogIds : [], nbPerPage, offset: pageOffset, groupRefs: selectedGroups, visibleOnly: onlyVisible })
+    return APIHandle.content.searchItems(searchQuery ?? "", { catalogIds: searchCatalogIds.length > 0 ? searchCatalogIds : [], nbPerPage, offset: pageOffset, groupRefs: selectedGroups, visibleOnly: onlyVisible })
         .then((productResults: ISearchItemResults) => {
             let combinedProducts: Array<IItem>;
 

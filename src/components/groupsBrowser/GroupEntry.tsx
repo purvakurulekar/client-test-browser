@@ -1,8 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlusSquare, faMinusSquare, IconDefinition, faBullseye, faCrown, faRuler } from "@fortawesome/free-solid-svg-icons";
 import { Loader } from "client-ui-toolkit";
-import React, { MutableRefObject, useEffect, useRef, useState } from "react";
+import React, { MutableRefObject, useContext, useEffect, useRef, useState } from "react";
 import GroupNode from "./GroupNode";
+import { APIHandle } from "../catalogbrowser/CatalogBrowser";
 
 interface IGroupEntryProps {
     catalog: ICatalog,
@@ -68,7 +69,7 @@ export default function GroupEntry(props: IGroupEntryProps) {
             setLoading(true);
 
             try {
-                groups = await CiCAPI.content.getCatalogGroups(props.catalog.id);
+                groups = await APIHandle.content.getCatalogGroups(props.catalog.id);
             } catch (e) {
                 // no groups for catalog
                 groups = [];

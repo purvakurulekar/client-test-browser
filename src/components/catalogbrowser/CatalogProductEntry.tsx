@@ -31,7 +31,7 @@ function CatalogProductEntry(props: CatalogProductEntryProps) {
 
     function _handleDragStart(event: React.DragEvent<HTMLDivElement>) {
         event.dataTransfer?.setData("text/plain", JSON.stringify({
-            event: "add-product",
+            event: "add-item",
             data: props.item
         }));
     }
@@ -65,17 +65,17 @@ function CatalogProductEntry(props: CatalogProductEntryProps) {
             }
             <div className="catalog-product-image-container">
                 {imageContent}
-
             </div>
-            <div className="catalog-product-entry-label">
-                {props.item.name}
-            </div>
-            <span className="catalog-product-tooltip">{props.item.name}</span>
             <div className="catalog-item-details-small">
                 <div className="catalog-item-details-entry">
                     <div className="catalog-item-details-entry-name">id:</div>
                     <div className="catalog-item-details-entry-value">{props.item.id}</div>
                 </div>
+                <div className="catalog-item-details-entry">
+                    <div className="catalog-item-details-entry-name">name:</div>
+                    <div className="catalog-item-details-entry-value wrap-text">{props.item.name}</div>
+                </div>
+                
                 <div className="catalog-item-details-entry">
                     <div className="catalog-item-details-entry-name">description:</div>
                     <div className="catalog-item-details-entry-value wrap-text">{props.item.descriptions!?.short || ""}</div>

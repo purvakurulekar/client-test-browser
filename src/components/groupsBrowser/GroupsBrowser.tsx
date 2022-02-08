@@ -1,9 +1,10 @@
 import CatalogListFilter from "components/catalogListFilter/CatalogListFilter";
-import React, { MutableRefObject, useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, { MutableRefObject, useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
 import FlatCatalogList from "./FlatCatalogList";
 import "./groupsBrowser.scss";
 import CompanyCatalogList from "./CompanyCatalogList";
 import { IRefinedFilter } from "components/catalogListFilter/RefinedFilter";
+import { APIHandle } from "../catalogbrowser/CatalogBrowser";
 
 
 export const
@@ -203,9 +204,9 @@ export default function GroupsBrowser(props: IGroupsBrowserProps) {
 
             if (isValid) {
                 isValid = (
-                    (catalog.status === CiCAPI.content.constants.CATALOG_STATUS.ACTIVATED && refinedFilters.filterActive) ||
-                    (catalog.status === CiCAPI.content.constants.CATALOG_STATUS.INPROGRESS && refinedFilters.filterInProgress) ||
-                    (catalog.status === CiCAPI.content.constants.CATALOG_STATUS.DEACTIVATED && refinedFilters.filterDeactivated)
+                    (catalog.status === APIHandle.content.constants.CATALOG_STATUS.ACTIVATED && refinedFilters.filterActive) ||
+                    (catalog.status === APIHandle.content.constants.CATALOG_STATUS.INPROGRESS && refinedFilters.filterInProgress) ||
+                    (catalog.status === APIHandle.content.constants.CATALOG_STATUS.DEACTIVATED && refinedFilters.filterDeactivated)
                 );
             }
 
