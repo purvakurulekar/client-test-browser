@@ -11,7 +11,7 @@ import { faTimesCircle } from "@fortawesome/free-solid-svg-icons"
 // orderCode: string,
 // updateTStamp?: number,
 // subItems?: Array<IItem>,
-// legacyItemType?: string,
+// fullItemType?: string,
 // groupCodes?: Array<string>,
 // configurationState?: IConfigurationState,
 // proposedVariants?: Array<IItem>
@@ -40,11 +40,11 @@ export default function CatalogItemDetails(props: ICatalogItemDetailsProps) {
             </div>
             <div className="catalog-item-details-entry">
                 <div className="catalog-item-details-entry-name">Order code:</div>
-                <div className="catalog-item-details-entry-value">{props.item.refCodes!["sku"] || ""}</div>
+                <div className="catalog-item-details-entry-value">{props.item.externalCodes!["sku"] || ""}</div>
             </div>
             <div className="catalog-item-details-entry">
-                <div className="catalog-item-details-entry-name">legacyItemType:</div>
-                <div className="catalog-item-details-entry-value truncatable-text">{props.item.classification?.legacyItemType}</div>
+                <div className="catalog-item-details-entry-name">fullItemType:</div>
+                <div className="catalog-item-details-entry-value truncatable-text">{props.item.classification?.fullItemType}</div>
             </div>
             <div className="catalog-item-details-entry">
                 <div className="catalog-item-details-entry-name">dimensions:</div>

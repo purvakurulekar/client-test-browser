@@ -82,11 +82,11 @@ function CatalogProductEntry(props: CatalogProductEntryProps) {
                 </div>
                 <div className="catalog-item-details-entry">
                     <div className="catalog-item-details-entry-name">Order code:</div>
-                    <div className="catalog-item-details-entry-value">{props.item.refCodes!["sku"] ||""}</div>
+                    <div className="catalog-item-details-entry-value">{props.item.externalCodes!["sku"] ||""}</div>
                 </div>
                 <div className="catalog-item-details-entry">
-                    <div className="catalog-item-details-entry-name">legacyItemType:</div>
-                    <div className="catalog-item-details-entry-value wrap-text">{props.item.classification?.legacyItemType}</div>
+                    <div className="catalog-item-details-entry-name">fullItemType:</div>
+                    <div className="catalog-item-details-entry-value wrap-text">{props.item.classification?.fullItemType}</div>
                 </div>
                 <div className="catalog-item-details-entry">
                     <div className="catalog-item-details-entry-name">dimensions:</div>
