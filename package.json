@@ -6,6 +6,7 @@
   "scripts": {
     "pipeline-setup": "node scripts/pipelineSetup.js",
     "build-lib": "webpack --progress --config webpack.prodlib.config.ts && webpack --progress --config webpack.devlib.config.ts",
+    "build-prodlib": "webpack --progress --config webpack.prodlib.config.ts",
     "deploy": "npm run build-lib && cd dist/ && npm publish",
     "test": "jest --verbose ./unit_tests/"
   },
