@@ -473,9 +473,11 @@
 
 .catalog-product-variants-btn {
     position: absolute;
-    top: 4px;
+    // top: 4px;
     // right: 4px;
-    left: 4px;
+    // left: 4px;
+    bottom: 4px;
+    right: 22px;
     color: #28ad4b;
     margin: 0;
     padding: 0;
@@ -497,6 +499,7 @@
     background-color: #fff;
     border: 2px SOLID #d3d3d3;
     z-index: 2;
+    bottom: 0px;
 }
 
 .catalog-product-variant-entry {

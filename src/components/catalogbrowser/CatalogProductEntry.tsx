@@ -81,7 +81,7 @@ function CatalogProductEntry(props: CatalogProductEntryProps) {
                     <div className="catalog-item-details-entry-value wrap-text">{props.item.descriptions!?.short || ""}</div>
                 </div>
                 <div className="catalog-item-details-entry">
-                    <div className="catalog-item-details-entry-name">External code:</div>
+                    <div className="catalog-item-details-entry-name">externalCodes:</div>
                     <div className="catalog-item-details-entry-value">{props.item.externalCodes?.sku}</div>
                 </div>
                 <div className="catalog-item-details-entry">
@@ -101,7 +101,7 @@ function CatalogProductEntry(props: CatalogProductEntryProps) {
                     </ul>
                 </div>
                 <div className="catalog-item-details-entry">
-                    <div className="catalog-item-details-entry-name">groupCodes:</div>
+                    <div className="catalog-item-details-entry-name">groupRefs:</div>
                     <ul>
                         {props.item.groupRefs?.map((code: string, idx: number) => <li key={code + idx}>{code}</li>)}
                     </ul>

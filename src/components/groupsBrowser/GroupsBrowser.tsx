@@ -27,7 +27,7 @@ export default function GroupsBrowser(props: IGroupsBrowserProps) {
     let [filteredCatalogs, setFilteredCatalogs] = useState<Array<ICatalog>>([]),
         [refinedFilters, setRefinedFilters] = useState<IRefinedFilter>({
             sortByCompany: false,
-            sortByDate: false,
+            sortByDate: true,
             filterLatestVersionOnly: false,
             filterSelectedOnly: false,
             filterActive: true,
