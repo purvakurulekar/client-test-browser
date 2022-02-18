@@ -265,9 +265,10 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
                     }
                 },
                 onWindowMsgReceived = (ev: MessageEvent) => {
-                    if (ev.data === "getComponentState") {
+                    if (ev.data && ev.data.cmd === "getComponentState") {
                         if (props.handleGetComponentState) {
                             props.handleGetComponentState({
+                                requestId: ev.data.requestId,
                                 focusedItems: [focusedItemRef.current]
                             });
                         }
