@@ -1,7 +1,6 @@
 import path from "path";
 // import webpack from "webpack";
 import CopyWebpackPlugin from "copy-webpack-plugin";
-import HtmlWebpackPlugin from "html-webpack-plugin";
 import { CleanWebpackPlugin } from "clean-webpack-plugin";
 
 const BUILD_DIR = path.resolve(__dirname, "dist/lib/debug/");
@@ -107,11 +106,12 @@ module.exports = {
                 {
                     from: 'src/lib.d.ts',
                     to: "index.d.ts"
-                }]
-        }),
-        new HtmlWebpackPlugin({
-            template: "src/template.html",
-            filename: "index.html"
-        })        
+                },
+                {
+                    from: "src/template.html",
+                    to: "index.html"
+                }
+            ]
+        })
     ]
 }
