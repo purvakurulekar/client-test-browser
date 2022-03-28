@@ -469,6 +469,7 @@
     display: flex;
     flex-flow: row;
     padding: 2px;
+    user-select: text;
 }
 
 .catalog-product-variants-btn {
@@ -500,6 +501,7 @@
     border: 2px SOLID #d3d3d3;
     z-index: 2;
     bottom: 0px;
+    right: 0px;
 }
 
 .catalog-product-variant-entry {

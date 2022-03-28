@@ -1,6 +1,6 @@
 {
   "name": "client-test-browser",
-  "version": "1.8.12",
+  "version": "1.8.13",
   "description": "Client Test Catalog Browser, catalog browser using Content Platform API",
   "main": "index.js",
   "scripts": {

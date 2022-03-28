@@ -106,7 +106,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
             setCatalogItems([]);
             setTotalResults(0);
         },
-        addItem = async () => {
+        addItem = async (selectedVariant: IItemVariant | void) => {
             let item: IItem | null,
                 itemVariant: IItemVariant | void;
 
@@ -122,8 +122,8 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
                 item = selectedItem;
             }
 
-            if (item !== null && props.handleItemAdd) {
-                props.handleItemAdd(item);
+            if ((selectedVariant || item) && props.handleItemAdd) {
+                props.handleItemAdd(selectedVariant || item);
             }
 
             setItemIdInput("");
@@ -429,7 +429,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
                 <button
                     className="catalog-action-btn"
                     disabled={selectedItem === null && itemIdInput.trim() === ""}
-                    onClick={addItem}
+                    onClick={addItem as () => {}}
                 >Add</button>
             </div>
         </div>
