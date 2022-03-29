@@ -429,7 +429,7 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
                 <button
                     className="catalog-action-btn"
                     disabled={selectedItem === null && itemIdInput.trim() === ""}
-                    onClick={addItem as () => {}}
+                    onClick={() => addItem()}
                 >Add</button>
             </div>
         </div>
