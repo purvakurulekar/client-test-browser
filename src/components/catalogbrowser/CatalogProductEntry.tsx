@@ -75,14 +75,24 @@ function CatalogProductEntry(props: CatalogProductEntryProps) {
                     <div className="catalog-item-details-entry-name">name:</div>
                     <div className="catalog-item-details-entry-value wrap-text">{props.item.name}</div>
                 </div>
-                
+
                 <div className="catalog-item-details-entry">
                     <div className="catalog-item-details-entry-name">description:</div>
                     <div className="catalog-item-details-entry-value wrap-text">{props.item.descriptions!?.short || ""}</div>
                 </div>
                 <div className="catalog-item-details-entry">
                     <div className="catalog-item-details-entry-name">externalCodes:</div>
-                    <div className="catalog-item-details-entry-value">{props.item.externalCodes?.sku}</div>
+                    <div className="catalog-item-details-entry-value">
+                        <ul>
+                            {Array.from(Object.entries(props.item.externalCodes || {}))
+                                .map(([propName, propVal]) => (
+                                    <li key={propName}>
+                                        <span>{propName}: </span>
+                                        <span>{propVal}</span>
+                                    </li>
+                                ))}
+                        </ul>
+                    </div>
                 </div>
                 <div className="catalog-item-details-entry">
                     <div className="catalog-item-details-entry-name">fullItemType:</div>
