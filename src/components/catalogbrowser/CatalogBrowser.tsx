@@ -29,6 +29,7 @@ interface ICatalogBrowserProps {
     handleItemAdd?: Function,
     handleGetComponentState?: Function,
     handleItemReplace?: Function,
+    handleCatalogItemSelected?: Function,
     includeSettings?: boolean,
     width?: number,
     height?: number
@@ -215,6 +216,9 @@ export default function CatalogBrowser(props: ICatalogBrowserProps) {
         handleItemSelected = (catalogItem: IItem) => {
             setSelectedItem(catalogItem);
             focusedItemRef.current = catalogItem;
+            if (props.handleCatalogItemSelected) {
+                props.handleCatalogItemSelected(catalogItem);
+            }
         },
         handleDirectItemIdInputChanged = (ev: React.ChangeEvent<HTMLInputElement>) => {
             setItemIdInput(ev.target.value);
