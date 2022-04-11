@@ -18,7 +18,7 @@ const
     DEFAULT_NB_PER_PAGE = 50,
     MIN_NB_TILES_PER_PAGE = 10,
     MAX_NB_TILES_PER_PAGE = 100,
-    MIN_WIDTH_RESTRICTED = 520,
+    MIN_WIDTH_RESTRICTED = 480,
     STORAGE_SELECTED_CATALOGS_KEY = "ctb-sel-catalog-ids",
     SLIDER_STORAGE_KEY = "ctb-slider";
 // ,

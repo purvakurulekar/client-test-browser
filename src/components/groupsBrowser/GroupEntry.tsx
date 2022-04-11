@@ -119,13 +119,15 @@ export default function GroupEntry(props: IGroupEntryProps) {
                     </button>
                 }
 
+
+
                 <div className="group-entry-catalog-selector">
                     <input type="checkbox" checked={props.isSelected} onChange={handleCheckboxChanged} />
-                    <span className="group-entry-catalog-name">{props.catalog.name}{!isLargeEnough && ` (v${props.catalog.version.replace(/\.(\d{1,2}).*/, ".$1")})`}</span>
+                    <span className="group-entry-catalog-name">{props.catalog.name}{!isLargeEnough && ` (v${props.catalog.version})`}</span>
                     {
                         isLargeEnough &&
                         [
-                            <span key="info" className="group-entry-catalog-info">v{props.catalog.version.replace(/\.(\d{1,2}).*/, ".$1")}</span>,
+                            <span key="info" className="group-entry-catalog-info">v{props.catalog.version}</span>,
                             <span key="date" className="group-entry-catalog-date">{props.catalog.updatedDate.replace(/T.*/, "")}</span>
                         ]
                     }
