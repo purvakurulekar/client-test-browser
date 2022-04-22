@@ -1,6 +1,6 @@
 {
   "name": "client-test-browser",
-  "version": "1.8.20",
+  "version": "1.8.21",
   "description": "Client Test Catalog Browser, catalog browser using Content Platform API",
   "main": "index.js",
   "scripts": {
@@ -52,7 +52,7 @@
     "@types/webpack": "^5.28.0",
     "babel-loader": "^8.2.2",
     "clean-webpack-plugin": "^4.0.0-alpha.0",
-    "client-ui-toolkit": "^0.7.1",
+    "client-ui-toolkit": "^0.7.2",
     "copy-webpack-plugin": "^9.0.1",
     "css-loader": "^5.2.6",
     "fake-indexeddb": "^3.1.3",
